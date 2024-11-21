@@ -2,11 +2,17 @@
 
 Pedro Almeida official monorepo, based in tailwind example.
 
+# Projects
+
+- Original
+  - [example doc](http://localhost:3010/)
+  - [example web](http://localhost:3011/)
+
+- Next 15
+  - [Playground](http://localhost:3012/)
+
 ## TODO
 
-- Separate the Original code in separate folder
-- Set fix port to each project
-- Create a new Next 15 app
 - Create shadcn package
 - Implement dark/ligh theme (with shadcn)
 - Implement authentication (with next-auth)
