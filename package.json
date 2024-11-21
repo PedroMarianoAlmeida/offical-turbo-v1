@@ -19,7 +19,7 @@
   "name": "with-tailwind",
   "packageManager": "npm@9.8.0",
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "apps/original/*",
+    "packages/original/*"
   ]
 }
