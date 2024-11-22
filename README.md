@@ -22,9 +22,9 @@ Pedro Almeida official monorepo, based in tailwind example.
 ## For future
 
 - Add all shadcn components on package.json
-- A core package (to put for instance a react with children that I use everywhere)
 - Add dark theme on Next 15 app layout (the same of Shadcn?) - While doesn't have I am applying the shadcn package after the app css
 - Replace the dark/light component, the Turborepo website is nicer
+- Check if it is possible add the workspaces in a different json
 
 ## Done
 
@@ -33,3 +33,4 @@ Pedro Almeida official monorepo, based in tailwind example.
 - Create a new Next 15 app
 - Create shadcn package
 - Implement dark/ligh theme (with shadcn)
+- A core package (to put for instance a react with children that I use everywhere)
