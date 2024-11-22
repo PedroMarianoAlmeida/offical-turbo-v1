@@ -16,8 +16,8 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 ## In order
 
-- Implement authentication (with next-auth)
-- Connect auth with shadcn (not direcly, create the own interface and adapters)
+- Finish next-auth adapters (hook, server and redirect) and components (check incognito lib to use the same nomeclature in the redirect) - The redirect only for authenticated and public, other roles will be implemented in another time
+- Connect auth with shadcn (using the core adapter)
 
 ## For future
 
@@ -25,6 +25,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 - Add dark theme on Next 15 app layout (the same of Shadcn?) - While doesn't have I am applying the shadcn package after the app css
 - Replace the dark/light component, the Turborepo website is nicer
 - Check if it is possible add the workspaces in a different json
+- Role base protected page
 
 ## Done
 
