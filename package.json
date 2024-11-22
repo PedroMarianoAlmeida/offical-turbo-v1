@@ -23,6 +23,7 @@
     "apps/next-15/*",
     "packages/original/*",
     "packages/core/*",
-    "packages/react/*"
+    "packages/react/*",
+    "packages/next/*"
   ]
 }
