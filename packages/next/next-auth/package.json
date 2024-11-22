@@ -2,7 +2,7 @@
   "name": "@repo/next-auth",
   "version": "0.0.0",
   "exports": {
-    "./add": "./src/add.ts"
+    "./session-adapters": "./src/session-adapters.ts"
   },
   "license": "MIT",
   "peerDependencies": {
@@ -12,7 +12,8 @@
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "autoprefixer": "^10.4.18",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "@repo/core-main": "*"
   },
   "dependencies": {
     "next-auth": "^4.24.10"

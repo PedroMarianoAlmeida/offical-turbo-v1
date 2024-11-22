@@ -4,12 +4,12 @@ export interface WithChildren {
   children: ReactNode;
 }
 
-type roleOptions = "admin" | "self" | "authenticated";
+type roleOptions = "admin" | "self"; // No need of authenticated role, if have userData means that it is authenticated
 interface UserData {
   id: number | string;
-  email: string;
-  name: string;
-  photoUrl: string;
+  email: string | null;
+  name: string | null;
+  photoUrl: string | null;
   roles: roleOptions[];
 }
 

@@ -2,7 +2,8 @@
   "name": "@repo/core-main",
   "version": "0.0.0",
   "exports": {
-    "./types": "./src/types.ts"
+    "./types": "./src/types.ts",
+    "./utils": "./src/utils.ts"
   },
   "license": "MIT",
   "peerDependencies": {

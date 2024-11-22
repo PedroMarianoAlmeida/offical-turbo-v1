@@ -2,15 +2,17 @@
 import { ModeToggle } from "@repo/shadcn/mode-toggle";
 import { useTheme } from "next-themes";
 import { WithChildren } from "@repo/core-main/types";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
+import { useCoreSession } from "@repo/next-auth/session-adapters";
 
 function AuthButton() {
-  const { data: session } = useSession();
+  const { hasUser, userData } = useCoreSession();
 
-  if (session) {
+  if (hasUser) {
+    const { name } = userData;
     return (
       <>
-        {session?.user?.name} <br />
+        {name} <br />
         <button onClick={() => signOut()}>Sign out</button>
       </>
     );

@@ -16,7 +16,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 ## In order
 
-- Finish next-auth adapters (hook, server and redirect) and components (check incognito lib to use the same nomeclature in the redirect) - The redirect only for authenticated and public, other roles will be implemented in another time
+- Finish next-auth adapters (redirect) and components (check incognito lib to use the same nomeclature in the redirect) - The redirect only for authenticated and public, other roles will be implemented in another time
 - Connect auth with shadcn (using the core adapter)
 
 ## For future
@@ -35,3 +35,4 @@ Pedro Almeida official monorepo, based in tailwind example.
 - Create shadcn package
 - Implement dark/ligh theme (with shadcn)
 - A core package (to put for instance a react with children that I use everywhere)
+- Next-auth adapters

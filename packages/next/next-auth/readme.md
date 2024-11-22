@@ -59,8 +59,7 @@ const session = await getServerSession(); //This is server site, so the componen
 
 - SignIn and signOut in the project with `import { signIn, signOut } from "next-auth/react";`
 
-- Use the custom hook from this repo (to do)
-- Use the server session from this repo (to do)
+- Get the session already sanitized: `import { useCoreSession, getCoreServerSession } from "@repo/next-auth/session-adapters";`
 
 ## Sources
 
