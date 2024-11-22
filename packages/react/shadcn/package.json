@@ -10,7 +10,8 @@
   "exports": {
     "./styles.css": "./dist/index.css",
     "./button": "./src/native-shadcn/button.tsx",
-    "./mode-toggle": "./src/composition/mode-toggle.tsx"
+    "./mode-toggle": "./src/composition/mode-toggle.tsx",
+    "./header": "./src/composition/header.tsx"
   },
   "license": "MIT",
   "scripts": {

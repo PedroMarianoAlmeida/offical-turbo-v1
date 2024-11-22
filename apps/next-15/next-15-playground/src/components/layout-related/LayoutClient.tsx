@@ -1,5 +1,5 @@
 "use client";
-import { ModeToggle } from "@repo/shadcn/mode-toggle";
+import { Header } from "@repo/shadcn/header";
 import { useTheme } from "next-themes";
 import { WithChildren } from "@repo/core-main/types";
 import { signIn, signOut } from "next-auth/react";
@@ -30,7 +30,15 @@ const LayoutClient = ({ children }: WithChildren) => {
 
   return (
     <>
-      <ModeToggle setTheme={setTheme} />
+      <Header
+        setTheme={setTheme}
+        items={{
+          publicItems: [
+            { id: "home", element: <p>Home</p> },
+            { id: "about", element: <p>About</p> },
+          ],
+        }}
+      />
       <AuthButton />
       {children}
     </>
