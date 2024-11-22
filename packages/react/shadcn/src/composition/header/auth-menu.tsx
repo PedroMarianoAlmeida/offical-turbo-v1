@@ -11,6 +11,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "../../native-shadcn/avatar";
+import { Button } from "./../../native-shadcn/button";
 import { HeaderProps, Auth } from "./index";
 
 const WithItems = () => {
@@ -18,24 +19,28 @@ const WithItems = () => {
 };
 
 const WithoutItems = ({ auth }: { auth: Auth }) => {
-  const {
-    session: { hasUser, userData },
-    signIn,
-    signOut,
-  } = auth;
+  const { session, signIn, signOut } = auth;
 
-  if (hasUser) {
+  if (session.hasUser) {
+    const {
+      userData: { name, photoUrl },
+    } = session;
     return (
-      <>
-        <p>{userData?.name}</p> {/** Why do I need the "?"" here? - Fix that */}
-        <CircleUserRound onClick={signOut} />
-      </>
+      <Button variant="ghost">
+        <Avatar onClick={signOut}>
+          {/* Maybe keep only one return and a ternary around here to reuse the wrappers */}
+          <AvatarImage src={photoUrl ?? ""} alt={name ?? "Visitor"} />
+          <AvatarFallback>
+            <CircleUserRound size={40} />
+          </AvatarFallback>
+        </Avatar>
+      </Button>
     );
   }
 
   return (
     <Avatar>
-      <CircleUserRound onClick={signIn} />
+      <CircleUserRound onClick={signIn} size={40} />
     </Avatar>
   );
 };

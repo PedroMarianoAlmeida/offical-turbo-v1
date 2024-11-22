@@ -26,6 +26,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 - Check if it is possible add the workspaces in a different json
 - Role base protected page
 - In @repo/next auth, create a auth middleware to work like the Protected component
+- Improve Shadcn header (there is some CSS issues)
 
 ## Done
 
