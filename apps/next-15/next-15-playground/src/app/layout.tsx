@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "@/components/layout-related/theme-provider";
+
 import localFont from "next/font/local";
-import "@repo/shadcn/styles.css";
+
 import "./globals.css";
-import LayoutClient from "@/components/LayoutClient";
+import "@repo/shadcn/styles.css"; // This order is temporary, while the app doesn't have his own dark theme
+
+import LayoutClient from "@/components/layout-related/LayoutClient";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,12 +30,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LayoutClient />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LayoutClient>{children}</LayoutClient>
+        </ThemeProvider>
       </body>
     </html>
   );
