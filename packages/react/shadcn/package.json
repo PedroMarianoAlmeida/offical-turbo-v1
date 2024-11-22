@@ -11,7 +11,7 @@
     "./styles.css": "./dist/index.css",
     "./button": "./src/native-shadcn/button.tsx",
     "./mode-toggle": "./src/composition/mode-toggle.tsx",
-    "./header": "./src/composition/header.tsx"
+    "./header": "./src/composition/header/index.tsx"
   },
   "license": "MIT",
   "scripts": {

@@ -27,17 +27,19 @@ function AuthButton() {
 
 const LayoutClient = ({ children }: WithChildren) => {
   const { setTheme } = useTheme();
+  const session = useCoreSession();
 
   return (
     <>
       <Header
         setTheme={setTheme}
-        items={{
-          publicItems: [
-            { id: "home", element: <p>Home</p> },
-            { id: "about", element: <p>About</p> },
-          ],
-        }}
+        auth={{ session, signIn, signOut }}
+        // items={{
+        //   publicItems: [
+        //     { id: "home", element: <p>Home</p> },
+        //     { id: "about", element: <p>About</p> },
+        //   ],
+        // }}
       />
       <AuthButton />
       {children}
