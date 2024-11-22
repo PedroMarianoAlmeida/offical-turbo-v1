@@ -16,7 +16,6 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 ## In order
 
-- Finish next-auth adapters (redirect) and components (check incognito lib to use the same nomeclature in the redirect) - The redirect only for authenticated and public, other roles will be implemented in another time
 - Connect auth with shadcn (using the core adapter)
 
 ## For future
@@ -26,6 +25,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 - Replace the dark/light component, the Turborepo website is nicer
 - Check if it is possible add the workspaces in a different json
 - Role base protected page
+- In @repo/next auth, create a auth middleware to work like the Protected component
 
 ## Done
 
@@ -36,3 +36,6 @@ Pedro Almeida official monorepo, based in tailwind example.
 - Implement dark/ligh theme (with shadcn)
 - A core package (to put for instance a react with children that I use everywhere)
 - Next-auth adapters
+- Finish next-auth adapters (redirect) and components
+  - Check incognito lib to use the same nomeclature in the redirect - Actually I believe the protected wrapper is cleaner, instead of the withAuthenticator HOC, it is better create a middlewhere for Next, but I won"t do that
+  - The redirect only for authenticated and public, other roles will be implemented in another time

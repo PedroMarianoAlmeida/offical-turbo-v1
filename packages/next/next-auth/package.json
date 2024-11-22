@@ -2,7 +2,8 @@
   "name": "@repo/next-auth",
   "version": "0.0.0",
   "exports": {
-    "./session-adapters": "./src/session-adapters.ts"
+    "./session-adapters": "./src/session-adapters.ts",
+    "./protected": "./src/protected.tsx"
   },
   "license": "MIT",
   "peerDependencies": {

@@ -61,6 +61,8 @@ const session = await getServerSession(); //This is server site, so the componen
 
 - Get the session already sanitized: `import { useCoreSession, getCoreServerSession } from "@repo/next-auth/session-adapters";`
 
+- Protect a component/page wrapping it in the Protected component
+
 ## Sources
 
 - - https://www.youtube.com/watch?v=md65iBX5Gxg (but I used Google Authenticator instead of the github Github)
