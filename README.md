@@ -16,7 +16,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 ## In order
 
-- Connect auth with shadcn (using the core adapter)
+- Fix header TS, the auth items should be accepted only when the auth prop was sent
 
 ## For future
 
@@ -27,6 +27,10 @@ Pedro Almeida official monorepo, based in tailwind example.
 - Role base protected page
 - In @repo/next auth, create a auth middleware to work like the Protected component
 - Improve Shadcn header (there is some CSS issues)
+  - It is not fixed on top
+  - Fix alignment and spaces issues
+  - The Group with Avatar and Menu is weird at the moment
+- Add unity test (the header deserves a unit test to check auth and items conditions)
 
 ## Done
 
@@ -40,3 +44,4 @@ Pedro Almeida official monorepo, based in tailwind example.
 - Finish next-auth adapters (redirect) and components
   - Check incognito lib to use the same nomeclature in the redirect - Actually I believe the protected wrapper is cleaner, instead of the withAuthenticator HOC, it is better create a middlewhere for Next, but I won"t do that
   - The redirect only for authenticated and public, other roles will be implemented in another time
+- Connect auth with shadcn (using the core adapter)

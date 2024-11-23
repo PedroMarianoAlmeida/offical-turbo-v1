@@ -12,14 +12,14 @@ export interface Auth {
   signOut(): void;
 }
 
-interface item {
+interface Item {
   id: string | number;
   element: ReactNode;
 }
 
-interface MenuItemsByRole {
-  publicItems?: item[];
-  authenticatedItems?: item[];
+export interface MenuItemsByRole {
+  publicItems?: Item[];
+  authenticatedItems?: Item[];
 }
 export interface HeaderProps {
   logo?: ReactNode;

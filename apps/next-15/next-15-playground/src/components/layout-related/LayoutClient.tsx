@@ -34,12 +34,13 @@ const LayoutClient = ({ children }: WithChildren) => {
       <Header
         setTheme={setTheme}
         auth={{ session, signIn, signOut }}
-        // items={{
-        //   publicItems: [
-        //     { id: "home", element: <p>Home</p> },
-        //     { id: "about", element: <p>About</p> },
-        //   ],
-        // }}
+        items={{
+          publicItems: [
+            { id: "home", element: <p>Home</p> },
+            { id: "about", element: <p>About</p> },
+          ],
+          authenticatedItems: [{ id: "dashboard", element: <p>Dashboard</p> }],
+        }}
       />
       <AuthButton />
       {children}

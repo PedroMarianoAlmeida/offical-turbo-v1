@@ -12,51 +12,98 @@ import {
   AvatarImage,
 } from "../../native-shadcn/avatar";
 import { Button } from "./../../native-shadcn/button";
-import { HeaderProps, Auth } from "./index";
+import { Auth, MenuItemsByRole } from "./index";
 
-const WithItems = () => {
-  return <p>With Items</p>;
+const AuthAvatar = ({ session }: Pick<Auth, "session">) => {
+  const { hasUser } = session;
+  if (hasUser) {
+    const {
+      userData: { photoUrl, name },
+    } = session;
+    return (
+      <Avatar className="w-10 h-10">
+        <AvatarImage
+          src={photoUrl ?? ""}
+          alt={name ?? "Visitor"}
+          className="w-full h-full"
+        />
+        <AvatarFallback>
+          <CircleUserRound className="!w-full !h-full" />
+        </AvatarFallback>
+      </Avatar>
+    );
+  }
+  return (
+    <Avatar className="w-10 h-10">
+      <CircleUserRound className="!w-full !h-full" />
+    </Avatar>
+  );
+};
+
+const WithItems = ({ auth, items }: { auth: Auth; items: MenuItemsByRole }) => {
+  const { session, signIn, signOut } = auth;
+  const { authenticatedItems, publicItems } = items;
+  return (
+    <MenubarMenu>
+      <MenubarTrigger>
+        <Menu />
+        <AuthAvatar session={session} />
+      </MenubarTrigger>
+      <MenubarContent>
+        {session.hasUser ? (
+          <>
+            <MenubarItem onClick={signOut}>Sign out</MenubarItem>
+            {authenticatedItems &&
+              authenticatedItems.map(({ id, element }) => (
+                <MenubarItem key={id}>{element}</MenubarItem>
+              ))}
+            {publicItems &&
+              publicItems.map(({ id, element }) => (
+                <MenubarItem key={id}>{element}</MenubarItem>
+              ))}
+          </>
+        ) : (
+          <>
+            <MenubarItem onClick={signIn}>Sign in</MenubarItem>
+            {publicItems &&
+              publicItems.map(({ id, element }) => (
+                <MenubarItem key={id}>{element}</MenubarItem>
+              ))}
+          </>
+        )}
+      </MenubarContent>
+    </MenubarMenu>
+  );
 };
 
 const WithoutItems = ({ auth }: { auth: Auth }) => {
   const { session, signIn, signOut } = auth;
 
-  if (session.hasUser) {
-    const {
-      userData: { name, photoUrl },
-    } = session;
-    return (
-      <Button variant="ghost">
-        <Avatar onClick={signOut}>
-          {/* Maybe keep only one return and a ternary around here to reuse the wrappers */}
-          <AvatarImage src={photoUrl ?? ""} alt={name ?? "Visitor"} />
-          <AvatarFallback>
-            <CircleUserRound size={40} />
-          </AvatarFallback>
-        </Avatar>
-      </Button>
-    );
-  }
+  const handleClick = session.hasUser ? signOut : signIn;
 
   return (
-    <Avatar>
-      <CircleUserRound onClick={signIn} size={40} />
-    </Avatar>
+    <Button variant="ghost" onClick={handleClick}>
+      <AuthAvatar session={session} />
+    </Button>
   );
 };
-interface AuthMenuProps extends Pick<HeaderProps, "items"> {
-  auth: Auth; // I cannot put auth in the Pick because it is mandatory in this component
-}
-export const AuthMenu = ({ items, auth }: AuthMenuProps) => {
-  const {
-    session: { hasUser, userData },
-    signIn,
-    signOut,
-  } = auth;
 
-  return <>{items ? <WithItems /> : <WithoutItems auth={auth} />}</>;
-
-  //   return (
+export const AuthMenu = ({
+  auth,
+  items,
+}: {
+  auth: Auth;
+  items?: MenuItemsByRole;
+}) => {
+  return (
+    <>
+      {items ? (
+        <WithItems auth={auth} items={items} />
+      ) : (
+        <WithoutItems auth={auth} />
+      )}
+    </>
+  );
   //     <MenubarMenu>
   //       <MenubarTrigger>
   //         <Avatar>
