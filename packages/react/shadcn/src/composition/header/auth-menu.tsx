@@ -95,34 +95,9 @@ export const AuthMenu = ({
   auth: Auth;
   items?: MenuItemsByRole;
 }) => {
-  return (
-    <>
-      {items ? (
-        <WithItems auth={auth} items={items} />
-      ) : (
-        <WithoutItems auth={auth} />
-      )}
-    </>
+  return items && (items.authenticatedItems || items.publicItems) ? (
+    <WithItems auth={auth} items={items} />
+  ) : (
+    <WithoutItems auth={auth} />
   );
-  //     <MenubarMenu>
-  //       <MenubarTrigger>
-  //         <Avatar>
-  //           <AvatarImage
-  //             src={authResponse.hasUser ? authResponse.image || "" : ""}
-  //             alt={authResponse.hasUser ? authResponse.name || "" : "Visitor"}
-  //           />
-  //           <AvatarFallback>
-  //             <CircleUserRound />
-  //           </AvatarFallback>
-  //         </Avatar>
-  //       </MenubarTrigger>
-  //       <MenubarContent>
-  //         {authResponse.hasUser ? (
-  //           <MenubarItem onClick={signOut}>Logout</MenubarItem>
-  //         ) : (
-  //           <MenubarItem onClick={signIn}>Login</MenubarItem>
-  //         )}
-  //       </MenubarContent>
-  //     </MenubarMenu>
-  //   );
 };

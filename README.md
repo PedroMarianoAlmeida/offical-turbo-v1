@@ -16,8 +16,6 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 ## In order
 
-- Fix header TS, the auth items should be accepted only when the auth prop was sent
-
 ## For future
 
 - Add all shadcn components on package.json
@@ -30,6 +28,7 @@ Pedro Almeida official monorepo, based in tailwind example.
   - It is not fixed on top
   - Fix alignment and spaces issues
   - The Group with Avatar and Menu is weird at the moment
+  - The dark theme and itens menus should have a animation that I saw in docs (https://ui.shadcn.com/docs/components/menubar)
 - Add unity test (the header deserves a unit test to check auth and items conditions)
 
 ## Done
@@ -45,3 +44,4 @@ Pedro Almeida official monorepo, based in tailwind example.
   - Check incognito lib to use the same nomeclature in the redirect - Actually I believe the protected wrapper is cleaner, instead of the withAuthenticator HOC, it is better create a middlewhere for Next, but I won"t do that
   - The redirect only for authenticated and public, other roles will be implemented in another time
 - Connect auth with shadcn (using the core adapter)
+- Fix header TS, the auth items should be accepted only when the auth prop was sent
