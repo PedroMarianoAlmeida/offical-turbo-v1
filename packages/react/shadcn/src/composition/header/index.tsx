@@ -31,7 +31,7 @@ export interface AuthenticatedMenuItems extends PublicMenuItems {
   authenticatedItems: Item[];
 }
 
-type HeaderProps =
+export type HeaderProps =
   | {
       logo?: ReactNode;
       setTheme?: SetTheme;
