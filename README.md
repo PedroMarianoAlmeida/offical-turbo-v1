@@ -14,9 +14,24 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 ## TODO
 
-## In order
+### In order
 
-## For future
+#### Add credit count to use features
+
+- [ ] Setup firebase
+- [ ] Create table with user and count by day
+- [ ] Increase the number when use again in the same day
+- [ ] Start the counting again when the previous usage was in another day
+- [ ] Check user count and stop user to take some action after reach limit (on server side)
+- [ ] Implement the "with credit" role
+- [ ] Create a Protected in @repo/next-auth but with fallback component instead of redirect (keep both)
+- [ ] Show fallback on frontend when user reach the limit
+
+#### Interaction with AI (object in the format that I want and Image)
+
+#### Save user history
+
+### Debit tech
 
 - Add all shadcn components on package.json
 - Add dark theme on Next 15 app layout (the same of Shadcn?) - While doesn't have I am applying the shadcn package after the app css
@@ -30,18 +45,3 @@ Pedro Almeida official monorepo, based in tailwind example.
   - The Group with Avatar and Menu is weird at the moment
   - The dark theme and itens menus should have a animation that I saw in docs (https://ui.shadcn.com/docs/components/menubar)
 - Add unity test (the header deserves a unit test to check auth and items conditions)
-
-## Done
-
-- Separate the Original code in separate folder
-- Set fix port to each project
-- Create a new Next 15 app
-- Create shadcn package
-- Implement dark/ligh theme (with shadcn)
-- A core package (to put for instance a react with children that I use everywhere)
-- Next-auth adapters
-- Finish next-auth adapters (redirect) and components
-  - Check incognito lib to use the same nomeclature in the redirect - Actually I believe the protected wrapper is cleaner, instead of the withAuthenticator HOC, it is better create a middlewhere for Next, but I won"t do that
-  - The redirect only for authenticated and public, other roles will be implemented in another time
-- Connect auth with shadcn (using the core adapter)
-- Fix header TS, the auth items should be accepted only when the auth prop was sent
