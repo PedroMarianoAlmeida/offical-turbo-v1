@@ -1,0 +1,19 @@
+{
+  "name": "@repo/firebase",
+  "version": "0.0.0",
+  "exports": {
+    "./userCount": "./src/userCount.ts",
+    "./initializeFirebase": "./src/initializeFirebase.ts"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "autoprefixer": "^10.4.18",
+    "typescript": "5.5.4"
+  },
+  "dependencies": {
+    "firebase": "^11.0.2",
+    "@repo/core-main": "*"
+  }
+}

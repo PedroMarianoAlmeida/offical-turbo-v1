@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "exports": {
     "./types": "./src/types.ts",
-    "./utils": "./src/utils.ts"
+    "./utils": "./src/utils.ts",
+    "./asyncWrapper": "./src/asyncWrapper.ts",
+    "./dates": "./src/dates.ts"
   },
   "license": "MIT",
   "peerDependencies": {

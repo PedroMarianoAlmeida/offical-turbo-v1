@@ -16,7 +16,8 @@
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "@repo/core-main": "*",
     "@repo/minimal": "*",
-    "@repo/next-auth": "*"
+    "@repo/next-auth": "*",
+    "@repo/firebase": "*"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,9 +1,11 @@
 import { redirect } from "next/navigation";
-import { WithChildren } from "@repo/core-main/types";
+import { CoreSession, UserData } from "@repo/core-main/types";
 import { getCoreServerSession } from "./session-adapters";
 
-interface ProtectedProps extends WithChildren {
+interface ProtectedProps {
   redirectTo?: string;
+
+  children: ((userData: UserData) => React.ReactNode) | React.ReactNode;
 }
 export const Protected = async ({
   children,
@@ -11,6 +13,10 @@ export const Protected = async ({
 }: ProtectedProps) => {
   const auth = await getCoreServerSession();
   if (auth.hasUser) {
+    const { userData } = auth;
+    if (typeof children === "function") {
+      return <>{children(userData)}</>;
+    }
     return <>{children}</>;
   }
   redirect(redirectTo);

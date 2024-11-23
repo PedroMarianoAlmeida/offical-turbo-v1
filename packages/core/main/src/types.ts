@@ -5,7 +5,7 @@ export interface WithChildren {
 }
 
 type roleOptions = "admin" | "self"; // No need of authenticated role, if have userData means that it is authenticated
-interface UserData {
+export interface UserData {
   id: number | string;
   email: string | null;
   name: string | null;

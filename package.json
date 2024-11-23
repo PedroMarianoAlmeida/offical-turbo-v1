@@ -1,4 +1,5 @@
 {
+  "name": "official-turborepo-v1",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -16,7 +17,6 @@
   "engines": {
     "node": ">=18"
   },
-  "name": "with-tailwind",
   "packageManager": "npm@9.8.0",
   "workspaces": [
     "apps/original/*",
@@ -24,6 +24,7 @@
     "packages/original/*",
     "packages/core/*",
     "packages/react/*",
-    "packages/next/*"
+    "packages/next/*",
+    "packages/backend/*"
   ]
 }
