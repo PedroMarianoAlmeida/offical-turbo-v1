@@ -1,7 +1,7 @@
 "use server";
-import { database } from "../../firebaseConfig";
+import { database } from "../miscellaneous/firebaseConfig";
 import { incrementUserCountUsage } from "@repo/firebase/userCount";
-import { projectName } from "@/constants";
+import { projectName } from "@/miscellaneous/constants";
 
 export const appIncrementUserCountUsage = async (userId: string) => {
   const res = await incrementUserCountUsage({

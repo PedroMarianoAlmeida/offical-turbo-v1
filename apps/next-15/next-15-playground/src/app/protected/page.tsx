@@ -1,8 +1,8 @@
 import { Protected } from "@repo/next-auth/protected";
 import { getUserCountUsageForToday } from "@repo/firebase/userCount";
-import { database } from "./../../../firebaseConfig";
+import { database } from "@/miscellaneous/firebaseConfig";
 import { IncrementUsageButton } from "./client-side";
-import { projectName } from "@/constants";
+import { projectName } from "@/miscellaneous/constants";
 
 const Test = async ({ userId }: { userId: string }) => {
   const usageCount = await getUserCountUsageForToday({
