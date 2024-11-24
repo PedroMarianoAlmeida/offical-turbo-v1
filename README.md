@@ -55,6 +55,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - incrementUserCountUsage on firebase package should not be exported (after create some useful action to test remove it)
 - Refactor packages/next/next-auth/src/protected.tsx to have a base component and both using that
 - Check the comment on apps/next-15/next-15-playground/src/app/protected/page.tsx when start creating the real app
+- Add on firebase package readme, the steps to get the environment variables
 
 ## History
 
