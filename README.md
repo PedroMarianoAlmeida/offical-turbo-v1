@@ -23,8 +23,8 @@ Pedro Almeida official monorepo, based in tailwind example.
 - [x] Increase the number when use again in the same day
 - [x] Start the counting again when the previous usage was in another day
 - [x] Check user count and stop user to take some action after reach limit (on server side)
-- [ ] Implement the "with credit" role
-- [ ] Create a Protected in @repo/next-auth but with fallback component instead of redirect (keep both)
+- [ ] Implement the "with credit" role - I change my mind, it is better check everytime (the role need to be stored somewhere, and it will read the daily count to update this another database... so it is bad idea)
+- [x] Create a Protected in @repo/next-auth but with fallback component instead of redirect (keep both)
 - [ ] Show fallback on frontend when user reach the limit
 
 #### Interaction with AI (object in the format that I want and Image)
@@ -48,3 +48,4 @@ Pedro Almeida official monorepo, based in tailwind example.
 - Add unity test (the header deserves a unit test to check auth and items conditions)
 - Check how to extract all Themes (auth, dark mode and query Tan Stack) to be reusable and easier to set up a new app project
 - incrementUserCountUsage on firebase package should not be exported (after create some useful action to test remove it)
+- Refactor packages/next/next-auth/src/protected.tsx to have a base component and both using that

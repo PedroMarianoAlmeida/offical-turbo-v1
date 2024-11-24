@@ -1,18 +1,19 @@
 import { redirect } from "next/navigation";
-import { CoreSession, UserData } from "@repo/core-main/types";
+import { UserData } from "@repo/core-main/types";
 import { getCoreServerSession } from "./session-adapters";
 
-interface ProtectedProps {
+interface ProtectedWithRedirectProps {
   redirectTo?: string;
-
   children: ((userData: UserData) => React.ReactNode) | React.ReactNode;
+  extraProtectCondition?: boolean;
 }
-export const Protected = async ({
+export const ProtectedWithRedirect = async ({
   children,
   redirectTo = "/",
-}: ProtectedProps) => {
+  extraProtectCondition = false,
+}: ProtectedWithRedirectProps) => {
   const auth = await getCoreServerSession();
-  if (auth.hasUser) {
+  if (auth.hasUser && extraProtectCondition) {
     const { userData } = auth;
     if (typeof children === "function") {
       return <>{children(userData)}</>;
@@ -20,4 +21,25 @@ export const Protected = async ({
     return <>{children}</>;
   }
   redirect(redirectTo);
+};
+
+interface ProtectedWithFallbackProps {
+  fallback: ((userData: UserData) => React.ReactNode) | React.ReactNode;
+  children: ((userData: UserData) => React.ReactNode) | React.ReactNode;
+  extraProtectCondition?: boolean;
+}
+export const ProtectedWithFallback = async ({
+  children,
+  fallback,
+  extraProtectCondition,
+}: ProtectedWithFallbackProps) => {
+  const auth = await getCoreServerSession();
+  if (auth.hasUser && extraProtectCondition) {
+    const { userData } = auth;
+    if (typeof children === "function") {
+      return <>{children(userData)}</>;
+    }
+    return <>{children}</>;
+  }
+  return <>{fallback}</>;
 };

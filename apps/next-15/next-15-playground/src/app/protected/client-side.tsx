@@ -5,7 +5,7 @@ import { appIncrementUserCountUsage } from "@/server-actions/userCount";
 
 export const IncrementUsageButton = ({ userId }: { userId: string }) => {
   const [message, setMessage] = useState<string | null>("");
-  const { mutateAsync, isIdle, isSuccess } = useMutation({
+  const { mutateAsync } = useMutation({
     mutationFn: appIncrementUserCountUsage,
     onSuccess: (data) => {
       console.log({ data });

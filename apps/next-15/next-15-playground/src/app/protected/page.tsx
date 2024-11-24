@@ -1,4 +1,4 @@
-import { Protected } from "@repo/next-auth/protected";
+import { ProtectedWithRedirect } from "@repo/next-auth/protected";
 import { getUserCountUsageForToday } from "@repo/firebase/userCount";
 import { database } from "@/miscellaneous/firebaseConfig";
 import { IncrementUsageButton } from "./client-side";
@@ -20,7 +20,7 @@ const Test = async ({ userId }: { userId: string }) => {
 };
 const ProtectedPage = async () => {
   return (
-    <Protected redirectTo="/api/auth/signin">
+    <ProtectedWithRedirect redirectTo="/api/auth/signin">
       {(userData) => {
         return (
           <>
@@ -29,7 +29,7 @@ const ProtectedPage = async () => {
           </>
         );
       }}
-    </Protected>
+    </ProtectedWithRedirect>
   );
 };
 
