@@ -18,10 +18,10 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 #### Add credit count to use features
 
-- [ ] Setup firebase
-- [ ] Create table with user and count by day
-- [ ] Increase the number when use again in the same day
-- [ ] Start the counting again when the previous usage was in another day
+- [X] Setup firebase
+- [X] Create table with user and count by day
+- [X] Increase the number when use again in the same day
+- [X] Start the counting again when the previous usage was in another day
 - [ ] Check user count and stop user to take some action after reach limit (on server side)
 - [ ] Implement the "with credit" role
 - [ ] Create a Protected in @repo/next-auth but with fallback component instead of redirect (keep both)
@@ -44,4 +44,6 @@ Pedro Almeida official monorepo, based in tailwind example.
   - Fix alignment and spaces issues
   - The Group with Avatar and Menu is weird at the moment
   - The dark theme and itens menus should have a animation that I saw in docs (https://ui.shadcn.com/docs/components/menubar)
+  - Maybe some code refactor, use react composition instead of those props (like shadcn approach on his own component files)
 - Add unity test (the header deserves a unit test to check auth and items conditions)
+- Check how to extract all Themes (auth, dark mode and query Tan Stack) to be reusable and easier to set up a new app project
