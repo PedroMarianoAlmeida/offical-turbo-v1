@@ -16,20 +16,25 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 ### In order
 
-#### Add credit count to use features
-
-- [x] Setup firebase
-- [x] Create table with user and count by day
-- [x] Increase the number when use again in the same day
-- [x] Start the counting again when the previous usage was in another day
-- [x] Check user count and stop user to take some action after reach limit (on server side)
-- [ ] Implement the "with credit" role - I change my mind, it is better check everytime (the role need to be stored somewhere, and it will read the daily count to update this another database... so it is bad idea)
-- [x] Create a Protected in @repo/next-auth but with fallback component instead of redirect (keep both)
-- [x] Show fallback on frontend when user reach the limit
-
 #### Interaction with AI (object in the format that I want and Image)
 
-#### Save user history
+- [ ] Create package to handle with AI
+- [ ] Receive answer of prompt
+- [ ] Integrate with firebase (using the actionWithDailyRateLimit)
+- [ ] Receive answer of image
+- [ ] Receive answer as an Object (double check the response to check if has the props that I asked, if no automatically goes back to AI to get a response on the right format)
+
+#### MVP - Better Image Project
+
+Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
+
+#### After MVP
+
+##### Save user history
+
+- Share option?
+
+##### Payment
 
 ### Debit tech
 
@@ -50,3 +55,31 @@ Pedro Almeida official monorepo, based in tailwind example.
 - incrementUserCountUsage on firebase package should not be exported (after create some useful action to test remove it)
 - Refactor packages/next/next-auth/src/protected.tsx to have a base component and both using that
 - Check the comment on apps/next-15/next-15-playground/src/app/protected/page.tsx when start creating the real app
+
+## History
+
+### package-apps-structuring
+
+- Separate the Original code in separate folder
+- Set fix port to each project
+- Create a new Next 15 app
+- Create shadcn package
+- Implement dark/ligh theme (with shadcn)
+- A core package (to put for instance a react with children that I use everywhere)
+- Next-auth adapters
+- Finish next-auth adapters (redirect) and components
+  - Check incognito lib to use the same nomeclature in the redirect - Actually I believe the protected wrapper is cleaner, instead of the withAuthenticator HOC, it is better create a middlewhere for Next, but I won"t do that
+  - The redirect only for authenticated and public, other roles will be implemented in another time
+- Connect auth with shadcn (using the core adapter)
+- Fix header TS, the auth items should be accepted only when the auth prop was sent
+
+### Add credit count to use features
+
+- [x] Setup firebase
+- [x] Create table with user and count by day
+- [x] Increase the number when use again in the same day
+- [x] Start the counting again when the previous usage was in another day
+- [x] Check user count and stop user to take some action after reach limit (on server side)
+- [ ] Implement the "with credit" role - I change my mind, it is better check everytime (the role need to be stored somewhere, and it will read the daily count to update this another database... so it is bad idea)
+- [x] Create a Protected in @repo/next-auth but with fallback component instead of redirect (keep both)
+- [x] Show fallback on frontend when user reach the limit
