@@ -5,7 +5,10 @@ import {
   type DataSnapshot,
   type Database,
 } from "firebase/database";
-import { asyncWrapper } from "@repo/core-main/asyncWrapper";
+import {
+  asyncWrapper,
+  asyncWrapperResponse,
+} from "@repo/core-main/asyncWrapper";
 import { areInTheSameDay } from "@repo/core-main/dates";
 
 const sanitizeUserCount = (
@@ -48,7 +51,6 @@ export const getUserCountUsageForToday = async ({
     }
 
     const { dailyUsage, lastUsage } = sanitizeUserCount(existentUser);
-    console.log({ dailyUsage });
 
     if (lastUsage && !areInTheSameDay(new Date(lastUsage), new Date())) {
       return 0;
@@ -76,5 +78,34 @@ export const incrementUserCountUsage = async ({
       dailyUsage: dailyUsage + 1,
       lastUsage: Number(new Date()),
     });
+  });
+};
+
+interface ActionWithDailyRateLimitProps<T> extends UserAndDatabase {
+  rateLimit: number;
+  callback(): Promise<T>;
+}
+export const actionWithDailyRateLimit = async <T>({
+  database,
+  rateLimit,
+  userId,
+  project,
+  callback,
+}: ActionWithDailyRateLimitProps<T>): Promise<asyncWrapperResponse<T>> => {
+  return asyncWrapper(async () => {
+    const count = await getUserCountUsageForToday({
+      database,
+      userId,
+      project,
+    });
+
+    if (!count.success) throw new Error("Error to reach count");
+    if (rateLimit < count.result)
+      throw new Error("User reached daily usage limit");
+
+    const callbackResult = await asyncWrapper(callback);
+    if (!callbackResult.success) throw new Error("Callback error");
+    await incrementUserCountUsage({ database, userId, project });
+    return callbackResult.result;
   });
 };
