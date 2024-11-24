@@ -8,7 +8,6 @@ export const IncrementUsageButton = ({ userId }: { userId: string }) => {
   const { mutateAsync } = useMutation({
     mutationFn: appIncrementUserCountUsage,
     onSuccess: (data) => {
-      console.log({ data });
       if (!data.success) {
         setMessage("Something went wrong");
         return;

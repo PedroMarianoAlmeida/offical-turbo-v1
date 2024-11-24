@@ -5,15 +5,15 @@ import { getCoreServerSession } from "./session-adapters";
 interface ProtectedWithRedirectProps {
   redirectTo?: string;
   children: ((userData: UserData) => React.ReactNode) | React.ReactNode;
-  extraProtectCondition?: boolean;
+  forceRedirect?: boolean;
 }
 export const ProtectedWithRedirect = async ({
   children,
   redirectTo = "/",
-  extraProtectCondition = false,
+  forceRedirect = false,
 }: ProtectedWithRedirectProps) => {
   const auth = await getCoreServerSession();
-  if (auth.hasUser && extraProtectCondition) {
+  if (!forceRedirect && auth.hasUser) {
     const { userData } = auth;
     if (typeof children === "function") {
       return <>{children(userData)}</>;
@@ -26,15 +26,15 @@ export const ProtectedWithRedirect = async ({
 interface ProtectedWithFallbackProps {
   fallback: ((userData: UserData) => React.ReactNode) | React.ReactNode;
   children: ((userData: UserData) => React.ReactNode) | React.ReactNode;
-  extraProtectCondition?: boolean;
+  forceFallback?: boolean;
 }
 export const ProtectedWithFallback = async ({
   children,
   fallback,
-  extraProtectCondition,
+  forceFallback = false,
 }: ProtectedWithFallbackProps) => {
   const auth = await getCoreServerSession();
-  if (auth.hasUser && extraProtectCondition) {
+  if (!forceFallback && auth.hasUser) {
     const { userData } = auth;
     if (typeof children === "function") {
       return <>{children(userData)}</>;
