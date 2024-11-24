@@ -9,6 +9,7 @@ import { database } from "@/miscellaneous/firebaseConfig";
 import { IncrementUsageButton } from "./client-side";
 import { projectName, dailyLimit } from "@/miscellaneous/constants";
 import { UserData } from "@repo/core-main/types";
+import { add } from "@repo/openai/add";
 
 const UserValidated = async ({ userData }: { userData: UserData }) => {
   const { id } = userData;
@@ -35,7 +36,7 @@ const UserValidated = async ({ userData }: { userData: UserData }) => {
 
   return (
     <ProtectedWithFallback
-      fallback={"You reach the limit"}
+      fallback={fallbackMessage}
       forceFallback={forceFallback}
     >
       <IncrementUsageButton userId={userData.id.toString()} />
@@ -49,6 +50,7 @@ const ProtectedPage = async () => {
       {(userData) => {
         return (
           <Suspense fallback={<p>...Loading</p>}>
+            <p>1 + 1 = {add(1, 1)}</p>
             <UserValidated userData={userData} />
           </Suspense>
         );
