@@ -27,6 +27,8 @@ export const textOutput = async ({
 
     const { choices } = completion;
     const { message } = choices[0];
-    return message
+    const { content } = message;
+    if(content === null) throw new Error("No content on response");
+    return content;
   });
 };

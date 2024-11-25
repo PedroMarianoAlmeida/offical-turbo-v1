@@ -35,13 +35,15 @@ const UserValidated = async ({ userData }: { userData: UserData }) => {
   }
 
   return (
-    <ProtectedWithFallback
-      fallback={fallbackMessage}
-      forceFallback={forceFallback}
-    >
+    // <ProtectedWithFallback
+    //   fallback={fallbackMessage}
+    //   forceFallback={forceFallback}
+    // >
+    <>
       <IncrementUsageButton userId={userData.id.toString()} />
       <p>{dailyUsageOut}</p>
-    </ProtectedWithFallback>
+    </>
+    // </ProtectedWithFallback>
   );
 };
 const ProtectedPage = async () => {

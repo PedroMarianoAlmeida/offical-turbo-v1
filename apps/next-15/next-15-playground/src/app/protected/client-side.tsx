@@ -41,7 +41,7 @@ export const IncrementUsageButton = ({ userId }: { userId: string }) => {
   return (
     <>
       <button onClick={() => mutateIncrement(userId)}>Increase Count</button>
-      <button onClick={() => mutateChatGpt()}>Call chatGPT</button>
+      <button onClick={() => mutateChatGpt({ userId })}>Call chatGPT</button>
       <p>{message}</p>
     </>
   );

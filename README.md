@@ -20,7 +20,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 - [x] Create package to handle with AI
 - [x] Receive answer of prompt
-- [ ] Integrate with firebase (using the actionWithDailyRateLimit)
+- [x] Integrate with firebase (using the actionWithDailyRateLimit)
 - [ ] Receive answer of image
 - [ ] Receive answer as an Object (double check the response to check if has the props that I asked, if no automatically goes back to AI to get a response on the right format)
 

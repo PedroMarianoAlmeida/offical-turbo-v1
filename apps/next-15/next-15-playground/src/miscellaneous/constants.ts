@@ -1,2 +1,2 @@
 export const projectName = "next-15-playground";
-export const dailyLimit = 60;
+export const dailyLimit = 13;

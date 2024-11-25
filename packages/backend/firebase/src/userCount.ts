@@ -100,7 +100,7 @@ export const actionWithDailyRateLimit = async <T>({
     });
 
     if (!count.success) throw new Error("Error to reach count");
-    if (rateLimit < count.result)
+    if (rateLimit <= count.result)
       throw new Error("User reached daily usage limit");
 
     const callbackResult = await asyncWrapper(callback);
