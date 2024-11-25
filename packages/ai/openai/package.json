@@ -2,7 +2,8 @@
   "name": "@repo/openai",
   "version": "0.0.0",
   "exports": {
-    "./add": "./src/add.ts"
+    "./initializeOpenai": "./src/initializeOpenai.ts",
+    "./textGeneration": "./src/textGeneration.ts"
   },
   "license": "MIT",
   "devDependencies": {
@@ -10,5 +11,8 @@
     "@repo/typescript-config": "*",
     "autoprefixer": "^10.4.18",
     "typescript": "5.5.4"
+  },
+  "dependencies": {
+    "openai": "^4.73.0"
   }
 }

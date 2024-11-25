@@ -6,10 +6,10 @@ import {
 } from "@repo/next-auth/protected";
 import { getUserCountUsageForToday } from "@repo/firebase/userCount";
 import { database } from "@/miscellaneous/firebaseConfig";
-import { IncrementUsageButton } from "./client-side";
 import { projectName, dailyLimit } from "@/miscellaneous/constants";
 import { UserData } from "@repo/core-main/types";
-import { add } from "@repo/openai/add";
+
+import { IncrementUsageButton } from "./client-side";
 
 const UserValidated = async ({ userData }: { userData: UserData }) => {
   const { id } = userData;
@@ -50,7 +50,6 @@ const ProtectedPage = async () => {
       {(userData) => {
         return (
           <Suspense fallback={<p>...Loading</p>}>
-            <p>1 + 1 = {add(1, 1)}</p>
             <UserValidated userData={userData} />
           </Suspense>
         );

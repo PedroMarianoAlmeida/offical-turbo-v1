@@ -18,8 +18,8 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 #### Interaction with AI (object in the format that I want and Image)
 
-- [ ] Create package to handle with AI
-- [ ] Receive answer of prompt
+- [x] Create package to handle with AI
+- [x] Receive answer of prompt
 - [ ] Integrate with firebase (using the actionWithDailyRateLimit)
 - [ ] Receive answer of image
 - [ ] Receive answer as an Object (double check the response to check if has the props that I asked, if no automatically goes back to AI to get a response on the right format)
@@ -43,6 +43,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - Replace the dark/light component, the Turborepo website is nicer
 - Check if it is possible add the workspaces in a different json
 - Role base protected page
+  - For role will be necessary backend integration to verify the roles - So roles should not be in CoreSession, and it will be necessary a CoreSessionWithRoles, integrating next-auth and firebase (or other systems)
 - In @repo/next auth, create a auth middleware to work like the Protected component
 - Improve Shadcn header (there is some CSS issues)
   - It is not fixed on top
