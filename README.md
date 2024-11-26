@@ -10,33 +10,52 @@ Pedro Almeida official monorepo, based in tailwind example.
   - [example web](http://localhost:3011/)
 
 - Next 15
+
   - [Playground](http://localhost:3012/)
 
 - Chrome Extensions
-  [Flappy Bird](http://localhost:3013/)
+
+  - [Flappy Bird](http://localhost:3013/)
 
 ## TODO
 
 ### In order
 
-#### Interaction with AI (object in the format that I want and Image)
-
-- [x] Create package to handle with AI
-- [x] Receive answer of prompt
-- [x] Integrate with firebase (using the actionWithDailyRateLimit)
-- [x] Receive answer of image
-- [x] IncrementUserCountUsage on firebase package should not be exported (after create some useful action to test remove it)
-- [x] Receive answer as an Object (double check the response to check if has the props that I asked, if no automatically goes back to AI to get a response on the right format) - No need, it better
-
 #### MVP - Better Image Project
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
+
+- [ ] Setup the project with dark theme, auth and firebase
+- [ ] Protect dashboard for authenticated only - Redirect to homepage
+- [ ] Check daily usage to enable use the tool
+- [ ] Create the first form that receives the original prompt
+- [ ] Send the original prompt to object type chatGPT, the response should have
+  - Follow up questions: string[]
+  - Is valid input: boolean - It is OK with the politic of generate image
+  - Has style: boolean
+  - Suggest styles: string[] - If the "has style" is false, send suggestions of styles for the image
+  - Has artist: boolean
+  - Suggest artists: string[] - If the "has artist" is false, send suggestions of artist based for the image (check if with the description of the prompt exist some artist with a similar image)
+  - Similar famous images - string[]
+- [ ] Create the new form with the info receive by ai, with the ai response, add a field for free text
+- [ ] Send again all the data and receive a revised prompt
+- [ ] Send the revised prompt to the user to final adjusts
+- [ ] Send to generate image the original prompt and the final prompt to generate image
+- [ ] Show the images to user
+- [ ] Add the Use Again and refresh the page (check daily usage)
 
 #### After MVP
 
 ##### Save user history
 
-- Share option?
+- When create the image, save the image in database, get the string name and put it in 2 places:
+  - User history
+  - General history
+  - So the place to see the image will be in /result/resultId
+- Share option
+  - The resultId
+- User can see all images create in User history
+- A feed with all images generated in homepage
 
 ##### Payment
 
@@ -88,3 +107,12 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Implement the "with credit" role - I change my mind, it is better check everytime (the role need to be stored somewhere, and it will read the daily count to update this another database... so it is bad idea)
 - [x] Create a Protected in @repo/next-auth but with fallback component instead of redirect (keep both)
 - [x] Show fallback on frontend when user reach the limit
+
+#### Interaction with AI (object in the format that I want and Image)
+
+- [x] Create package to handle with AI
+- [x] Receive answer of prompt
+- [x] Integrate with firebase (using the actionWithDailyRateLimit)
+- [x] Receive answer of image
+- [x] IncrementUserCountUsage on firebase package should not be exported (after create some useful action to test remove it)
+- [x] Receive answer as an Object (double check the response to check if has the props that I asked, if no automatically goes back to AI to get a response on the right format) - No need, it better
