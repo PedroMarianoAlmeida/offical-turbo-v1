@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Bird } from './Bird';
-import { Pipe } from './Pipe';
-import { SpeedControl } from './SpeedControl';
-import { useGameLoop } from '../hooks/useGameLoop';
-import { Bird as BirdIcon } from 'lucide-react';
+import React, { useEffect, useRef, useState } from "react";
+import { Bird } from "./Bird";
+import { Pipe } from "./Pipe";
+import { SpeedControl } from "./SpeedControl";
+import { useGameLoop } from "../hooks/useGameLoop";
+import { Bird as BirdIcon } from "lucide-react";
 
-const BASE_GRAVITY = 0.3;
-const BASE_JUMP_FORCE = -6;
+const BASE_GRAVITY = 0.1;
+const BASE_JUMP_FORCE = -2;
 const BASE_PIPE_SPEED = 1.5;
 const PIPE_SPAWN_INTERVAL = 3000;
 const GAP_SIZE = 150;
@@ -21,16 +21,21 @@ export const Game = () => {
   const [highScore, setHighScore] = useState(0);
   const [birdPosition, setBirdPosition] = useState(250);
   const [birdVelocity, setBirdVelocity] = useState(0);
-  const [pipes, setPipes] = useState<Array<{ x: number; height: number; passed: boolean }>>([]);
+  const [pipes, setPipes] = useState<
+    Array<{ x: number; height: number; passed: boolean }>
+  >([]);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  
+
   const gameRef = useRef<HTMLDivElement>(null);
 
   const gravity = BASE_GRAVITY * speedMultiplier;
   const jumpForce = BASE_JUMP_FORCE * speedMultiplier;
   const pipeSpeed = BASE_PIPE_SPEED * speedMultiplier;
 
-  const checkCollision = (birdY: number, pipe: { x: number; height: number }) => {
+  const checkCollision = (
+    birdY: number,
+    pipe: { x: number; height: number }
+  ) => {
     const birdRight = BIRD_X + BIRD_SIZE;
     const birdLeft = BIRD_X;
     const pipeLeft = pipe.x;
@@ -74,20 +79,23 @@ export const Game = () => {
 
   const spawnPipe = () => {
     if (!gameStarted || gameOver) return;
-    
+
     const height = Math.random() * (300 - 100) + 100;
-    setPipes(pipes => [...pipes, { x: 400, height, passed: false }]);
+    setPipes((pipes) => [...pipes, { x: 400, height, passed: false }]);
   };
 
   useEffect(() => {
-    const interval = setInterval(spawnPipe, PIPE_SPAWN_INTERVAL / speedMultiplier);
+    const interval = setInterval(
+      spawnPipe,
+      PIPE_SPAWN_INTERVAL / speedMultiplier
+    );
     return () => clearInterval(interval);
   }, [gameStarted, gameOver, speedMultiplier]);
 
   useGameLoop(() => {
     if (!gameStarted || gameOver) return;
 
-    setBirdPosition(pos => {
+    setBirdPosition((pos) => {
       const newPos = pos + birdVelocity;
       if (newPos < 0 || newPos > 500) {
         setGameOver(true);
@@ -95,19 +103,19 @@ export const Game = () => {
       }
       return newPos;
     });
-    setBirdVelocity(v => v + gravity);
+    setBirdVelocity((v) => v + gravity);
 
-    setPipes(pipes => {
+    setPipes((pipes) => {
       return pipes
-        .map(pipe => {
+        .map((pipe) => {
           if (!pipe.passed && checkCollision(birdPosition, pipe)) {
             setGameOver(true);
           }
 
           if (!pipe.passed && pipe.x < BIRD_X - PIPE_WIDTH) {
-            setScore(s => {
+            setScore((s) => {
               const newScore = s + 1;
-              setHighScore(h => Math.max(h, newScore));
+              setHighScore((h) => Math.max(h, newScore));
               return newScore;
             });
             return { ...pipe, passed: true };
@@ -115,7 +123,7 @@ export const Game = () => {
 
           return { ...pipe, x: pipe.x - pipeSpeed };
         })
-        .filter(pipe => pipe.x > -PIPE_WIDTH);
+        .filter((pipe) => pipe.x > -PIPE_WIDTH);
     });
   });
 
@@ -123,20 +131,23 @@ export const Game = () => {
     <div className="relative flex flex-col items-center">
       <div className="mb-4 flex items-center gap-4">
         {!gameStarted && (
-          <SpeedControl speed={speedMultiplier} onSpeedChange={handleSpeedChange} />
+          <SpeedControl
+            speed={speedMultiplier}
+            onSpeedChange={handleSpeedChange}
+          />
         )}
         <div className="bg-black/30 rounded-lg px-4 py-2">
           <span className="text-white font-bold">High Score: {highScore}</span>
         </div>
       </div>
 
-      <div 
+      <div
         ref={gameRef}
         className="relative w-[400px] h-[500px] bg-gradient-to-b from-blue-400 to-blue-600 overflow-hidden cursor-pointer"
         onClick={gameStarted ? jump : startGame}
       >
         <Bird position={birdPosition} />
-        
+
         {pipes.map((pipe, i) => (
           <Pipe key={i} x={pipe.x} height={pipe.height} gap={GAP_SIZE} />
         ))}
