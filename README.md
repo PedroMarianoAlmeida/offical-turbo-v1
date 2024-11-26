@@ -22,6 +22,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 - [x] Receive answer of prompt
 - [x] Integrate with firebase (using the actionWithDailyRateLimit)
 - [x] Receive answer of image
+- [x] IncrementUserCountUsage on firebase package should not be exported (after create some useful action to test remove it)
 - [ ] Receive answer as an Object (double check the response to check if has the props that I asked, if no automatically goes back to AI to get a response on the right format)
 
 #### MVP - Better Image Project
@@ -53,7 +54,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - Maybe some code refactor, use react composition instead of those props (like shadcn approach on his own component files)
 - Add unity test (the header deserves a unit test to check auth and items conditions)
 - Check how to extract all Themes (auth, dark mode and query Tan Stack) to be reusable and easier to set up a new app project
-- incrementUserCountUsage on firebase package should not be exported (after create some useful action to test remove it)
 - Refactor packages/next/next-auth/src/protected.tsx to have a base component and both using that
 - Check the comment on apps/next-15/next-15-playground/src/app/protected/page.tsx when start creating the real app
 - Add on firebase package readme, the steps to get the environment variables

@@ -3,30 +3,36 @@ import { openai } from "@/miscellaneous/openaiConfig";
 import { textOutput } from "@repo/openai/textGeneration";
 import { generateImage as generateImageOpenai } from "@repo/openai/imageGeneration";
 import { actionWithDailyRateLimit } from "@repo/firebase/userCount";
+import { type asyncWrapperResponse } from "@repo/core-main/asyncWrapper";
 
 import { projectName, dailyLimit } from "@/miscellaneous/constants";
 import { database } from "@/miscellaneous/firebaseConfig";
 
-export const generateResponse = async ({ userId }: { userId: string }) => {
-  const outRes = await actionWithDailyRateLimit({
+export const generateResponse = async ({
+  userId,
+}: {
+  userId: string;
+}): Promise<asyncWrapperResponse<string>> => {
+  const data = await actionWithDailyRateLimit({
     project: projectName,
     database,
     rateLimit: dailyLimit,
     userId,
     callback: () => textOutput({ openai, userPrompt: "ping" }),
   });
-  if (!outRes.success) {
-    return { success: false, message: outRes.message };
+  if (!data.success) {
+    return { success: false, message: data.message };
   }
-  const { result: innerRes } = outRes;
-  if (!innerRes.success) return { success: false, message: innerRes.message };
-  const { result } = innerRes;
 
-  return { success: true, result };
+  return { success: true, result: data.result };
 };
 
-export const generateImage = async ({ userId }: { userId: string }) => {
-  const outRes = await actionWithDailyRateLimit({
+export const generateImage = async ({
+  userId,
+}: {
+  userId: string;
+}): Promise<asyncWrapperResponse<string>> => {
+  const data = await actionWithDailyRateLimit({
     project: projectName,
     database,
     rateLimit: dailyLimit,
@@ -34,12 +40,12 @@ export const generateImage = async ({ userId }: { userId: string }) => {
     callback: () =>
       generateImageOpenai({ openai, imageDescription: "5 balls" }),
   });
-  if (!outRes.success) {
-    return { success: false, message: outRes.message };
+  if (!data.success) {
+    return { success: false, message: data.message };
   }
-  const { result: innerRes } = outRes;
-  if (!innerRes.success) return { success: false, message: innerRes.message };
-  const { url } = innerRes.result;
+
+  const { url } = data.result;
+  if (!url) return { success: false, message: "No photo on response" };
 
   return { success: true, result: url };
 };

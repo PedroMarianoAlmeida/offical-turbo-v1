@@ -60,7 +60,7 @@ export const getUserCountUsageForToday = async ({
   });
 };
 
-export const incrementUserCountUsage = async ({
+const incrementUserCountUsage = async ({
   database,
   userId,
   project,
@@ -83,7 +83,7 @@ export const incrementUserCountUsage = async ({
 
 interface ActionWithDailyRateLimitProps<T> extends UserAndDatabase {
   rateLimit: number;
-  callback(): Promise<T>;
+  callback(): Promise<asyncWrapperResponse<T>>;
 }
 export const actionWithDailyRateLimit = async <T>({
   database,
@@ -106,7 +106,8 @@ export const actionWithDailyRateLimit = async <T>({
     if (rateLimit <= count.result) {
       throw new Error("User reached daily usage limit");
     }
-    const callbackResult = await asyncWrapper(callback);
+
+    const callbackResult = await callback();
 
     if (!callbackResult.success) {
       throw new Error(callbackResult.message);
