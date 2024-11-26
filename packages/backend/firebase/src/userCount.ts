@@ -99,12 +99,19 @@ export const actionWithDailyRateLimit = async <T>({
       project,
     });
 
-    if (!count.success) throw new Error("Error to reach count");
-    if (rateLimit <= count.result)
-      throw new Error("User reached daily usage limit");
+    if (!count.success) {
+      throw new Error("Error reaching count");
+    }
 
+    if (rateLimit <= count.result) {
+      throw new Error("User reached daily usage limit");
+    }
     const callbackResult = await asyncWrapper(callback);
-    if (!callbackResult.success) throw new Error("Callback error");
+
+    if (!callbackResult.success) {
+      throw new Error(callbackResult.message);
+    }
+
     await incrementUserCountUsage({ database, userId, project });
     return callbackResult.result;
   });

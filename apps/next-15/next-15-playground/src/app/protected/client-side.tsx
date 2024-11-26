@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { appIncrementUserCountUsage } from "@/server-actions/userCount";
-import { generateResponse } from "@/server-actions/ai";
+import { generateResponse, generateImage } from "@/server-actions/ai";
+import { Button } from "@repo/shadcn/button";
 
 export const IncrementUsageButton = ({ userId }: { userId: string }) => {
   const [message, setMessage] = useState<string | null>("");
@@ -38,10 +39,30 @@ export const IncrementUsageButton = ({ userId }: { userId: string }) => {
     },
   });
 
+  const { mutateAsync: mutateImageChatGpt } = useMutation({
+    mutationFn: generateImage,
+    onSuccess: (data) => {
+      console.log(data);
+      if (!data.success) {
+        setMessage("Something went wrong");
+        return;
+      }
+
+      setMessage(null);
+    },
+    onError: () => {
+      console.log("ERROR");
+      setMessage("Something went wrong");
+    },
+  });
+
   return (
     <>
-      <button onClick={() => mutateIncrement(userId)}>Increase Count</button>
-      <button onClick={() => mutateChatGpt({ userId })}>Call chatGPT</button>
+      <Button onClick={() => mutateIncrement(userId)}>Increase Count</Button>
+      <Button onClick={() => mutateChatGpt({ userId })}>Call chatGPT</Button>
+      <Button onClick={() => mutateImageChatGpt({ userId })}>
+        Call chatGPT Image
+      </Button>
       <p>{message}</p>
     </>
   );

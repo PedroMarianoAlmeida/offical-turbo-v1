@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "exports": {
     "./initializeOpenai": "./src/initializeOpenai.ts",
-    "./textGeneration": "./src/textGeneration.ts"
+    "./textGeneration": "./src/textGeneration.ts",
+    "./imageGeneration": "./src/imageGeneration.ts"
   },
   "license": "MIT",
   "devDependencies": {
