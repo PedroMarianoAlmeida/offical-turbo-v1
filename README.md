@@ -12,6 +12,9 @@ Pedro Almeida official monorepo, based in tailwind example.
 - Next 15
   - [Playground](http://localhost:3012/)
 
+- Chrome Extensions
+  [Flappy Bird](http://localhost:3013/)
+
 ## TODO
 
 ### In order
