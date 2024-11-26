@@ -1,0 +1,11 @@
+{
+  "name": "Flappy Bird Clone",
+  "version": "1.0.0",
+  "description": "Flappy Bird Clone",
+  "manifest_version": 3,
+  "author": "Pedro Programmer + Bolt AI",
+  "action": {
+    "default_popup": "dist/index.html",
+    "default_title": "Flappy Bird Clone"
+  }
+}
