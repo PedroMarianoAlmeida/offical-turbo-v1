@@ -13,6 +13,7 @@
     "@repo/firebase": "*",
     "@repo/minimal": "*",
     "@repo/next-auth": "*",
+    "@repo/openai": "*",
     "@repo/shadcn": "*",
     "@tanstack/react-query": "^5.61.0",
     "install": "^0.13.0",
@@ -21,7 +22,7 @@
     "npm": "^10.9.1",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
-    "@repo/openai": "*"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",

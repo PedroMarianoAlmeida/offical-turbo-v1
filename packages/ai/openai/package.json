@@ -4,7 +4,8 @@
   "exports": {
     "./initializeOpenai": "./src/initializeOpenai.ts",
     "./textGeneration": "./src/textGeneration.ts",
-    "./imageGeneration": "./src/imageGeneration.ts"
+    "./imageGeneration": "./src/imageGeneration.ts",
+    "./objectGeneration": "./src/objectGeneration.ts"
   },
   "license": "MIT",
   "devDependencies": {
@@ -14,6 +15,7 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "openai": "^4.73.0"
+    "openai": "^4.73.0",
+    "zod": "^3.23.8"
   }
 }

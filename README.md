@@ -23,7 +23,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 - [x] Integrate with firebase (using the actionWithDailyRateLimit)
 - [x] Receive answer of image
 - [x] IncrementUserCountUsage on firebase package should not be exported (after create some useful action to test remove it)
-- [ ] Receive answer as an Object (double check the response to check if has the props that I asked, if no automatically goes back to AI to get a response on the right format)
+- [x] Receive answer as an Object (double check the response to check if has the props that I asked, if no automatically goes back to AI to get a response on the right format) - No need, it better
 
 #### MVP - Better Image Project
 
