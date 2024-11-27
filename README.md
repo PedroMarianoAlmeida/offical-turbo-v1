@@ -28,7 +28,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
-- [ ] Setup the project with dark theme, auth and firebase
+- [x] Setup the project with dark theme, auth and firebase
 - [ ] Protect dashboard for authenticated only - Redirect to homepage
   - [ ] Remove the auth from Protected, instead pass the Session as props (then I can pass the same session for Protected by redirect and with fallback, and remove the complexity from those elements)
 - [ ] Check daily usage to enable use the tool
