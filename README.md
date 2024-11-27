@@ -27,6 +27,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 - [ ] Setup the project with dark theme, auth and firebase
 - [ ] Protect dashboard for authenticated only - Redirect to homepage
+  - [ ] Remove the auth from Protected, instead pass the Session as props (then I can pass the same session for Protected by redirect and with fallback, and remove the complexity from those elements)
 - [ ] Check daily usage to enable use the tool
 - [ ] Create the first form that receives the original prompt
 - [ ] Send the original prompt to object type chatGPT, the response should have
@@ -61,13 +62,14 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 ### Debit tech
 
-- Add all shadcn components on package.json
+- Check how to extract all Themes (auth, dark mode and query Tan Stack) to be reusable and easier to set up a new app project - Do this just after the "Better Image" Project
+- Add all shadcn components on package.json (this will solve by himself when I need to use some component)
 - Add dark theme on Next 15 app layout (the same of Shadcn?) - While doesn't have I am applying the shadcn package after the app css
 - Replace the dark/light component, the Turborepo website is nicer
 - Check if it is possible add the workspaces in a different json
 - Role base protected page
   - For role will be necessary backend integration to verify the roles - So roles should not be in CoreSession, and it will be necessary a CoreSessionWithRoles, integrating next-auth and firebase (or other systems)
-- In @repo/next auth, create a auth middleware to work like the Protected component
+- In @repo/next auth, create a auth middleware to work like the Protected component (maybe put on Layout is good enough)
 - Improve Shadcn header (there is some CSS issues)
   - It is not fixed on top
   - Fix alignment and spaces issues
@@ -75,7 +77,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - The dark theme and itens menus should have a animation that I saw in docs (https://ui.shadcn.com/docs/components/menubar)
   - Maybe some code refactor, use react composition instead of those props (like shadcn approach on his own component files)
 - Add unity test (the header deserves a unit test to check auth and items conditions)
-- Check how to extract all Themes (auth, dark mode and query Tan Stack) to be reusable and easier to set up a new app project
 - Refactor packages/next/next-auth/src/protected.tsx to have a base component and both using that
 - Check the comment on apps/next-15/next-15-playground/src/app/protected/page.tsx when start creating the real app
 - Add on firebase package readme, the steps to get the environment variables
