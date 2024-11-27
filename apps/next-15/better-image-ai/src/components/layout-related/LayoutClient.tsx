@@ -1,10 +1,10 @@
 "use client";
+import Link from "next/link";
 import { Header } from "@repo/shadcn/header";
 import { useTheme } from "next-themes";
 import { WithChildren } from "@repo/core-main/types";
 import { signIn, signOut } from "next-auth/react";
 import { useCoreSession } from "@repo/next-auth/session-adapters";
-
 
 const LayoutClient = ({ children }: WithChildren) => {
   const { setTheme } = useTheme();
@@ -17,10 +17,14 @@ const LayoutClient = ({ children }: WithChildren) => {
         auth={{ session, signIn, signOut }}
         items={{
           publicItems: [
-            { id: "home", element: <p>Home</p> },
-            { id: "about", element: <p>About</p> },
+            { id: "home", element: <Link href="/">Home</Link> },
           ],
-          authenticatedItems: [{ id: "dashboard", element: <p>Dashboard</p> }],
+          authenticatedItems: [
+            {
+              id: "dashboard",
+              element: <Link href="/dashboard">Dashboard</Link>,
+            },
+          ],
         }}
       />
       {children}

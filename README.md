@@ -29,8 +29,9 @@ Pedro Almeida official monorepo, based in tailwind example.
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
 - [x] Setup the project with dark theme, auth and firebase
-- [ ] Protect dashboard for authenticated only - Redirect to homepage
-  - [ ] Remove the auth from Protected, instead pass the Session as props (then I can pass the same session for Protected by redirect and with fallback, and remove the complexity from those elements)
+- [x] Protect dashboard for authenticated only - Redirect to homepage
+  - [-] Remove the auth from Protected, instead pass the Session as props (then I can pass the same session for Protected by redirect and with fallback, and remove the complexity from those elements)
+    - Actually it was a bad idea, when I try it the Protected children doesn't know anymore that the hasUser from core session is true, so it will require extra if(hasUser) all over the place - But in the current way is kind of useless, because a cannot send from a layout to the page
 - [ ] Check daily usage to enable use the tool
 - [ ] Create the first form that receives the original prompt
 - [ ] Send the original prompt to object type chatGPT, the response should have
@@ -49,6 +50,9 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Add the Use Again and refresh the page (check daily usage)
 
 #### After MVP
+
+- [ ] Create About page
+- [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 
 ##### Save user history
 
@@ -83,6 +87,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - Refactor packages/next/next-auth/src/protected.tsx to have a base component and both using that
 - Check the comment on apps/next-15/next-15-playground/src/app/protected/page.tsx when start creating the real app
 - Add on firebase package readme, the steps to get the environment variables
+- Check if is possible pass props from Layout to Page in Next (if, yes, pass the userData when used the Protected from @repo/next-auth)
 
 ## History
 
