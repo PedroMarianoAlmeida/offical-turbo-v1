@@ -33,7 +33,7 @@ export default async function Step2() {
     zodFormat: receivingStep1Format,
     systemPrompt: receivingStep1Prompt,
   });
-
+  console.log({ responseAi });
   const { success } = responseAi;
   if (!success)
     return (
@@ -49,6 +49,7 @@ export default async function Step2() {
       questions,
       suggestedReference,
       suggestedStyles,
+      ambiguitySolve,
     },
   } = responseAi;
 
