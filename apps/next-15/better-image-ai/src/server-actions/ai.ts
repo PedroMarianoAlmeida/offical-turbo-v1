@@ -1,5 +1,5 @@
 "use server";
-import { z } from "zod";
+import { z, ZodTypeAny } from "zod";
 
 import {
   objectGeneration,
@@ -8,7 +8,7 @@ import {
 // import { generateImage as generateImageOpenai } from "@repo/openai/imageGeneration";
 // import { textOutput } from "@repo/openai/textGeneration";
 import { actionWithDailyRateLimit } from "@repo/firebase/userCount";
-// import { type asyncWrapperResponse } from "@repo/core-main/asyncWrapper";
+import { type asyncWrapperResponse } from "@repo/core-main/asyncWrapper";
 
 import { openai } from "@/configs/openaiConfig";
 import { database } from "@/configs/firebaseConfig";
@@ -17,20 +17,21 @@ const project = process.env.PROJECT_NAME;
 const rateLimit = Number(process.env.DAILY_LIMIT);
 
 // Maybe type this response when use it
-interface GenerateObjectProps
+interface GenerateObjectProps<T extends ZodTypeAny>
   extends Pick<
     GeneratePromptProps,
     "systemPrompt" | "userPrompt" | "zodFormat"
   > {
   userId: string;
+  zodFormat: T;
 }
-export const generateObject = async ({
+
+export const generateObject = async <T extends ZodTypeAny>({
   userId,
   userPrompt,
   zodFormat,
   systemPrompt,
-}: GenerateObjectProps) => {
-  console.log({ rateLimit });
+}: GenerateObjectProps<T>): Promise<asyncWrapperResponse<z.infer<T>>> => {
   const data = await actionWithDailyRateLimit({
     project,
     database,
@@ -44,6 +45,7 @@ export const generateObject = async ({
         zodFormat,
       }),
   });
+
   if (!data.success) {
     return { success: false, message: data.message };
   }
@@ -52,7 +54,6 @@ export const generateObject = async ({
 
   return { success: true, result };
 };
-
 // export const generateResponse = async ({
 //   userId,
 // }: {

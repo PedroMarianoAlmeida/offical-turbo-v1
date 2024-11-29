@@ -10,13 +10,12 @@ export interface GeneratePromptProps {
   systemPrompt?: string;
 }
 
-// When use it is necessary to type on APP side
-export const objectGeneration = async ({
+export const objectGeneration = async <T extends ZodTypeAny>({
   openai,
   userPrompt,
   zodFormat,
   systemPrompt,
-}: GeneratePromptProps) => {
+}: GeneratePromptProps & { zodFormat: T }): Promise<z.infer<T>> => {
   return asyncWrapper(async () => {
     const completion = await openai.beta.chat.completions.parse({
       model: "gpt-4o-2024-08-06",
@@ -32,6 +31,6 @@ export const objectGeneration = async ({
 
     const event = completion.choices[0].message.parsed;
 
-    return event;
+    return zodFormat.parse(event);
   });
 };

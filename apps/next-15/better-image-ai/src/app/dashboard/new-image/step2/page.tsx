@@ -24,6 +24,10 @@ export default async function Step2() {
     systemPrompt: receivingStep1Prompt,
   });
 
-  console.log(responseAi)
+  const { success } = responseAi;
+  if (!success) return <p>Error generating response, try refresh the page</p>;
+  const { result } = responseAi;
+
+  console.log(responseAi);
   return <>{userPrompt}</>;
 }
