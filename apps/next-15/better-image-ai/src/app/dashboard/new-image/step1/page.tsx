@@ -1,8 +1,9 @@
 "use client";
-
+import { useRouter } from "next/navigation";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { useMutation } from "@tanstack/react-query";
 
 import { Button } from "@repo/shadcn/button";
 import {
@@ -16,6 +17,8 @@ import {
 } from "@repo/shadcn/form";
 import { Textarea } from "@repo/shadcn/textarea";
 
+import { setServerSideCookie } from "@/server-actions/cookies";
+
 const formSchema = z.object({
   originalIdea: z.string().min(20, {
     message: "The idea should have at least 20 characters",
@@ -23,6 +26,21 @@ const formSchema = z.object({
 });
 
 export function Step1() {
+  const router = useRouter();
+
+  const { mutateAsync } = useMutation({
+    mutationFn: setServerSideCookie,
+    onSuccess: (data) => {
+      if (data.success) {
+        router.push("/dashboard/new-image/step2");
+      } else {
+      }
+    },
+    onError: () => {
+      console.log("ERROR");
+    },
+  });
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,7 +49,8 @@ export function Step1() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    const { originalIdea } = values;
+    mutateAsync({ key: "step1", value: originalIdea });
   }
 
   return (
