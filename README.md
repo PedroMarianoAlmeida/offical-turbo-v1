@@ -40,13 +40,10 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Check daily usage to enable use the tool
 - [x] Create the first form that receives the original prompt
 - [x] Send the question for next step, then retrieve for server side to do the AI thing and be ready for next step
-- [ ] Send the original prompt to object type chatGPT, the response should have
+- [x] Send the original prompt to object type chatGPT, the response should have
   - Follow up questions: string[]
   - Is valid input: boolean - It is OK with the politic of generate image
-  - Has style: boolean
-  - Suggest styles: string[] - If the "has style" is false, send suggestions of styles for the image
-  - Has artist: boolean
-  - Suggest artists: string[] - If the "has artist" is false, send suggestions of artist based for the image (check if with the description of the prompt exist some artist with a similar image)
+  - Suggest styles: string[] - If the "has style" is false, send suggestions of styles for the image - If it is empty means there is style already on description
   - Similar famous images - string[]
 - [ ] Create the new form with the info receive by ai, with the ai response, add a field for free text
 - [ ] Send again all the data and receive a revised prompt
@@ -64,6 +61,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [ ] Improve loading dashboard page
+- [ ] Improve error pages
 - [ ] Add i18n (for Portuguese)
 
 ##### Save user history

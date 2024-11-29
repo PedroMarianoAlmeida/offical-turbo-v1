@@ -3,7 +3,7 @@ import { z, type ZodTypeAny } from "zod";
 import { type OpenAI } from "openai";
 import { asyncWrapper } from "@repo/core-main/asyncWrapper";
 
-interface GeneratePromptProps {
+export interface GeneratePromptProps {
   openai: OpenAI;
   userPrompt: string;
   zodFormat: ZodTypeAny;
