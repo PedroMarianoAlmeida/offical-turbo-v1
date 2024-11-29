@@ -26,7 +26,23 @@ export default async function Step2() {
 
   const { success } = responseAi;
   if (!success) return <p>Error generating response, try refresh the page</p>;
-  const { result } = responseAi;
+  const {
+    result: {
+      hasSize,
+      isValidPrompt,
+      questions,
+      suggestedReference,
+      suggestedStyles,
+    },
+  } = responseAi;
+
+  if (!isValidPrompt)
+    return (
+      <p>
+        This prompt cannot generate an Image because is not following the model
+        policies, go back to step 1
+      </p>
+    );
 
   console.log(responseAi);
   return <>{userPrompt}</>;
