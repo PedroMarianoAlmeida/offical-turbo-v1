@@ -9,7 +9,15 @@
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
+    "./avatar": "./src/native-shadcn/avatar.tsx",
     "./button": "./src/native-shadcn/button.tsx",
+    "./dropdown-menu": "./src/native-shadcn/dropdown-menu.tsx",
+    "./form": "./src/native-shadcn/form.tsx",
+    "./input": "./src/native-shadcn/input.tsx",
+    "./label": "./src/native-shadcn/label.tsx",
+    "./menubar": "./src/native-shadcn/menubar.tsx",
+    "./popover": "./src/native-shadcn/popover.tsx",
+    "./textarea": "./src/native-shadcn/textarea.tsx",
     "./mode-toggle": "./src/composition/mode-toggle.tsx",
     "./header": "./src/composition/header/index.tsx"
   },
@@ -34,14 +42,18 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
+    "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-menubar": "^1.1.2",
     "@radix-ui/react-popover": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "lucide-react": "^0.460.0",
+    "react-hook-form": "^7.53.2",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   }
 }

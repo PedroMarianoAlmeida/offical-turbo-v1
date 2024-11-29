@@ -33,7 +33,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [-] Remove the auth from Protected, instead pass the Session as props (then I can pass the same session for Protected by redirect and with fallback, and remove the complexity from those elements)
     - Actually it was a bad idea, when I try it the Protected children doesn't know anymore that the hasUser from core session is true, so it will require extra if(hasUser) all over the place - But in the current way is kind of useless, because a cannot send from a layout to the page
 - [x] Check daily usage to enable use the tool
-- [ ] Create the first form that receives the original prompt
+- [x] Create the first form that receives the original prompt
 - [ ] Send the original prompt to object type chatGPT, the response should have
   - Follow up questions: string[]
   - Is valid input: boolean - It is OK with the politic of generate image
@@ -51,9 +51,11 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 #### After MVP
 
+- [ ] Create a Step Progress UI (Put in new-image/layout)
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [ ] Improve loading dashboard page
+- [ ] Add i18n (for Portuguese)
 
 ##### Save user history
 
@@ -71,7 +73,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 ### Debit tech
 
 - Check how to extract all Themes (auth, dark mode and query Tan Stack) to be reusable and easier to set up a new app project - Do this just after the "Better Image" Project
-- Add all shadcn components on package.json (this will solve by himself when I need to use some component)
 - Add dark theme on Next 15 app layout (the same of Shadcn?) - While doesn't have I am applying the shadcn package after the app css
 - Replace the dark/light component, the Turborepo website is nicer
 - Check if it is possible add the workspaces in a different json
@@ -127,3 +128,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Receive answer of image
 - [x] IncrementUserCountUsage on firebase package should not be exported (after create some useful action to test remove it)
 - [x] Receive answer as an Object (double check the response to check if has the props that I asked, if no automatically goes back to AI to get a response on the right format) - No need, it better
+
+#### Tech Debit
+
+- Add all shadcn components on package.json (this will solve by himself when I need to use some component)
