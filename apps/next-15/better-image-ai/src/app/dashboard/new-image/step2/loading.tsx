@@ -1,5 +1,11 @@
+import { LoadingWrapper } from "@/components/layout-related/ErrorAndLoadingWrapper";
+
 const LoadingStep2 = () => {
-  return <p>Generating questions...</p>;
+  return (
+    <LoadingWrapper>
+      <p>Generating questions...</p>
+    </LoadingWrapper>
+  );
 };
 
 export default LoadingStep2;

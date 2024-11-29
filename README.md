@@ -60,8 +60,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [ ] Add max width on forms (and centralize?)
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
-- [ ] Improve loading dashboard page
-- [ ] Improve error pages
+- [ ] Improve loading dashboard page - On LoadingWrapper
+- [ ] Improve error pages - On ErrorWrapper
 - [ ] Add i18n (for Portuguese)
 
 ##### Save user history

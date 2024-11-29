@@ -18,8 +18,8 @@
       "watercolor"
     ],
     "suggestedReference": [
-      "Madonna and Child by Raphael",
-      "Whistler's Mother by James McNeill Whistler"
+      { "artistName": "Raphael", "artName": "Madonna and Child" },
+      { "artistName": "James McNeill Whistler", "artName": "Whistler's Mother" }
     ],
     "hasSize": false
   }
