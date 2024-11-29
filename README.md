@@ -20,6 +20,11 @@ Pedro Almeida official monorepo, based in tailwind example.
 - [example doc](http://localhost:3010/)
 - [example web](http://localhost:3011/)
 
+## Code guide
+
+- Order of imports: external packages, internal packages, elements inside the project
+- Files smaller than 100 lines
+
 ## TODO
 
 ### In order
@@ -34,6 +39,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
     - Actually it was a bad idea, when I try it the Protected children doesn't know anymore that the hasUser from core session is true, so it will require extra if(hasUser) all over the place - But in the current way is kind of useless, because a cannot send from a layout to the page
 - [x] Check daily usage to enable use the tool
 - [x] Create the first form that receives the original prompt
+- [ ] Send the question for next step, then retrieve for server side to do the AI thing and be ready for next step
 - [ ] Send the original prompt to object type chatGPT, the response should have
   - Follow up questions: string[]
   - Is valid input: boolean - It is OK with the politic of generate image
@@ -51,7 +57,10 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 #### After MVP
 
-- [ ] Create a Step Progress UI (Put in new-image/layout)
+- [ ] Improve general UI
+  - [ ] Create a Step Progress UI (Put in new-image/layout)
+  - [ ] Add Default padding (at least on forms)
+  - [ ] Add max width on forms (and centralize?)
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [ ] Improve loading dashboard page
