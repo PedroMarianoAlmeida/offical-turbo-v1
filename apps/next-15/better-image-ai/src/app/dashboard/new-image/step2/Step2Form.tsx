@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
 import { Button } from "@repo/shadcn/button";
@@ -34,6 +34,13 @@ import { receivingStep1Format } from "@/prompts";
 const formSchema = z.object({
   suggestedStyle: z.string().optional(),
   size: z.enum(Object.keys(sizeToResolution) as [SizeKey]),
+  questions: z.array(
+    z.object({
+      question: z.string(),
+      answer: z.string().optional(),
+    })
+  ),
+  extraInformation: z.string().optional(),
 });
 
 export function Step2Form({
@@ -60,9 +67,16 @@ export function Step2Form({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      suggestedStyle: "",
       size: size,
+      questions: questions.map(({ question }) => ({
+        question,
+      })),
     },
+  });
+
+  const { fields } = useFieldArray({
+    control: form.control,
+    name: "questions",
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -93,6 +107,25 @@ export function Step2Form({
         </p>
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        {fields.map((field, index) => (
+          <FormField
+            key={field.id}
+            control={form.control}
+            name={`questions.${index}.answer`}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{questions[index]?.question}</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder={questions[index]?.answer || "Your answer here"}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))}
         <FormField
           control={form.control}
           name="suggestedStyle"
@@ -140,6 +173,23 @@ export function Step2Form({
                 </Select>
               </FormControl>
               <FormDescription>Resolution of image</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="extraInformation"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Any extra thoughts?</FormLabel>
+              <FormControl>
+                <Input placeholder="" {...field} />
+              </FormControl>
+              <FormDescription>
+                Any extra information that came into your mind after the
+                original prompt
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

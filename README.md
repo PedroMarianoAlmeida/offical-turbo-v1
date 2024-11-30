@@ -45,7 +45,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - Is valid input: boolean - It is OK with the politic of generate image
   - Suggest styles: string[] - If the "has style" is false, send suggestions of styles for the image - If it is empty means there is style already on description
   - Similar famous images - string[]
-- [ ] Create the new form with the info receive by ai, with the ai response, add a field for free text
+- [x] Create the new form with the info receive by ai, with the ai response, add a field for free text
+- [ ] Save the Step1 AI response on Cookies, if is there not run AI again
 - [ ] Send again all the data and receive a revised prompt
 - [ ] Send the revised prompt to the user to final adjusts
 - [ ] Send to generate image the original prompt and the final prompt to generate image
@@ -58,6 +59,9 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [ ] Create a Step Progress UI (Put in new-image/layout)
   - [ ] Add Default padding (at least on forms)
   - [ ] Add max width on forms (and centralize?)
+- [ ] Upgrade Step 2 Form
+  - Add the Step 1 text as remainder
+  - Add a button of "Keep suggestion" and the the placeholder will became the answer
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [ ] Improve loading dashboard page - On LoadingWrapper
