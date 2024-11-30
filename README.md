@@ -52,7 +52,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Send to generate image the original prompt and the final prompt to generate image
 - [x] Show the images to user - Remove all size related code (do it again after MVP)
 - [x] Add the Use Again and refresh the page (check daily usage) - Fix inconsistencies between server and client side
-- [ ] Create a happy path with buttons
+- [x] Create a happy path with buttons
 - [ ] Deploy
 - [ ] Clear the cookies after finish step 4?
 
@@ -107,6 +107,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - The Group with Avatar and Menu is weird at the moment
   - The dark theme and itens menus should have a animation that I saw in docs (https://ui.shadcn.com/docs/components/menubar)
   - Maybe some code refactor, use react composition instead of those props (like shadcn approach on his own component files)
+  - When we are in the page should update the style (maybe a new component)
 - Add unity test (the header deserves a unit test to check auth and items conditions)
 - Refactor packages/next/next-auth/src/protected.tsx to have a base component and both using that
 - Check the comment on apps/next-15/next-15-playground/src/app/protected/page.tsx when start creating the real app
