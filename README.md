@@ -47,7 +47,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - Similar famous images - string[]
 - [x] Create the new form with the info receive by ai, with the ai response, add a field for free text
 - [x] Send again all the data and receive a revised prompt
-- [ ] Send the revised prompt to the user to final adjusts
+- [x] Send the revised prompt to the user to final adjusts
 - [ ] Send to generate image the original prompt and the final prompt to generate image
 - [ ] Show the images to user
 - [ ] Add the Use Again and refresh the page (check daily usage)

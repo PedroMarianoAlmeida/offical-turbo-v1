@@ -10,6 +10,7 @@ import {
   generateStep2AnswersUserPrompt,
   sendStep2AnswersSystemPrompt,
 } from "@/prompts";
+import { Step3Form } from "./Step3Form";
 
 export default async function Step3() {
   // This is not suppose to be necessary, the dashboard layout already verify if the user is logged, but I don't know how to retrieve this data here
@@ -46,7 +47,18 @@ export default async function Step3() {
     }),
   });
 
-  console.log(responseAi);
+  const { success } = responseAi;
+  if (!success)
+    return (
+      <ErrorWrapper>
+        <p>Error generating response, try refresh the page</p>
+      </ErrorWrapper>
+    );
 
-  return <>Page 3</>;
+  return (
+    <Step3Form
+      aiGeneratedPrompt={responseAi.result}
+      originalIdea={userPromptStep1}
+    />
+  );
 }
