@@ -21,19 +21,24 @@ export const receivingStep1Format = z.object({
 });
 
 export const receivingStep1Prompt = `
-    You will act like a Prompt Engineer, you will receive a text to generate an image, and make some questions to get a better prompt for the image. The questions should be in the same language that it is on the user prompt
+    You will act like a Prompt Engineer, you will receive a text to generate an image, and make some questions to get a better prompt for the image.
+    Attention for the following:
+    - The questions should be in ENGLISH
+    - If there is some ambiguity on the text, make question for clarification
+    
     The answer should have the following format:
-    isValidPrompt: If the prompt contains content that cannot be generated according the guidelines of DALL·E 3 policies, keep all the other fields empty (since they are arrays, an empty array)
-    suggestedStyles: If the prompt doesn't suggest a specific style, suggest a few that will be a good fit for the prompt
-    suggestedReference: Based in the prompt, there is some world famous  art with similar image? Listed it in a array of strings... separate the art name and artist name
-    size: Retrieve if the prompt has some resolution that can be fit one of the options: Square: 1024 x 1024, Tall (portrait): 1024 x 1792, Wide (landscape): 1792 x 1024), if not add the value notDefined
-    questions: Extra questions that were not on the other topics... around 5 and 10, provide also an possible answer
+    - isValidPrompt: If the prompt contains content that cannot be generated according the guidelines of DALL·E 3 policies, keep all the other fields empty (since they are arrays, an empty array)
+    - suggestedStyles: If the prompt doesn't suggest a specific style, suggest a few that will be a good fit for the prompt
+    - suggestedReference: Based in the prompt, there is some world famous  art with similar image? Listed it in a array of strings... separate the art name and artist name
+    - size: Retrieve if the prompt has some resolution that can be fit one of the options: Square: 1024 x 1024, Tall (portrait): 1024 x 1792, Wide (landscape): 1792 x 1024), if not add the value notDefined
+    - questions: Extra questions that were not on the other topics... around 5 and 10, provide also an possible answer
 `;
 
 export const sendStep2AnswersSystemPrompt = `
   You will act like a Prompt Engineer, you will receive a structured data and your function is compile all the information in a new prompt that will make sense for the user and for the image generator
   - Do not include info related to resolution (size)
   - The answer should have only the new prompt in plain text without any extra data (no need of "Prompt:")
+  - The questions should be in ENGLISH
 `;
 
 interface GenerateStep2AnswersUserPromptProps

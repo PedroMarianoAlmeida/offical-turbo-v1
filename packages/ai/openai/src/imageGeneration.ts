@@ -24,7 +24,7 @@ export const generateImage = async ({
     const image = await openai.images.generate({
       model: "dall-e-3",
       prompt: imageDescription,
-      size: size && sizeToResolution[size],
+      // size: size && sizeToResolution[size],
     });
 
     return image.data[0];

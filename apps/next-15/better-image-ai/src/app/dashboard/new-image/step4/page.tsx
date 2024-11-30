@@ -54,6 +54,7 @@ export default async function Step4() {
     imageOriginalPrompt,
     imageFinalPrompt,
   ]);
+  console.log({originalRes, finalRes})
   if (!originalRes.success || !finalRes.success) {
     return (
       <ErrorWrapper>

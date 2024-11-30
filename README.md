@@ -48,8 +48,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Create the new form with the info receive by ai, with the ai response, add a field for free text
 - [x] Send again all the data and receive a revised prompt
 - [x] Send the revised prompt to the user to final adjusts
-- [ ] Send to generate image the original prompt and the final prompt to generate image
-- [ ] Show the images to user
+- [x] Send to generate image the original prompt and the final prompt to generate image
+- [ ] Show the images to user - Remove all size related code (do it after MVP)
 - [ ] Add the Use Again and refresh the page (check daily usage)
 
 #### After MVP
@@ -59,15 +59,16 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [ ] Add Default padding (at least on forms)
   - [ ] Add max width on forms (and centralize?)
 - [ ] Upgrade Step 2 Form
-  - Add the Step 1 text as remainder
-  - Add a button of "Keep suggestion" and the the placeholder will became the answer
-  - Check Controlling an input with a state variable error
+  - [ ] Add size select - Fix on form and on generateImage
+  - [ ] Add the Step 1 text as remainder
+  - [ ] Add a button of "Keep suggestion" and the the placeholder will became the answer
+  - [ ] Check Controlling an input with a state variable error
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [ ] Improve loading dashboard page - On LoadingWrapper - Maybe with shadcn in his package?
 - [ ] Improve error pages - On ErrorWrapper - Maybe with shadcn in his package?
 - [ ] Save the Step1 AI response on Cookies, if is there not run AI again - I face NextJs issues to set the cookie
-- [ ] Add i18n (for Portuguese)
+- [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now
 
 ##### Save user history
