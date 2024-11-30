@@ -1,4 +1,5 @@
 import { UserData } from "@repo/core-main/types";
+import { reachLimit } from "@repo/core-main/numbers";
 import {
   ProtectedWithRedirect,
   ProtectedWithFallback,
@@ -29,7 +30,12 @@ const UserValidated = async ({
     fallbackMessage = "Error fetching user limit";
   } else {
     dailyUsageOut = usageCount.result;
-    if (dailyUsageOut > Number(process.env.DAILY_LIMIT)) {
+    if (
+      reachLimit({
+        currentUsage: dailyUsageOut,
+        limit: Number(process.env.DAILY_LIMIT),
+      })
+    ) {
       forceFallback = true;
       fallbackMessage = "User has reached the limit";
     }

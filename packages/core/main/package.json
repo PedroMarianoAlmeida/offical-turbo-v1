@@ -2,10 +2,11 @@
   "name": "@repo/core-main",
   "version": "0.0.0",
   "exports": {
-    "./types": "./src/types.ts",
-    "./utils": "./src/utils.ts",
     "./asyncWrapper": "./src/asyncWrapper.ts",
-    "./dates": "./src/dates.ts"
+    "./dates": "./src/dates.ts",
+    "./numbers": "./src/numbers.ts",
+    "./types": "./src/types.ts",
+    "./utils": "./src/utils.ts"
   },
   "license": "MIT",
   "peerDependencies": {

@@ -24,6 +24,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 - Order of imports: external packages, internal packages, elements inside the project
 - Files smaller than 100 lines
+- The exports on package.json should reflect folder structure (to facilitate to check if some is missing)
 
 ## TODO
 
@@ -50,7 +51,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Send the revised prompt to the user to final adjusts
 - [x] Send to generate image the original prompt and the final prompt to generate image
 - [x] Show the images to user - Remove all size related code (do it again after MVP)
-- [ ] Add the Use Again and refresh the page (check daily usage) - Fix inconsistencies between server and client side
+- [x] Add the Use Again and refresh the page (check daily usage) - Fix inconsistencies between server and client side
+- [ ] Create a happy path with buttons
 - [ ] Deploy
 - [ ] Clear the cookies after finish step 4?
 
@@ -60,6 +62,9 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [ ] Create a Step Progress UI (Put in new-image/layout)
   - [ ] Add Default padding (at least on forms)
   - [ ] Add max width on forms (and centralize?)
+- [ ] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful
+  - Query
+  - Style
 - [ ] Upgrade Step 2 Form
   - [ ] Add size select - Fix on form and on generateImage
   - [ ] Add the Step 1 text as remainder

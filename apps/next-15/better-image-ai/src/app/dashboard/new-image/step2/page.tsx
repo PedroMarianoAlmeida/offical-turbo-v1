@@ -61,7 +61,6 @@ export default async function Step2() {
       </p>
     );
 
-  console.log(responseAi);
   return (
     <Step2Form
       questions={questions}

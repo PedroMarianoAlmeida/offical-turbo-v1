@@ -9,6 +9,7 @@ import {
   asyncWrapper,
   asyncWrapperResponse,
 } from "@repo/core-main/asyncWrapper";
+import { reachLimit } from "@repo/core-main/numbers";
 import { areInTheSameDay } from "@repo/core-main/dates";
 
 const sanitizeUserCount = (
@@ -103,7 +104,7 @@ export const actionWithDailyRateLimit = async <T>({
       throw new Error("Error reaching count");
     }
 
-    if (rateLimit <= count.result) {
+    if (reachLimit({ currentUsage: count.result, limit: rateLimit })) {
       throw new Error("User reached daily usage limit");
     }
 

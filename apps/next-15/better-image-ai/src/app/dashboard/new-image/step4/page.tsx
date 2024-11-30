@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { cookies } from "next/headers";
 import { z } from "zod";
 
 import { getCoreServerSession } from "@repo/next-auth/session-adapters";
+import { Button } from "@repo/shadcn/button";
 
 import { generateImage } from "@/server-actions/ai";
 import { ErrorWrapper } from "@/components/layout-related/ErrorAndLoadingWrapper";
@@ -14,7 +16,7 @@ export default async function Step4() {
   if (!userData) {
     return (
       <ErrorWrapper>
-        <p>Error, go back to Step 1</p>
+        <p>Error, go back to Step 3</p>
       </ErrorWrapper>
     );
   }
@@ -54,7 +56,7 @@ export default async function Step4() {
     imageOriginalPrompt,
     imageFinalPrompt,
   ]);
-  console.log({ originalRes, finalRes });
+
   if (!originalRes.success || !finalRes.success) {
     return (
       <ErrorWrapper>
@@ -63,7 +65,6 @@ export default async function Step4() {
     );
   }
 
-  console.log({ original: originalRes.result, final: finalRes.result });
   return (
     <main>
       <h1>Result</h1>
@@ -82,6 +83,9 @@ export default async function Step4() {
         width={500}
         height={500}
       />
+      <Link href="/dashboard">
+        <Button>Go back to Dashboard</Button>
+      </Link>
     </main>
   );
 }

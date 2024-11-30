@@ -80,7 +80,6 @@ export function Step2Form({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log({ values });
     mutateAsync({ key: "step2Question", value: JSON.stringify(values) });
   }
 
