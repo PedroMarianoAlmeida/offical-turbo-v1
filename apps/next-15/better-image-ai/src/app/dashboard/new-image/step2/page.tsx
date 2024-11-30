@@ -5,6 +5,7 @@ import { getCoreServerSession } from "@repo/next-auth/session-adapters";
 import { generateObject } from "@/server-actions/ai";
 import { receivingStep1Format, receivingStep1Prompt } from "@/prompts";
 import { ErrorWrapper } from "@/components/layout-related/ErrorAndLoadingWrapper";
+import { Step2Form } from "./Step2Form";
 
 export default async function Step2() {
   // This is not suppose to be necessary, the dashboard layout already verify if the user is logged, but I don't know how to retrieve this data here
@@ -33,7 +34,7 @@ export default async function Step2() {
     zodFormat: receivingStep1Format,
     systemPrompt: receivingStep1Prompt,
   });
-  console.log({ responseAi });
+
   const { success } = responseAi;
   if (!success)
     return (
@@ -44,12 +45,11 @@ export default async function Step2() {
 
   const {
     result: {
-      hasSize,
+      size,
       isValidPrompt,
       questions,
       suggestedReference,
       suggestedStyles,
-      ambiguitySolve,
     },
   } = responseAi;
 
@@ -62,5 +62,12 @@ export default async function Step2() {
     );
 
   console.log(responseAi);
-  return <>{userPrompt}</>;
+  return (
+    <Step2Form
+      questions={questions}
+      size={size}
+      suggestedReference={suggestedReference}
+      suggestedStyles={suggestedStyles}
+    />
+  );
 }

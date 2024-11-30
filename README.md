@@ -98,6 +98,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - Add on firebase package readme, the steps to get the environment variables
 - Check if is possible pass props from Layout to Page in Next (if, yes, pass the userData when used the Protected from @repo/next-auth)
 - Documented the use for ProtectedWithFallback and userCount
+- Create the reachLimit validation in a single place (it is a simple comparison, but I did differently in layout and server side... so just a function of return userUsage > limit)
 
 ## History
 

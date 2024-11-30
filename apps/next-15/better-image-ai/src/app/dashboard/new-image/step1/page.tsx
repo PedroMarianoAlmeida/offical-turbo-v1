@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@repo/shadcn/form";
-import { Textarea } from "@repo/shadcn/textarea";
+import { Input } from "@repo/shadcn/input";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
 
@@ -63,7 +63,7 @@ export function Step1() {
             <FormItem>
               <FormLabel>Initial Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="A boy riding a unicorn" {...field} />
+                <Input placeholder="A boy riding a unicorn" {...field} />
               </FormControl>
               <FormDescription>
                 The first draft of your idea... Be as specific that you can!
