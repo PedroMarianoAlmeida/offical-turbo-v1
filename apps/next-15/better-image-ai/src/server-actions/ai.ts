@@ -82,12 +82,12 @@ export const generateResponse = async ({
 
 interface GenerateImageProps extends Pick<GeneratePromptProps, "userPrompt"> {
   userId: string;
-  size: SizeKey;
+  // size: SizeKey;
 }
 
 export const generateImage = async ({
   userId,
-  size,
+  // size,
   userPrompt,
 }: GenerateImageProps): Promise<asyncWrapperResponse<string>> => {
   const data = await actionWithDailyRateLimit({
@@ -96,7 +96,7 @@ export const generateImage = async ({
     rateLimit,
     userId,
     callback: () =>
-      generateImageOpenai({ openai, imageDescription: userPrompt, size }),
+      generateImageOpenai({ openai, imageDescription: userPrompt /*size*/ }),
   });
   if (!data.success) {
     return { success: false, message: data.message };

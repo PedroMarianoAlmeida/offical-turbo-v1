@@ -20,8 +20,8 @@ import { Input } from "@repo/shadcn/input";
 import { setServerSideCookie } from "@/server-actions/cookies";
 
 const formSchema = z.object({
-  originalIdea: z.string().min(20, {
-    message: "The idea should have at least 20 characters",
+  originalIdea: z.string().min(15, {
+    message: "The idea should have at least 15 characters",
   }),
 });
 

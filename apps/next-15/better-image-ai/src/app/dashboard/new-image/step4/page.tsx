@@ -36,25 +36,25 @@ export default async function Step4() {
     );
   }
 
-  const { size } = JSON.parse(userAnswersStep2) as z.infer<typeof formSchema>;
+  // const { size } = JSON.parse(userAnswersStep2) as z.infer<typeof formSchema>;
 
   const imageOriginalPrompt = generateImage({
     userPrompt: userPromptStep1,
     userId: String(userData.id),
-    size,
+    // size,
   });
 
   const imageFinalPrompt = generateImage({
     userPrompt: lastPromptStep3,
     userId: String(userData.id),
-    size,
+    //size,
   });
 
   const [originalRes, finalRes] = await Promise.all([
     imageOriginalPrompt,
     imageFinalPrompt,
   ]);
-  console.log({originalRes, finalRes})
+  console.log({ originalRes, finalRes });
   if (!originalRes.success || !finalRes.success) {
     return (
       <ErrorWrapper>
@@ -72,11 +72,16 @@ export default async function Step4() {
         src={originalRes.result}
         alt={userPromptStep1}
         // Add based on size
-        // width={500}
-        // height={500}
+        width={500}
+        height={500}
       />
       <h2>Final Prompt</h2>
-      <Image src={finalRes.result} alt={lastPromptStep3} />
+      <Image
+        src={finalRes.result}
+        alt={lastPromptStep3}
+        width={500}
+        height={500}
+      />
     </main>
   );
 }
