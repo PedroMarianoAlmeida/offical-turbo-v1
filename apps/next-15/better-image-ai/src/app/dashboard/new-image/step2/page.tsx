@@ -19,7 +19,7 @@ export default async function Step2() {
   }
 
   const cookieStore = await cookies();
-  const userPrompt = cookieStore.get("step1")?.value;
+  const userPrompt = cookieStore.get("step1Question")?.value;
   if (userPrompt === undefined) {
     return (
       <ErrorWrapper>
