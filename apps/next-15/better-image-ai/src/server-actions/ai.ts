@@ -5,7 +5,10 @@ import {
   objectGeneration,
   GeneratePromptProps,
 } from "@repo/openai/objectGeneration";
-// import { generateImage as generateImageOpenai } from "@repo/openai/imageGeneration";
+import {
+  generateImage as generateImageOpenai,
+  SizeKey,
+} from "@repo/openai/imageGeneration";
 import { textOutput } from "@repo/openai/textGeneration";
 import { actionWithDailyRateLimit } from "@repo/firebase/userCount";
 import { type asyncWrapperResponse } from "@repo/core-main/asyncWrapper";
@@ -16,7 +19,6 @@ import { database } from "@/configs/firebaseConfig";
 const project = process.env.PROJECT_NAME;
 const rateLimit = Number(process.env.DAILY_LIMIT);
 
-// Maybe type this response when use it
 interface GenerateObjectProps<T extends ZodTypeAny>
   extends Pick<
     GeneratePromptProps,
@@ -65,9 +67,9 @@ export const generateResponse = async ({
   systemPrompt,
 }: GenerateTextProps): Promise<asyncWrapperResponse<string>> => {
   const data = await actionWithDailyRateLimit({
-    project: process.env.PROJECT_NAME,
+    project,
     database,
-    rateLimit: Number(process.env.DAILY_LIMIT),
+    rateLimit,
     userId,
     callback: () => textOutput({ openai, userPrompt, systemPrompt }),
   });
@@ -78,25 +80,30 @@ export const generateResponse = async ({
   return { success: true, result: data.result };
 };
 
-// export const generateImage = async ({
-//   userId,
-// }: {
-//   userId: string;
-// }): Promise<asyncWrapperResponse<string>> => {
-//   const data = await actionWithDailyRateLimit({
-//     project: projectName,
-//     database,
-//     rateLimit: dailyLimit,
-//     userId,
-//     callback: () =>
-//       generateImageOpenai({ openai, imageDescription: "5 balls" }),
-//   });
-//   if (!data.success) {
-//     return { success: false, message: data.message };
-//   }
+interface GenerateImageProps extends Pick<GeneratePromptProps, "userPrompt"> {
+  userId: string;
+  size: SizeKey;
+}
 
-//   const { url } = data.result;
-//   if (!url) return { success: false, message: "No photo on response" };
+export const generateImage = async ({
+  userId,
+  size,
+  userPrompt,
+}: GenerateImageProps): Promise<asyncWrapperResponse<string>> => {
+  const data = await actionWithDailyRateLimit({
+    project,
+    database,
+    rateLimit,
+    userId,
+    callback: () =>
+      generateImageOpenai({ openai, imageDescription: userPrompt, size }),
+  });
+  if (!data.success) {
+    return { success: false, message: data.message };
+  }
 
-//   return { success: true, result: url };
-// };
+  const { url } = data.result;
+  if (!url) return { success: false, message: "No photo on response" };
+
+  return { success: true, result: url };
+};

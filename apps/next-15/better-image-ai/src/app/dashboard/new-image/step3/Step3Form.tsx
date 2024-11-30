@@ -35,7 +35,7 @@ export function Step3Form({ aiGeneratedPrompt, originalIdea }: Step3Props) {
     mutationFn: setServerSideCookie,
     onSuccess: (data) => {
       if (data.success) {
-        //router.push("/dashboard/new-image/step2");
+        router.push("/dashboard/new-image/step4");
       } else {
       }
     },
@@ -54,7 +54,7 @@ export function Step3Form({ aiGeneratedPrompt, originalIdea }: Step3Props) {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const { revisedPrompt } = values;
-    // mutateAsync({ key: "step1Question", value: originalIdea });
+    mutateAsync({ key: "step3Question", value: revisedPrompt });
   }
 
   return (

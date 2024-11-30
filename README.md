@@ -64,10 +64,11 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - Check Controlling an input with a state variable error
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
-- [ ] Improve loading dashboard page - On LoadingWrapper
-- [ ] Improve error pages - On ErrorWrapper
+- [ ] Improve loading dashboard page - On LoadingWrapper - Maybe with shadcn in his package?
+- [ ] Improve error pages - On ErrorWrapper - Maybe with shadcn in his package?
 - [ ] Save the Step1 AI response on Cookies, if is there not run AI again - I face NextJs issues to set the cookie
 - [ ] Add i18n (for Portuguese)
+- [ ] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now
 
 ##### Save user history
 
@@ -85,6 +86,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 ### Debit tech
 
 - Check how to extract all Themes (auth, dark mode and query Tan Stack) to be reusable and easier to set up a new app project - Do this just after the "Better Image" Project
+- Check Better Image - New Image folders, there is a code pattern of check user, get cookies, run action, send result to a child component... this logic should be extracted to be reused - Maybe a Next-core package (the Layout thing can be in the same project)
 - Add dark theme on Next 15 app layout (the same of Shadcn?) - While doesn't have I am applying the shadcn package after the app css
 - Replace the dark/light component, the Turborepo website is nicer
 - Check if it is possible add the workspaces in a different json
