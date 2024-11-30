@@ -17,15 +17,15 @@ import {
   FormMessage,
 } from "@repo/shadcn/form";
 import { Input } from "@repo/shadcn/input";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@repo/shadcn/select";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectGroup,
+//   SelectItem,
+//   SelectLabel,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@repo/shadcn/select";
 import { SizeKey, sizeToResolution } from "@repo/openai/imageGeneration";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
@@ -33,7 +33,7 @@ import { receivingStep1Format } from "@/prompts";
 
 export const formSchema = z.object({
   suggestedStyle: z.string().optional(),
-  size: z.enum(Object.keys(sizeToResolution) as [SizeKey]),
+  // size: z.enum(Object.keys(sizeToResolution) as [SizeKey]),
   questions: z.array(
     z.object({
       question: z.string(),
@@ -67,7 +67,7 @@ export function Step2Form({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      size: size,
+      // size: size,
       questions: questions.map(({ question }) => ({
         question,
       })),
@@ -139,7 +139,7 @@ export function Step2Form({
             </FormItem>
           )}
         />
-        <FormField
+        {/* <FormField
           control={form.control}
           name="size"
           render={({ field }) => (
@@ -175,7 +175,7 @@ export function Step2Form({
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
           control={form.control}
           name="extraInformation"

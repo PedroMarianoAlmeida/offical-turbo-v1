@@ -49,8 +49,10 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Send again all the data and receive a revised prompt
 - [x] Send the revised prompt to the user to final adjusts
 - [x] Send to generate image the original prompt and the final prompt to generate image
-- [ ] Show the images to user - Remove all size related code (do it after MVP)
-- [ ] Add the Use Again and refresh the page (check daily usage)
+- [x] Show the images to user - Remove all size related code (do it again after MVP)
+- [ ] Add the Use Again and refresh the page (check daily usage) - Fix inconsistencies between server and client side
+- [ ] Deploy
+- [ ] Clear the cookies after finish step 4?
 
 #### After MVP
 
