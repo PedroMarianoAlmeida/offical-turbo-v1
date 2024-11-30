@@ -6,7 +6,7 @@ import {
   GeneratePromptProps,
 } from "@repo/openai/objectGeneration";
 // import { generateImage as generateImageOpenai } from "@repo/openai/imageGeneration";
-// import { textOutput } from "@repo/openai/textGeneration";
+import { textOutput } from "@repo/openai/textGeneration";
 import { actionWithDailyRateLimit } from "@repo/firebase/userCount";
 import { type asyncWrapperResponse } from "@repo/core-main/asyncWrapper";
 
@@ -54,24 +54,29 @@ export const generateObject = async <T extends ZodTypeAny>({
 
   return { success: true, result };
 };
-// export const generateResponse = async ({
-//   userId,
-// }: {
-//   userId: string;
-// }): Promise<asyncWrapperResponse<string>> => {
-//   const data = await actionWithDailyRateLimit({
-//     project: process.env.PROJECT_NAME,
-//     database,
-//     rateLimit: Number(process.env.DAILY_LIMIT),
-//     userId,
-//     callback: () => textOutput({ openai, userPrompt: "ping" }),
-//   });
-//   if (!data.success) {
-//     return { success: false, message: data.message };
-//   }
 
-//   return { success: true, result: data.result };
-// };
+interface GenerateTextProps
+  extends Pick<GeneratePromptProps, "systemPrompt" | "userPrompt"> {
+  userId: string;
+}
+export const generateResponse = async ({
+  userId,
+  userPrompt,
+  systemPrompt,
+}: GenerateTextProps): Promise<asyncWrapperResponse<string>> => {
+  const data = await actionWithDailyRateLimit({
+    project: process.env.PROJECT_NAME,
+    database,
+    rateLimit: Number(process.env.DAILY_LIMIT),
+    userId,
+    callback: () => textOutput({ openai, userPrompt, systemPrompt }),
+  });
+  if (!data.success) {
+    return { success: false, message: data.message };
+  }
+
+  return { success: true, result: data.result };
+};
 
 // export const generateImage = async ({
 //   userId,

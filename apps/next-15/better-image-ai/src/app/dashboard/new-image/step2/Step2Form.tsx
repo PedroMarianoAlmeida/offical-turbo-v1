@@ -31,7 +31,7 @@ import { SizeKey, sizeToResolution } from "@repo/openai/imageGeneration";
 import { setServerSideCookie } from "@/server-actions/cookies";
 import { receivingStep1Format } from "@/prompts";
 
-const formSchema = z.object({
+export const formSchema = z.object({
   suggestedStyle: z.string().optional(),
   size: z.enum(Object.keys(sizeToResolution) as [SizeKey]),
   questions: z.array(
@@ -51,18 +51,18 @@ export function Step2Form({
 }: Omit<z.infer<typeof receivingStep1Format>, "isValidPrompt">) {
   const router = useRouter();
 
-  //   const { mutateAsync } = useMutation({
-  //     mutationFn: setServerSideCookie,
-  //     onSuccess: (data) => {
-  //       if (data.success) {
-  //         router.push("/dashboard/new-image/step2");
-  //       } else {
-  //       }
-  //     },
-  //     onError: () => {
-  //       console.log("ERROR");
-  //     },
-  //   });
+  const { mutateAsync } = useMutation({
+    mutationFn: setServerSideCookie,
+    onSuccess: (data) => {
+      if (data.success) {
+        router.push("/dashboard/new-image/step3");
+      } else {
+      }
+    },
+    onError: () => {
+      console.log("ERROR");
+    },
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -81,8 +81,7 @@ export function Step2Form({
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log({ values });
-    // const { originalIdea } = values;
-    // mutateAsync({ key: "step2", value: originalIdea });
+    mutateAsync({ key: "step2Question", value: JSON.stringify(values) });
   }
 
   return (

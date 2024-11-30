@@ -46,8 +46,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - Suggest styles: string[] - If the "has style" is false, send suggestions of styles for the image - If it is empty means there is style already on description
   - Similar famous images - string[]
 - [x] Create the new form with the info receive by ai, with the ai response, add a field for free text
-- [ ] Save the Step1 AI response on Cookies, if is there not run AI again
-- [ ] Send again all the data and receive a revised prompt
+- [x] Send again all the data and receive a revised prompt
 - [ ] Send the revised prompt to the user to final adjusts
 - [ ] Send to generate image the original prompt and the final prompt to generate image
 - [ ] Show the images to user
@@ -62,10 +61,12 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Upgrade Step 2 Form
   - Add the Step 1 text as remainder
   - Add a button of "Keep suggestion" and the the placeholder will became the answer
+  - Check Controlling an input with a state variable error
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [ ] Improve loading dashboard page - On LoadingWrapper
 - [ ] Improve error pages - On ErrorWrapper
+- [ ] Save the Step1 AI response on Cookies, if is there not run AI again - I face NextJs issues to set the cookie
 - [ ] Add i18n (for Portuguese)
 
 ##### Save user history
