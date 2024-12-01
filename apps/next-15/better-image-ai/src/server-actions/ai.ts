@@ -7,7 +7,7 @@ import {
 } from "@repo/openai/objectGeneration";
 import {
   generateImage as generateImageOpenai,
-  SizeKey,
+  // SizeKey,
 } from "@repo/openai/imageGeneration";
 import { textOutput } from "@repo/openai/textGeneration";
 import { actionWithDailyRateLimit } from "@repo/firebase/userCount";

@@ -1,9 +1,12 @@
 "use server";
-import { z } from "zod";
+import { z, ZodTypeAny } from "zod";
 import { openai } from "@/miscellaneous/openaiConfig";
 import { textOutput } from "@repo/openai/textGeneration";
 import { generateImage as generateImageOpenai } from "@repo/openai/imageGeneration";
-import { objectGeneration } from "@repo/openai/objectGeneration";
+import {
+  objectGeneration,
+  GeneratePromptProps,
+} from "@repo/openai/objectGeneration";
 import { actionWithDailyRateLimit } from "@repo/firebase/userCount";
 import { type asyncWrapperResponse } from "@repo/core-main/asyncWrapper";
 
@@ -52,14 +55,21 @@ export const generateImage = async ({
   return { success: true, result: url };
 };
 
-// Maybe type this response when use it
-export const generateObject = async ({ userId }: { userId: string }) => {
-  const CalendarEvent = z.object({
-    name: z.string(),
-    date: z.string(),
-    participants: z.array(z.string()),
-  });
+interface GenerateObjectProps<T extends ZodTypeAny>
+  extends Pick<
+    GeneratePromptProps,
+    "systemPrompt" | "userPrompt" | "zodFormat"
+  > {
+  userId: string;
+  zodFormat: T;
+}
 
+export const generateObject = async <T extends ZodTypeAny>({
+  userId,
+  // userPrompt,
+  zodFormat,
+  // systemPrompt,
+}: GenerateObjectProps<T>): Promise<asyncWrapperResponse<z.infer<T>>> => {
   const data = await actionWithDailyRateLimit({
     project: projectName,
     database,
@@ -70,7 +80,7 @@ export const generateObject = async ({ userId }: { userId: string }) => {
         openai,
         userPrompt: "Alice and Bob are going to a science fair on Friday.",
         systemPrompt: "Extract the event information.",
-        zodFormat: CalendarEvent,
+        zodFormat,
       }),
   });
   if (!data.success) {

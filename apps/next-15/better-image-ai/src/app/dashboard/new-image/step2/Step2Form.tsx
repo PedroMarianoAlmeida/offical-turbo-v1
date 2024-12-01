@@ -26,7 +26,7 @@ import { Input } from "@repo/shadcn/input";
 //   SelectTrigger,
 //   SelectValue,
 // } from "@repo/shadcn/select";
-import { SizeKey, sizeToResolution } from "@repo/openai/imageGeneration";
+// import { SizeKey, sizeToResolution } from "@repo/openai/imageGeneration";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
 import { receivingStep1Format } from "@/prompts";
@@ -44,7 +44,7 @@ export const formSchema = z.object({
 });
 
 export function Step2Form({
-  size,
+  // size,
   questions,
   suggestedReference,
   suggestedStyles,
@@ -100,7 +100,7 @@ export function Step2Form({
           </Link>
         ))}
         <p>
-          Note: You don't need to answer ALL the questions, but more information
+          Note: You don&apos;t need to answer ALL the questions, but more information
           means a Better Image =D
         </p>
       </div>

@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import {
   generateResponse,
   generateImage,
-  generateObject,
+  // generateObject,
 } from "@/server-actions/ai";
 import { Button } from "@repo/shadcn/button";
 
@@ -43,22 +43,22 @@ export const IncrementUsageButton = ({ userId }: { userId: string }) => {
     },
   });
 
-  const { mutateAsync: mutateObjectChatGpt } = useMutation({
-    mutationFn: generateObject,
-    onSuccess: (data) => {
-      if (data.success) {
-        const { result } = data;
-        console.log({ result });
-        setMessage(JSON.stringify(result));
-      } else {
-        setMessage("Something went wrong");
-      }
-    },
-    onError: () => {
-      console.log("ERROR");
-      setMessage("Something went wrong");
-    },
-  });
+  // const { mutateAsync: mutateObjectChatGpt } = useMutation({
+  //   mutationFn: generateObject,
+  //   onSuccess: (data) => {
+  //     if (data.success) {
+  //       const { result } = data;
+  //       console.log({ result });
+  //       setMessage(JSON.stringify(result));
+  //     } else {
+  //       setMessage("Something went wrong");
+  //     }
+  //   },
+  //   onError: () => {
+  //     console.log("ERROR");
+  //     setMessage("Something went wrong");
+  //   },
+  // });
 
   return (
     <>
@@ -66,7 +66,7 @@ export const IncrementUsageButton = ({ userId }: { userId: string }) => {
       <Button onClick={() => mutateImageChatGpt({ userId })}>
         Call chatGPT Image
       </Button>
-      <Button onClick={() => mutateObjectChatGpt({ userId })}>
+      <Button onClick={/*() => mutateObjectChatGpt()}*/ () => {}}>
         Call chatGPT Object
       </Button>
       <p>{message}</p>

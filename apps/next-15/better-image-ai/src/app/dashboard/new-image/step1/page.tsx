@@ -25,7 +25,7 @@ const formSchema = z.object({
   }),
 });
 
-export function Step1() {
+function Step1() {
   const router = useRouter();
 
   const { mutateAsync } = useMutation({

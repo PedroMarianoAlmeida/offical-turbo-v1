@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { z } from "zod";
+// import { z } from "zod";
 
 import { getCoreServerSession } from "@repo/next-auth/session-adapters";
 import { Button } from "@repo/shadcn/button";
 
 import { generateImage } from "@/server-actions/ai";
 import { ErrorWrapper } from "@/components/layout-related/ErrorAndLoadingWrapper";
-import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
+// import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
 
 export default async function Step4() {
   // This is not suppose to be necessary, the dashboard layout already verify if the user is logged, but I don't know how to retrieve this data here
