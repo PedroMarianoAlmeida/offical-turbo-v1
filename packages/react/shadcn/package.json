@@ -9,6 +9,9 @@
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
+    "./header": "./src/composition/header/index.tsx",
+    "./mode-toggle": "./src/composition/mode-toggle.tsx",
+    "./progress-bar": "./src/composition/progress-bar.tsx",
     "./avatar": "./src/native-shadcn/avatar.tsx",
     "./button": "./src/native-shadcn/button.tsx",
     "./dropdown-menu": "./src/native-shadcn/dropdown-menu.tsx",
@@ -18,9 +21,7 @@
     "./menubar": "./src/native-shadcn/menubar.tsx",
     "./popover": "./src/native-shadcn/popover.tsx",
     "./select": "./src/native-shadcn/select.tsx",
-    "./textarea": "./src/native-shadcn/textarea.tsx",
-    "./mode-toggle": "./src/composition/mode-toggle.tsx",
-    "./header": "./src/composition/header/index.tsx"
+    "./textarea": "./src/native-shadcn/textarea.tsx"
   },
   "license": "MIT",
   "scripts": {
