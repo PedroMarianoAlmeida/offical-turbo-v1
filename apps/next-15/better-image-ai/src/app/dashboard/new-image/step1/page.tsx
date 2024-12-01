@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
 
 import { Button } from "@repo/shadcn/button";
 import {
@@ -28,19 +27,6 @@ const formSchema = z.object({
 function Step1() {
   const router = useRouter();
 
-  const { mutateAsync } = useMutation({
-    mutationFn: setServerSideCookie,
-    onSuccess: (data) => {
-      if (data.success) {
-        router.push("/dashboard/new-image/step2");
-      } else {
-      }
-    },
-    onError: () => {
-      console.log("ERROR");
-    },
-  });
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,10 +34,19 @@ function Step1() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const { originalIdea } = values;
-    mutateAsync({ key: "step1Question", value: originalIdea });
-  }
+    const data = await setServerSideCookie({
+      key: "step1Question",
+      value: originalIdea,
+    });
+    if (data.success) {
+      router.push("/dashboard/new-image/step2");
+    } else {
+      // Handle error
+      console.error("Error setting cookie");
+    }
+  };
 
   return (
     <Form {...form}>
@@ -66,7 +61,7 @@ function Step1() {
                 <Input placeholder="A boy riding a unicorn" {...field} />
               </FormControl>
               <FormDescription>
-                The first draft of your idea... Be as specific that you can!
+                The first draft of your idea... Be as specific as you can!
               </FormDescription>
               <FormMessage />
             </FormItem>
