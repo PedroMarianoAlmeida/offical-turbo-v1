@@ -79,6 +79,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Add a "run again" in each step that has AI response (to generate a new response - New question, new revised prompt and new images)
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now
+- [ ] Add a Error page (when there is unexpected error, not the response false)
 
 ##### Save user history
 
