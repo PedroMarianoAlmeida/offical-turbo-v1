@@ -36,7 +36,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 - [ ] Improve general UI
   - [ ] Create a Step Progress UI (Put in new-image/layout)
-  - [ ] Add Default padding (at least on forms)
+  - [x] Add Default padding (at least on forms)
   - [ ] Add max width on forms (and centralize?)
 - [ ] Clear the cookies after finish step 4?
 
@@ -46,6 +46,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - After login, redirect to dashboard
   - Improve text (remove the =D, keep formal)
   - Generate image on Step 3 (I will not implement, because maybe the user wants only a new prompt instead of generate image)
+  - Their initial ideas have false flag of "against policy", maybe remove this from response and leave for image generator handle
 - [ ] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful
   - Query
   - Style

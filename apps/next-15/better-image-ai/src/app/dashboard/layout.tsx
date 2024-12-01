@@ -59,13 +59,7 @@ const DashboardLayout = async ({
   return (
     <ProtectedWithRedirect>
       {(userData) => {
-        return (
-          <>
-            <h1>Dashboard</h1>
-            <h2>Helo, {userData.name ?? "Visitor"}</h2>
-            <UserValidated userData={userData}>{children}</UserValidated>
-          </>
-        );
+        return <UserValidated userData={userData}>{children}</UserValidated>;
       }}
     </ProtectedWithRedirect>
   );

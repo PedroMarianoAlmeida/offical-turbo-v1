@@ -50,7 +50,10 @@ function Step1() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8"
+      >
         <FormField
           control={form.control}
           name="originalIdea"
@@ -61,13 +64,13 @@ function Step1() {
                 <Input placeholder="A boy riding a unicorn" {...field} />
               </FormControl>
               <FormDescription>
-                The first draft of your idea... Be as specific as you can!
+                The first draft of your idea... be as specific as you can!
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Generate questions</Button>
       </form>
     </Form>
   );

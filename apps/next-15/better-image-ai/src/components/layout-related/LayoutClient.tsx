@@ -16,9 +16,7 @@ const LayoutClient = ({ children }: WithChildren) => {
         setTheme={setTheme}
         auth={{ session, signIn, signOut }}
         items={{
-          publicItems: [
-            { id: "home", element: <Link href="/">Home</Link> },
-          ],
+          publicItems: [{ id: "home", element: <Link href="/">Home</Link> }],
           authenticatedItems: [
             {
               id: "dashboard",
@@ -27,7 +25,7 @@ const LayoutClient = ({ children }: WithChildren) => {
           ],
         }}
       />
-      {children}
+      <main className="container mx-auto p-4">{children}</main>
     </>
   );
 };
