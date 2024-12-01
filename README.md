@@ -34,34 +34,18 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
-- [x] Setup the project with dark theme, auth and firebase
-- [x] Protect dashboard for authenticated only - Redirect to homepage
-  - [-] Remove the auth from Protected, instead pass the Session as props (then I can pass the same session for Protected by redirect and with fallback, and remove the complexity from those elements)
-    - Actually it was a bad idea, when I try it the Protected children doesn't know anymore that the hasUser from core session is true, so it will require extra if(hasUser) all over the place - But in the current way is kind of useless, because a cannot send from a layout to the page
-- [x] Check daily usage to enable use the tool
-- [x] Create the first form that receives the original prompt
-- [x] Send the question for next step, then retrieve for server side to do the AI thing and be ready for next step
-- [x] Send the original prompt to object type chatGPT, the response should have
-  - Follow up questions: string[]
-  - Is valid input: boolean - It is OK with the politic of generate image
-  - Suggest styles: string[] - If the "has style" is false, send suggestions of styles for the image - If it is empty means there is style already on description
-  - Similar famous images - string[]
-- [x] Create the new form with the info receive by ai, with the ai response, add a field for free text
-- [x] Send again all the data and receive a revised prompt
-- [x] Send the revised prompt to the user to final adjusts
-- [x] Send to generate image the original prompt and the final prompt to generate image
-- [x] Show the images to user - Remove all size related code (do it again after MVP)
-- [x] Add the Use Again and refresh the page (check daily usage) - Fix inconsistencies between server and client side
-- [x] Create a happy path with buttons
-- [ ] Deploy
-- [ ] Clear the cookies after finish step 4?
-
-#### After MVP
-
 - [ ] Improve general UI
   - [ ] Create a Step Progress UI (Put in new-image/layout)
   - [ ] Add Default padding (at least on forms)
   - [ ] Add max width on forms (and centralize?)
+- [ ] Clear the cookies after finish step 4?
+
+#### After MVP
+
+- [ ] Ju feedbacks
+  - After login, redirect to dashboard
+  - Improve text (remove the =D, keep formal)
+  - Generate image on Step 3 (I will not implement, because maybe the user wants only a new prompt instead of generate image)
 - [ ] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful
   - Query
   - Style
@@ -70,6 +54,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [ ] Add the Step 1 text as remainder
   - [ ] Add a button of "Keep suggestion" and the the placeholder will became the answer
   - [ ] Check Controlling an input with a state variable error
+- [ ] Upgrade Step 3
+- [ ] Add a Copy prompt
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [ ] Improve loading dashboard page - On LoadingWrapper - Maybe with shadcn in his package?
@@ -155,6 +141,29 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Receive answer of image
 - [x] IncrementUserCountUsage on firebase package should not be exported (after create some useful action to test remove it)
 - [x] Receive answer as an Object (double check the response to check if has the props that I asked, if no automatically goes back to AI to get a response on the right format) - No need, it better
+
+#### Better Image AI
+
+- [x] Setup the project with dark theme, auth and firebase
+- [x] Protect dashboard for authenticated only - Redirect to homepage
+  - [-] Remove the auth from Protected, instead pass the Session as props (then I can pass the same session for Protected by redirect and with fallback, and remove the complexity from those elements)
+    - Actually it was a bad idea, when I try it the Protected children doesn't know anymore that the hasUser from core session is true, so it will require extra if(hasUser) all over the place - But in the current way is kind of useless, because a cannot send from a layout to the page
+- [x] Check daily usage to enable use the tool
+- [x] Create the first form that receives the original prompt
+- [x] Send the question for next step, then retrieve for server side to do the AI thing and be ready for next step
+- [x] Send the original prompt to object type chatGPT, the response should have
+  - Follow up questions: string[]
+  - Is valid input: boolean - It is OK with the politic of generate image
+  - Suggest styles: string[] - If the "has style" is false, send suggestions of styles for the image - If it is empty means there is style already on description
+  - Similar famous images - string[]
+- [x] Create the new form with the info receive by ai, with the ai response, add a field for free text
+- [x] Send again all the data and receive a revised prompt
+- [x] Send the revised prompt to the user to final adjusts
+- [x] Send to generate image the original prompt and the final prompt to generate image
+- [x] Show the images to user - Remove all size related code (do it again after MVP)
+- [x] Add the Use Again and refresh the page (check daily usage) - Fix inconsistencies between server and client side
+- [x] Create a happy path with buttons
+- [x] Deploy
 
 #### Tech Debit
 
