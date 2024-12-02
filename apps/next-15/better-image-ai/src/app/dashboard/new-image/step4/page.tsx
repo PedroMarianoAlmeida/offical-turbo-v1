@@ -1,16 +1,13 @@
 export const maxDuration = 60;
-import Image from "next/image";
-import Link from "next/link";
 import { cookies } from "next/headers";
 // import { z } from "zod";
 
 import { getCoreServerSession } from "@repo/next-auth/session-adapters";
-import { Button } from "@repo/shadcn/button";
 
 import { generateImage } from "@/server-actions/ai";
 import { ErrorWrapper } from "@/components/layout-related/ErrorAndLoadingWrapper";
 // import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
-import { en } from "@/i18n/en";
+import { Result } from "./result";
 
 export default async function Step4() {
   // This is not suppose to be necessary, the dashboard layout already verify if the user is logged, but I don't know how to retrieve this data here
@@ -68,33 +65,11 @@ export default async function Step4() {
   }
 
   return (
-    <main className="flex flex-col gap-10 items-center pb-4">
-      <section className="flex gap-5">
-        <div>
-          <h2 className="text-center">{en.steps.step4.original}</h2>
-          <Image
-            src={originalRes.result}
-            alt={userPromptStep1}
-            // Add based on size
-            width={500}
-            height={500}
-          />
-          <p>{userPromptStep1}</p>
-        </div>
-        <div>
-          <h2 className="text-center">{en.steps.step4.final}</h2>
-          <Image
-            src={finalRes.result}
-            alt={lastPromptStep3}
-            width={500}
-            height={500}
-          />
-          <p>{lastPromptStep3}</p>
-        </div>
-      </section>
-      <Link href="/dashboard">
-        <Button>{en.steps.step4.goBack}</Button>
-      </Link>
-    </main>
+    <Result
+      finalPrompt={lastPromptStep3}
+      finalSrc={finalRes.result}
+      originalPrompt={userPromptStep1}
+      originalSrc={originalRes.result}
+    />
   );
 }

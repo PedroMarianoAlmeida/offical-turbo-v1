@@ -1,40 +1,12 @@
 export const maxDuration = 60;
-import Image from "next/image";
-import Link from "next/link";
-
-import { Button } from "@repo/shadcn/button";
-
-import { en } from "@/i18n/en";
-
+import { Result } from "@/app/dashboard/new-image/step4/result";
 export default async function Step4() {
   return (
-    <main className="flex flex-col gap-10 items-center pb-4">
-      <section className="flex gap-5">
-        <div>
-          <h2 className="text-center">{en.steps.step4.original}</h2>
-          <Image
-            src="/mock/betterimage1.webp"
-            alt="Image"
-            // Add based on size
-            width={500}
-            height={500}
-          />
-          <p>Original prompt from step 1</p>
-        </div>
-        <div>
-          <h2 className="text-center">{en.steps.step4.final}</h2>
-          <Image
-            src="/mock/betterimage2.webp"
-            alt="Image"
-            width={500}
-            height={500}
-          />
-          <p>Big prompt from Step 3</p>
-        </div>
-      </section>
-      <Link href="/dashboard">
-        <Button>{en.steps.step4.goBack}</Button>
-      </Link>
-    </main>
+    <Result
+      finalPrompt="Donec dapibus sapien eu nulla rutrum, quis egestas dolor ultrices. Vestibulum placerat massa ex, ac aliquam turpis pretium nec. Suspendisse potenti. Pellentesque nec eros vulputate, feugiat dui sit amet, pretium lacus. Aliquam odio nunc, placerat quis nisi vitae, molestie pharetra urna. Nulla tristique posuere pharetra. Vivamus viverra, justo et ullamcorper ultrices, leo lacus fringilla orci, ac lobortis augue sapien sed elit. In nisi est, vestibulum at facilisis ut, lacinia ultricies quam. Quisque condimentum eros hendrerit elit tempor sodales. Aenean consectetur sollicitudin odio, at placerat metus elementum et. Praesent vitae dolor sed nisi sagittis luctus ut quis dolor. Maecenas eu tellus euismod, interdum tellus nec, porttitor urna. Aenean eleifend mauris at est gravida, in molestie neque laoreet. Mauris aliquam erat non risus ultricies elementum."
+      finalSrc="/mock/betterimage1.webp"
+      originalPrompt="Original prompt from step 1"
+      originalSrc="/mock/betterimage2.webp"
+    />
   );
 }
