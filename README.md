@@ -50,7 +50,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 - [ ] Check if it is possible improve the Query on Similar artwork
 - [ ] Upgrade Step 2 Form
-  - [ ] Add a button of "Keep suggestion" and the the placeholder will became the answer
   - [ ] Add size select - Fix on form and on generateImage
   - [ ] Check Controlling an input with a state variable error
 - [ ] Create About page
@@ -62,7 +61,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - I change my mind, actually but a button of (run again, for cases the user doesn't like the AI response)
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now
-- [ ] Add a Error page (when there is unexpected error, not the response false)
 - [ ] Clear the cookies after finish step 4? - Maybe
 
 ##### Save user history
@@ -179,6 +177,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [x] Put images side by side
 - [x] Improve header
 - [x] Add something on Home Page
+- [x] Add a Error page (when there is unexpected error, not the response false) - It is not pretty but it is done
+- [x] Add a button of "Keep suggestion" and the the placeholder will became the answer
 
 #### Tech Debit
 

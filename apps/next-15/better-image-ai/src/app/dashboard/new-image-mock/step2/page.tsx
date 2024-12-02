@@ -34,6 +34,10 @@ export default async function Step2() {
           artistName: "Paul Gauguin",
           artName: "Tahitian Landscape",
         },
+        {
+          artistName: "Paul Gauguin",
+          artName: "Tahitian Landscape",
+        },
       ]}
       suggestedStyles={["Cartoon", "Realistic", "Surreal", "Pop Art"]}
     />

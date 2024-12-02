@@ -105,18 +105,39 @@ export function Step2Form({
             key={field.id}
             control={form.control}
             name={`questions.${index}.answer`}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{questions[index]?.question}</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder={questions[index]?.answer || "Your answer here"}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return (
+                <div className="grid md:grid-cols-[90%_10%] gap-3 grid-cols-1">
+                  <FormItem>
+                    <FormLabel>{questions[index]?.question}</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder={
+                          questions[index]?.answer || "Your answer here"
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                  {questions[index]?.answer ? (
+                    <Button
+                      type="button"
+                      className="self-end"
+                      variant="secondary"
+                      onClick={() =>
+                        form.setValue(
+                          `questions.${index}.answer`,
+                          questions[index].answer
+                        )
+                      }
+                    >
+                      Keep Suggestion
+                    </Button>
+                  ) : null}
+                </div>
+              );
+            }}
           />
         ))}
         <FormField
@@ -188,7 +209,9 @@ export function Step2Form({
             </FormItem>
           )}
         />
-        <Button type="submit"> {en.steps.step2.form.submit}</Button>
+        <Button type="submit" className="w-full md:w-40">
+          {en.steps.step2.form.submit}
+        </Button>
       </form>
     </Form>
   );

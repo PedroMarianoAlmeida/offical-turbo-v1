@@ -14,7 +14,7 @@ export const Suggestions = ({ suggestedReference }: SuggestionsProps) => {
   if (suggestedReference.length === 0) return;
 
   return (
-    <section className="flex gap-3 items-center">
+    <section className="flex gap-1 md:gap-3 items-center flex-col md:flex-row">
       <p className="py-6">{en.steps.step2.reference}</p>
       {suggestedReference.map(({ artName, artistName }) => (
         <span key={`${artName}-${artistName}`}>
@@ -27,8 +27,8 @@ export const Suggestions = ({ suggestedReference }: SuggestionsProps) => {
               variant="outline"
               className="flex flex-col py-2 px-7 hover:underline border-2"
             >
-              <div className="text-base">{artName}</div>
-              <div>({artistName})</div>
+              <div className="text-base text-center">{artName}</div>
+              <div className="text-center">({artistName})</div>
             </Badge>
           </Link>
         </span>
