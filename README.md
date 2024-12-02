@@ -36,6 +36,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 - [ ] Upgrade Step 3
   - [ ] Add a Copy prompt button (then the user will be able to get the prompt and generate the image somewhere else)
+- [ ] Improve Loading page from Step 2
+- [ ] Improve Loading page from Step 4
 - [ ] After login, redirect to dashboard (at the moment for new image is better, update after have history)
 - [ ] Add a "run again" in each step that has AI response (to generate a new response - New question, new revised prompt and new images)
 

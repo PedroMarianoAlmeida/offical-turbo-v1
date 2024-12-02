@@ -3,11 +3,15 @@ import Link from "next/link";
 import { getCoreServerSession } from "@repo/next-auth/session-adapters";
 import { Button } from "@repo/shadcn/button";
 
+import { ClientHome } from "@/components/page/client-home";
+
 export default async function Home() {
   const { userData } = await getCoreServerSession();
   return (
-    <main className="flex flex-col gap-2">
+    <main className="flex flex-col gap-4 items-center">
       <h1 className="font-mono font-bold">Better Image</h1>
+      <h2>Real Example</h2>
+      <ClientHome />
       <p>
         Generic prompts lead to predictable AI-generated images. Use Better
         Image to craft more detailed and creative prompts, unlocking unique and
