@@ -67,6 +67,7 @@ export default async function Step2() {
       size={size}
       suggestedReference={suggestedReference}
       suggestedStyles={suggestedStyles}
+      step1Prompt={userPrompt}
     />
   );
 }

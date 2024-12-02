@@ -34,16 +34,8 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
-- [x] Improve text (remove the =D, keep formal) - Put all copy in a external file, this will be useful on i18n - TOO BORING OMG
-- [ ] Upgrade Step 2 Form
-  - [x] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful - [x] And even if the array is empty, the art reference is there
-  - [x] Add the Step 1 text as remainder
 - [ ] Upgrade Step 3
   - [ ] Add a Copy prompt button (then the user will be able to get the prompt and generate the image somewhere else)
-- [x] Upgrade Step 4
-  - [x] Put images side by side
-- [x] Improve header
-- [ ] Add something on Home Page
 - [ ] After login, redirect to dashboard (at the moment for new image is better, update after have history)
 - [ ] Add a "run again" in each step that has AI response (to generate a new response - New question, new revised prompt and new images)
 
@@ -177,6 +169,14 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [x] Create a Step Progress UI (Put in new-image/layout)
   - [x] Add Default padding (at least on forms)
   - [-] Add max width on forms (and centralize?) - After the container I don't think that it is necessary anymore
+- [x] Improve text (remove the =D, keep formal) - Put all copy in a external file, this will be useful on i18n - TOO BORING OMG
+- [x] Upgrade Step 2 Form
+  - [x] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful - [x] And even if the array is empty, the art reference is there
+  - [x] Add the Step 1 text as remainder
+  - [x] Upgrade Step 4
+  - [x] Put images side by side
+- [x] Improve header
+- [x] Add something on Home Page
 
 #### Tech Debit
 

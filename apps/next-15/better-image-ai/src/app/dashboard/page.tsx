@@ -3,8 +3,8 @@ import { Button } from "@repo/shadcn/button";
 
 const DashboardPage = () => {
   return (
-    <main>
-      <h2>Dashboard Page</h2>
+    <main className="flex flex-col items-center gap-5">
+      <h1 className="font-bold">Dashboard</h1>
       <Link href="dashboard/new-image/step1">
         <Button>Generate New Image</Button>
       </Link>
