@@ -1,3 +1,5 @@
+export const maxDuration = 60;
+
 import { cookies } from "next/headers";
 import { z } from "zod";
 
