@@ -68,22 +68,30 @@ export default async function Step4() {
   }
 
   return (
-    <main>
-      <h2>{en.steps.step4.original}</h2>
-      <Image
-        src={originalRes.result}
-        alt={userPromptStep1}
-        // Add based on size
-        width={500}
-        height={500}
-      />
-      <h2>{en.steps.step4.final}</h2>
-      <Image
-        src={finalRes.result}
-        alt={lastPromptStep3}
-        width={500}
-        height={500}
-      />
+    <main className="flex flex-col gap-10 items-center pb-4">
+      <section className="flex gap-5">
+        <div>
+          <h2 className="text-center">{en.steps.step4.original}</h2>
+          <Image
+            src={originalRes.result}
+            alt={userPromptStep1}
+            // Add based on size
+            width={500}
+            height={500}
+          />
+          <p>{userPromptStep1}</p>
+        </div>
+        <div>
+          <h2 className="text-center">{en.steps.step4.final}</h2>
+          <Image
+            src={finalRes.result}
+            alt={lastPromptStep3}
+            width={500}
+            height={500}
+          />
+          <p>{lastPromptStep3}</p>
+        </div>
+      </section>
       <Link href="/dashboard">
         <Button>{en.steps.step4.goBack}</Button>
       </Link>
