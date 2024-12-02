@@ -1,12 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
 import { Button } from "@repo/shadcn/button";
+
 import {
   Form,
   FormControl,
@@ -31,6 +31,7 @@ import { Input } from "@repo/shadcn/input";
 import { setServerSideCookie } from "@/server-actions/cookies";
 import { receivingStep1Format } from "@/prompts";
 import { en } from "@/i18n/en";
+import { Suggestions } from "./suggestions";
 
 export const formSchema = z.object({
   suggestedStyle: z.string().optional(),
@@ -87,19 +88,7 @@ export function Step2Form({
   return (
     <Form {...form}>
       <div>
-        <p>{en.steps.step2.reference}</p>{" "}
-        {suggestedReference.map(({ artName, artistName }) => (
-          <Link
-            href={`https://www.google.com/search?q=artwork+${artName}+by+${artistName}`}
-            rel="noopener noreferrer"
-            target="_blank"
-            key={`${artName}-${artistName}`}
-          >
-            <Button variant="link">
-              {artName} by {artistName}
-            </Button>
-          </Link>
-        ))}
+        <Suggestions suggestedReference={suggestedReference} />
         <p>{en.steps.step2.note}</p>
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

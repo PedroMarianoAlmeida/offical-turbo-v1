@@ -36,7 +36,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 - [x] Improve text (remove the =D, keep formal) - Put all copy in a external file, this will be useful on i18n - TOO BORING OMG
 - [ ] Upgrade Step 2 Form
-  - [ ] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful - And even if the array is empty, the art reference is there
+  - [x] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful - [x] And even if the array is empty, the art reference is there
   - [ ] Add the Step 1 text as remainder
   - [ ] Add a button of "Keep suggestion" and the the placeholder will became the answer
 - [ ] Upgrade Step 3

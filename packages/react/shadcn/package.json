@@ -13,6 +13,7 @@
     "./mode-toggle": "./src/composition/mode-toggle.tsx",
     "./progress-bar": "./src/composition/progress-bar.tsx",
     "./avatar": "./src/native-shadcn/avatar.tsx",
+    "./badge": "./src/native-shadcn/badge.tsx",
     "./button": "./src/native-shadcn/button.tsx",
     "./dropdown-menu": "./src/native-shadcn/dropdown-menu.tsx",
     "./form": "./src/native-shadcn/form.tsx",

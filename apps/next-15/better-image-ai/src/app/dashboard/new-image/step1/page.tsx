@@ -75,7 +75,7 @@ function Step1() {
             </FormItem>
           )}
         />
-        <Button type="submit"> {en.steps.step1.form.submit}</Button>
+        <Button type="submit">{en.steps.step1.form.submit}</Button>
       </form>
     </Form>
   );
