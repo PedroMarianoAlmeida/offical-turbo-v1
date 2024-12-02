@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from "@repo/shadcn/form";
 import { Input } from "@repo/shadcn/input";
-import { ProgressBar } from "@repo/shadcn/progress-bar";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
 
@@ -50,32 +49,27 @@ function Step1() {
   };
 
   return (
-    <>
-      <ProgressBar currentStep={1} numberOfSteps={4}>
-        <h1>Original Prompt</h1>
-      </ProgressBar>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-            control={form.control}
-            name="originalIdea"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Initial Description</FormLabel>
-                <FormControl>
-                  <Input placeholder="A boy riding a unicorn" {...field} />
-                </FormControl>
-                <FormDescription>
-                  The first draft of your idea... be as specific as you can!
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Generate questions</Button>
-        </form>
-      </Form>
-    </>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="originalIdea"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Initial Description</FormLabel>
+              <FormControl>
+                <Input placeholder="A boy riding a unicorn" {...field} />
+              </FormControl>
+              <FormDescription>
+                The first draft of your idea... be as specific as you can!
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Generate questions</Button>
+      </form>
+    </Form>
   );
 }
 

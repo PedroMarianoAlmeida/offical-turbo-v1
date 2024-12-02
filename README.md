@@ -34,11 +34,10 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
-- [ ] Improve general UI
-  - [ ] Create a Step Progress UI (Put in new-image/layout)
+- [x] Improve general UI
+  - [x] Create a Step Progress UI (Put in new-image/layout)
   - [x] Add Default padding (at least on forms)
-  - [ ] Add max width on forms (and centralize?)
-- [ ] Clear the cookies after finish step 4?
+  - [-] Add max width on forms (and centralize?) - After the container I don't think that it is necessary anymore
 
 #### After MVP
 
@@ -47,7 +46,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - Improve text (remove the =D, keep formal)
   - Generate image on Step 3 (I will not implement, because maybe the user wants only a new prompt instead of generate image)
   - Their initial ideas have false flag of "against policy", maybe remove this from response and leave for image generator handle
-- [ ] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful
+- [ ] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful - And even if the array is empty, the art reference is there
   - Query
   - Style
 - [ ] Upgrade Step 2 Form
@@ -56,7 +55,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [ ] Add a button of "Keep suggestion" and the the placeholder will became the answer
   - [ ] Check Controlling an input with a state variable error
 - [ ] Upgrade Step 3
-- [ ] Add a Copy prompt
+- [ ] Add a Copy prompt button (then the user will be able to get the prompt and generate the image somewhere else)
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [ ] Improve loading dashboard page - On LoadingWrapper - Maybe with shadcn in his package?
@@ -67,6 +66,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now
 - [ ] Add a Error page (when there is unexpected error, not the response false)
+- [ ] Clear the cookies after finish step 4? - Maybe
 
 ##### Save user history
 
@@ -105,6 +105,10 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - Check if is possible pass props from Layout to Page in Next (if, yes, pass the userData when used the Protected from @repo/next-auth)
 - Documented the use for ProtectedWithFallback and userCount
 - Create the reachLimit validation in a single place (it is a simple comparison, but I did differently in layout and server side... so just a function of return userUsage > limit)
+
+### Future features
+
+- The Progress bar has links to the previous page steps
 
 ## History
 

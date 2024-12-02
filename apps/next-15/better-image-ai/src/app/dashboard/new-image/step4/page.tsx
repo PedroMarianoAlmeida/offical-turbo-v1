@@ -68,7 +68,6 @@ export default async function Step4() {
 
   return (
     <main>
-      <h1>Result</h1>
       <h2>Original Prompt</h2>
       <Image
         src={originalRes.result}

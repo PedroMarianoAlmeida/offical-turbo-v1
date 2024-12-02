@@ -5,6 +5,8 @@ import {
   ProtectedWithFallback,
 } from "@repo/next-auth/protected";
 import { getUserCountUsageForToday } from "@repo/firebase/userCount";
+import { Button } from "@repo/shadcn/button";
+
 import { database } from "@/configs/firebaseConfig";
 
 const UserValidated = async ({
@@ -22,7 +24,7 @@ const UserValidated = async ({
   });
 
   let forceFallback = false;
-  let fallbackMessage = "";
+  let fallbackMessage: React.ReactNode = "";
   let dailyUsageOut = 0;
 
   if (!usageCount.success) {
@@ -37,7 +39,15 @@ const UserValidated = async ({
       })
     ) {
       forceFallback = true;
-      fallbackMessage = "User has reached the limit";
+      fallbackMessage = (
+        <main>
+          <Button disabled>Generate New Image</Button>
+          <p>
+            You cannot generate more images today try tomorrow (you reach the
+            daily limit)
+          </p>
+        </main>
+      );
     }
   }
 
