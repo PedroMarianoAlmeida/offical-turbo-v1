@@ -34,11 +34,6 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
-- [x] Improve general UI
-  - [x] Create a Step Progress UI (Put in new-image/layout)
-  - [x] Add Default padding (at least on forms)
-  - [-] Add max width on forms (and centralize?) - After the container I don't think that it is necessary anymore
-
 #### After MVP
 
 - [ ] Ju feedbacks
@@ -169,6 +164,11 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Add the Use Again and refresh the page (check daily usage) - Fix inconsistencies between server and client side
 - [x] Create a happy path with buttons
 - [x] Deploy
+- [x] Improve general UI
+  - [x] Create a Step Progress UI (Put in new-image/layout)
+  - [x] Add Default padding (at least on forms)
+  - [-] Add max width on forms (and centralize?) - After the container I don't think that it is necessary anymore
+
 
 #### Tech Debit
 
