@@ -34,30 +34,36 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
+- [ ] Improve text (remove the =D, keep formal) - Put all copy in a external file, this will be useful on i18n
+- [ ] Upgrade Step 2 Form
+  - [ ] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful - And even if the array is empty, the art reference is there
+  - [ ] Add the Step 1 text as remainder
+  - [ ] Add a button of "Keep suggestion" and the the placeholder will became the answer
+- [ ] Upgrade Step 3
+  - [ ] Add a Copy prompt button (then the user will be able to get the prompt and generate the image somewhere else)
+- [ ] Upgrade Step 4
+  - [ ] Put images side by side
+- [ ] Add something on Home Page
+- [ ] After login, redirect to dashboard (at the moment for new image is better, update after have history)
+- [ ] Add a "run again" in each step that has AI response (to generate a new response - New question, new revised prompt and new images)
+
 #### After MVP
 
 - [ ] Ju feedbacks
-  - After login, redirect to dashboard
-  - Improve text (remove the =D, keep formal)
   - Generate image on Step 3 (I will not implement, because maybe the user wants only a new prompt instead of generate image)
   - Their initial ideas have false flag of "against policy", maybe remove this from response and leave for image generator handle
-- [ ] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful - And even if the array is empty, the art reference is there
+
   - Query
   - Style
 - [ ] Upgrade Step 2 Form
   - [ ] Add size select - Fix on form and on generateImage
-  - [ ] Add the Step 1 text as remainder
-  - [ ] Add a button of "Keep suggestion" and the the placeholder will became the answer
   - [ ] Check Controlling an input with a state variable error
-- [ ] Upgrade Step 3
-- [ ] Add a Copy prompt button (then the user will be able to get the prompt and generate the image somewhere else)
 - [ ] Create About page
 - [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [ ] Improve loading dashboard page - On LoadingWrapper - Maybe with shadcn in his package?
 - [ ] Improve error pages - On ErrorWrapper - Maybe with shadcn in his package?
 - [-] Save the Step1 AI response on Cookies, if is there not run AI again - I face NextJs issues to set the cookie
   - I change my mind, actually but a button of (run again, for cases the user doesn't like the AI response)
-- [ ] Add a "run again" in each step that has AI response (to generate a new response - New question, new revised prompt and new images)
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now
 - [ ] Add a Error page (when there is unexpected error, not the response false)
@@ -73,6 +79,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - The resultId
 - User can see all images create in User history
 - A feed with all images generated in homepage
+- After login goes to Dashboard instead of New Image
 
 ##### Payment
 
