@@ -37,8 +37,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Improve text (remove the =D, keep formal) - Put all copy in a external file, this will be useful on i18n - TOO BORING OMG
 - [ ] Upgrade Step 2 Form
   - [x] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful - [x] And even if the array is empty, the art reference is there
-  - [ ] Add the Step 1 text as remainder
-  - [ ] Add a button of "Keep suggestion" and the the placeholder will became the answer
+  - [x] Add the Step 1 text as remainder
 - [ ] Upgrade Step 3
   - [ ] Add a Copy prompt button (then the user will be able to get the prompt and generate the image somewhere else)
 - [ ] Upgrade Step 4
@@ -54,10 +53,9 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - Generate image on Step 3 (I will not implement, because maybe the user wants only a new prompt instead of generate image)
   - Their initial ideas have false flag of "against policy", maybe remove this from response and leave for image generator handle
 
-  - Query
-  - Style
-
+- [ ] Check if it is possible improve the Query on Similar artwork
 - [ ] Upgrade Step 2 Form
+  - [ ] Add a button of "Keep suggestion" and the the placeholder will became the answer
   - [ ] Add size select - Fix on form and on generateImage
   - [ ] Check Controlling an input with a state variable error
 - [ ] Create About page

@@ -3,6 +3,7 @@ import { Step2Form } from "@/app/dashboard/new-image/step2/Step2Form";
 export default async function Step2() {
   return (
     <Step2Form
+      step1Prompt="Original prompt from step 1"
       questions={[
         {
           question: "What time of year is the scene set in?",

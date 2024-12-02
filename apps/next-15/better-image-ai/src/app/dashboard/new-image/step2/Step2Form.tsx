@@ -45,12 +45,17 @@ export const formSchema = z.object({
   extraInformation: z.string().optional(),
 });
 
+interface Step2FormProps
+  extends Omit<z.infer<typeof receivingStep1Format>, "isValidPrompt"> {
+  step1Prompt: string;
+}
 export function Step2Form({
   // size,
   questions,
   suggestedReference,
   suggestedStyles,
-}: Omit<z.infer<typeof receivingStep1Format>, "isValidPrompt">) {
+  step1Prompt,
+}: Step2FormProps) {
   const router = useRouter();
 
   const { mutateAsync } = useMutation({
@@ -87,9 +92,12 @@ export function Step2Form({
 
   return (
     <Form {...form}>
-      <div>
+      <div className="pb-6 flex flex-col gap-3">
         <Suggestions suggestedReference={suggestedReference} />
         <p>{en.steps.step2.note}</p>
+        <p>
+          Prompt: <span className="font-bold">{step1Prompt}</span>
+        </p>
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {fields.map((field, index) => (
