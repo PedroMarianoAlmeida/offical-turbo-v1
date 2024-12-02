@@ -46,8 +46,10 @@ const WithItems = ({ auth, items }: { auth: Auth; items: MenuItemsByRole }) => {
   return (
     <MenubarMenu>
       <MenubarTrigger>
-        <Menu />
-        <AuthAvatar session={session} />
+        <div className="flex gap-2 items-center bg-accent px-4 rounded-full cursor-pointer">
+          <Menu />
+          <AuthAvatar session={session} />
+        </div>
       </MenubarTrigger>
       <MenubarContent>
         {session.hasUser ? (

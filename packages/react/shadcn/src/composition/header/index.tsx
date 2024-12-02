@@ -47,9 +47,9 @@ export type HeaderProps =
 
     export function Header({ logo = "Logo", setTheme, items, auth }: HeaderProps) {
       return (
-        <Menubar className="justify-between">
+        <Menubar className="justify-between h-15 px-3">
           {logo}
-          <div className="flex">
+          <div className="flex items-center gap-2">
             {setTheme && <ModeToggle setTheme={setTheme} />}
             {auth ? (
               <AuthMenu auth={auth} items={items} />

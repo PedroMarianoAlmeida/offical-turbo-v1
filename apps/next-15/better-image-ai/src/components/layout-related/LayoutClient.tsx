@@ -13,6 +13,11 @@ const LayoutClient = ({ children }: WithChildren) => {
   return (
     <>
       <Header
+        logo={
+          <Link href="/" className="font-mono font-bold">
+            Better Image AI
+          </Link>
+        }
         setTheme={setTheme}
         auth={{ session, signIn, signOut }}
         items={{
