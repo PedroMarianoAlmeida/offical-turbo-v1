@@ -34,7 +34,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
-- [ ] Improve text (remove the =D, keep formal) - Put all copy in a external file, this will be useful on i18n
+- [x] Improve text (remove the =D, keep formal) - Put all copy in a external file, this will be useful on i18n - TOO BORING OMG
 - [ ] Upgrade Step 2 Form
   - [ ] Improve the Reference artwork - It is not clear that it is a link, and the google result is not useful - And even if the array is empty, the art reference is there
   - [ ] Add the Step 1 text as remainder
@@ -50,11 +50,13 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 #### After MVP
 
 - [ ] Ju feedbacks
+
   - Generate image on Step 3 (I will not implement, because maybe the user wants only a new prompt instead of generate image)
   - Their initial ideas have false flag of "against policy", maybe remove this from response and leave for image generator handle
 
   - Query
   - Style
+
 - [ ] Upgrade Step 2 Form
   - [ ] Add size select - Fix on form and on generateImage
   - [ ] Check Controlling an input with a state variable error
@@ -175,7 +177,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [x] Create a Step Progress UI (Put in new-image/layout)
   - [x] Add Default padding (at least on forms)
   - [-] Add max width on forms (and centralize?) - After the container I don't think that it is necessary anymore
-
 
 #### Tech Debit
 

@@ -10,6 +10,7 @@ import { Button } from "@repo/shadcn/button";
 import { generateImage } from "@/server-actions/ai";
 import { ErrorWrapper } from "@/components/layout-related/ErrorAndLoadingWrapper";
 // import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
+import { en } from "@/i18n/en";
 
 export default async function Step4() {
   // This is not suppose to be necessary, the dashboard layout already verify if the user is logged, but I don't know how to retrieve this data here
@@ -68,7 +69,7 @@ export default async function Step4() {
 
   return (
     <main>
-      <h2>Original Prompt</h2>
+      <h2>{en.steps.step4.original}</h2>
       <Image
         src={originalRes.result}
         alt={userPromptStep1}
@@ -76,7 +77,7 @@ export default async function Step4() {
         width={500}
         height={500}
       />
-      <h2>Final Prompt</h2>
+      <h2>{en.steps.step4.final}</h2>
       <Image
         src={finalRes.result}
         alt={lastPromptStep3}
@@ -84,7 +85,7 @@ export default async function Step4() {
         height={500}
       />
       <Link href="/dashboard">
-        <Button>Go back to Dashboard</Button>
+        <Button>{en.steps.step4.goBack}</Button>
       </Link>
     </main>
   );

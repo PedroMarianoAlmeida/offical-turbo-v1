@@ -30,6 +30,7 @@ import { Input } from "@repo/shadcn/input";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
 import { receivingStep1Format } from "@/prompts";
+import { en } from "@/i18n/en";
 
 export const formSchema = z.object({
   suggestedStyle: z.string().optional(),
@@ -86,7 +87,7 @@ export function Step2Form({
   return (
     <Form {...form}>
       <div>
-        <p>Need inspiration to answer the questions? Check those art works:</p>{" "}
+        <p>{en.steps.step2.reference}</p>{" "}
         {suggestedReference.map(({ artName, artistName }) => (
           <Link
             href={`https://www.google.com/search?q=artwork+${artName}+by+${artistName}`}
@@ -99,10 +100,7 @@ export function Step2Form({
             </Button>
           </Link>
         ))}
-        <p>
-          Note: You don&apos;t need to answer ALL the questions, but more information
-          means a Better Image =D
-        </p>
+        <p>{en.steps.step2.note}</p>
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {fields.map((field, index) => (
@@ -129,11 +127,13 @@ export function Step2Form({
           name="suggestedStyle"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Do you have some style in mind?</FormLabel>
+              <FormLabel>{en.steps.step2.form.desiredStyle.label}</FormLabel>
               <FormControl>
                 <Input {...field} placeholder={suggestedStyles.join(", ")} />
               </FormControl>
-              <FormDescription>Desired style</FormDescription>
+              <FormDescription>
+                {en.steps.step2.form.desiredStyle.description}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -180,19 +180,18 @@ export function Step2Form({
           name="extraInformation"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Any extra thoughts?</FormLabel>
+              <FormLabel>{en.steps.step2.form.extraInfo.label}</FormLabel>
               <FormControl>
-                <Input placeholder="" {...field} />
+                <Input {...field} />
               </FormControl>
               <FormDescription>
-                Any extra information that came into your mind after the
-                original prompt
+                {en.steps.step2.form.extraInfo.description}
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit"> {en.steps.step2.form.submit}</Button>
       </form>
     </Form>
   );

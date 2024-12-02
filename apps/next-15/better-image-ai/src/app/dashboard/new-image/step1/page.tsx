@@ -17,10 +17,11 @@ import {
 import { Input } from "@repo/shadcn/input";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
+import { en } from "@/i18n/en";
 
 const formSchema = z.object({
   originalIdea: z.string().min(15, {
-    message: "The idea should have at least 15 characters",
+    message: en.steps.step1.form.initialDescriptionField.errorMessage,
   }),
 });
 
@@ -56,18 +57,25 @@ function Step1() {
           name="originalIdea"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Initial Description</FormLabel>
+              <FormLabel>
+                {en.steps.step1.form.initialDescriptionField.label}
+              </FormLabel>
               <FormControl>
-                <Input placeholder="A boy riding a unicorn" {...field} />
+                <Input
+                  placeholder={
+                    en.steps.step1.form.initialDescriptionField.placeholder
+                  }
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
-                The first draft of your idea... be as specific as you can!
+                {en.steps.step1.form.initialDescriptionField.description}
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Generate questions</Button>
+        <Button type="submit"> {en.steps.step1.form.submit}</Button>
       </form>
     </Form>
   );

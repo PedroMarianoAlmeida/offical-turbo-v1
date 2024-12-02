@@ -19,6 +19,7 @@ import { Input } from "@repo/shadcn/input";
 import { Textarea } from "@repo/shadcn/textarea";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
+import { en } from "@/i18n/en";
 
 const formSchema = z.object({
   revisedPrompt: z.string(),
@@ -65,15 +66,13 @@ export function Step3Form({ aiGeneratedPrompt, originalIdea }: Step3Props) {
           name="originalIdea"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Old prompt</FormLabel>
+              <FormLabel>{en.steps.step3.form.oldPrompt.label}</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="A boy riding a unicorn"
-                  {...field}
-                  disabled
-                />
+                <Input {...field} disabled />
               </FormControl>
-              <FormDescription>The first draft of your idea</FormDescription>
+              <FormDescription>
+                {en.steps.step3.form.oldPrompt.description}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -83,18 +82,18 @@ export function Step3Form({ aiGeneratedPrompt, originalIdea }: Step3Props) {
           name="revisedPrompt"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>New prompt</FormLabel>
+              <FormLabel>{en.steps.step3.form.newPrompt.label}</FormLabel>
               <FormControl>
                 <Textarea {...field} />
               </FormControl>
               <FormDescription>
-                Our brand new prompt, feel free to edit it (last chance)!
+                {en.steps.step3.form.newPrompt.description}
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Generate Image</Button>
+        <Button type="submit">{en.steps.step3.form.submit}</Button>
       </form>
     </Form>
   );
