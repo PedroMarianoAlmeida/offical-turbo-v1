@@ -34,10 +34,9 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
-- [ ] Upgrade Step 3
-  - [ ] Add a Copy prompt button (then the user will be able to get the prompt and generate the image somewhere else)
 - [ ] Improve Loading page from Step 2
 - [ ] Improve Loading page from Step 4
+- [ ] Improve all remaining Loading Pages
 - [ ] After login, redirect to dashboard (at the moment for new image is better, update after have history)
 - [ ] Add a "run again" in each step that has AI response (to generate a new response - New question, new revised prompt and new images)
 
@@ -53,7 +52,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [ ] Add size select - Fix on form and on generateImage
   - [ ] Check Controlling an input with a state variable error
 - [ ] Create About page
-- [ ] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [ ] Improve loading dashboard page - On LoadingWrapper - Maybe with shadcn in his package?
 - [ ] Improve loading individually by step on New Image
 - [ ] Improve error pages - On ErrorWrapper - Maybe with shadcn in his package?
@@ -79,7 +77,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 ### Debit tech
 
-- Check how to extract all Themes (auth, dark mode and query Tan Stack) to be reusable and easier to set up a new app project - Do this just after the "Better Image" Project
+- Check how to extract all Themes (auth, dark mode, query Tan Stack, Toast) to be reusable and easier to set up a new app project - Do this just after the "Better Image" Project
 - Check Better Image - New Image folders, there is a code pattern of check user, get cookies, run action, send result to a child component... this logic should be extracted to be reused - Maybe a Next-core package (the Layout thing can be in the same project)
 - Add dark theme on Next 15 app layout (the same of Shadcn?) - While doesn't have I am applying the shadcn package after the app css
 - Replace the dark/light component, the Turborepo website is nicer
@@ -100,7 +98,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - Add on firebase package readme, the steps to get the environment variables
 - Check if is possible pass props from Layout to Page in Next (if, yes, pass the userData when used the Protected from @repo/next-auth)
 - Documented the use for ProtectedWithFallback and userCount
-- Create the reachLimit validation in a single place (it is a simple comparison, but I did differently in layout and server side... so just a function of return userUsage > limit)
 
 ### Future features
 
@@ -179,7 +176,10 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Add something on Home Page
 - [x] Add a Error page (when there is unexpected error, not the response false) - It is not pretty but it is done
 - [x] Add a button of "Keep suggestion" and the the placeholder will became the answer
+- [x] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
+- [x] Add a Copy prompt button (then the user will be able to get the prompt and generate the image somewhere else) on Step 3
 
 #### Tech Debit
 
 - Add all shadcn components on package.json (this will solve by himself when I need to use some component)
+- Create the reachLimit validation in a single place (it is a simple comparison, but I did differently in layout and server side... so just a function of return userUsage > limit)

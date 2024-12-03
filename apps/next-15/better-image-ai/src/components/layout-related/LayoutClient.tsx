@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
-import { Header } from "@repo/shadcn/header";
 import { useTheme } from "next-themes";
-import { WithChildren } from "@repo/core-main/types";
 import { signIn, signOut } from "next-auth/react";
+
+import { Header } from "@repo/shadcn/header";
+import { Toaster } from "@repo/shadcn/toaster";
+import { WithChildren } from "@repo/core-main/types";
 import { useCoreSession } from "@repo/next-auth/session-adapters";
 
 const LayoutClient = ({ children }: WithChildren) => {
@@ -30,6 +32,7 @@ const LayoutClient = ({ children }: WithChildren) => {
           ],
         }}
       />
+      <Toaster />
       <main className="container mx-auto p-4">{children}</main>
     </>
   );

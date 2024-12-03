@@ -17,6 +17,7 @@ import {
 } from "@repo/shadcn/form";
 import { Input } from "@repo/shadcn/input";
 import { Textarea } from "@repo/shadcn/textarea";
+import { CopyButton } from "@repo/shadcn/copy-button";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
 import { en } from "@/i18n/en";
@@ -82,7 +83,10 @@ export function Step3Form({ aiGeneratedPrompt, originalIdea }: Step3Props) {
           name="revisedPrompt"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{en.steps.step3.form.newPrompt.label}</FormLabel>
+              <div className="mb-3 flex gap-5 items-center">
+                <FormLabel>{en.steps.step3.form.newPrompt.label}</FormLabel>
+                <CopyButton textToCopy={field.value} />
+              </div>
               <FormControl>
                 <Textarea {...field} />
               </FormControl>

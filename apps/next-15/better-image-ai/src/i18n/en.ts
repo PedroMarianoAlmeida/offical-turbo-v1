@@ -15,9 +15,8 @@ export const en = {
     },
     step2: {
       title: "Refine Prompt",
-      reference:
-        "Need inspiration? Check the artwork(s):",
-      note: "Note: You don't need to answer ALL the question, but the more the better",
+      reference: "Need inspiration? Check the artwork(s):",
+      note: "Note: Answering more questions is encouraged but not mandatory.",
       form: {
         desiredStyle: {
           label: "Do you have some style in mind?",
