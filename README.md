@@ -39,6 +39,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [ ] Improve Loading page from Step 4
   - [ ] Improve all remaining Loading Pages
   - [ ] After click in the buttons take a time to redirect, it is possible add a Loading too?
+    - [x] Done for step 2
 - [ ] After login, redirect to dashboard (at the moment for new image is better, update after have history)
 - [ ] Add a "run again" in each step that has AI response (to generate a new response - New question, new revised prompt and new images)
 

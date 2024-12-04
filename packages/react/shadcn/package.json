@@ -14,6 +14,7 @@
     "./flip-card": "./src/composition/flip-card.tsx",
     "./mode-toggle": "./src/composition/mode-toggle.tsx",
     "./progress-bar": "./src/composition/progress-bar.tsx",
+    "./loading-button": "./src/expansions/loading-button.tsx",
     "./avatar": "./src/native-shadcn/avatar.tsx",
     "./badge": "./src/native-shadcn/badge.tsx",
     "./button": "./src/native-shadcn/button.tsx",

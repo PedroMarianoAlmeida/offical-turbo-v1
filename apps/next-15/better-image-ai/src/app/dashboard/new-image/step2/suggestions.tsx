@@ -26,8 +26,8 @@ export const Suggestions = ({
           <Skeleton className="w-48 h-14 rounded-full" />
         </>
       ) : (
-        suggestedReference.map(({ artName, artistName }) => (
-          <span key={`${artName}-${artistName}`}>
+        suggestedReference.map(({ artName, artistName }, index) => (
+          <span key={`${artName}-${artistName}-${index}`}>
             <Link
               href={`https://www.google.com/search?q=artwork+${artName}+by+${artistName}`}
               rel="noopener noreferrer"

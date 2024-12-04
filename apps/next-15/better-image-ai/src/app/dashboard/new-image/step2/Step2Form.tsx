@@ -6,6 +6,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
 import { Button } from "@repo/shadcn/button";
+import { LoadingButton } from "@repo/shadcn/loading-button";
 import {
   Form,
   FormControl,
@@ -61,7 +62,7 @@ export function Step2Form({
 }: Step2FormProps) {
   const router = useRouter();
 
-  const { mutateAsync } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: setServerSideCookie,
     onSuccess: (data) => {
       if (data.success) {
@@ -258,9 +259,15 @@ export function Step2Form({
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full md:w-40" disabled={loading}>
+
+        <LoadingButton
+          type="submit"
+          className="w-full lg:w-42"
+          disabled={loading} // The state loading means the form is loading (so the button is disabled)
+          loading={isPending} // The prop loading means the form is trigger and should show the "loading spinner"
+        >
           {en.steps.step2.form.submit}
-        </Button>
+        </LoadingButton>
       </form>
     </Form>
   );
