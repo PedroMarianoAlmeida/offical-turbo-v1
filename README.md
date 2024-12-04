@@ -34,11 +34,6 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
-- [ ] Improve loading individually by step on New Image
-  - [x] Improve Loading page from Step 1 (not sure if it is working)
-  - [x] Improve Loading page from Step 2
-  - [x] Improve Loading page from Step 3
-  - [ ] Improve Loading page from Step 4
 - [ ] After login, redirect to dashboard (at the moment for new image is better, update after have history)
 - [ ] Add a "run again" in each step that has AI response (to generate a new response - New question, new revised prompt and new images)
 
@@ -101,6 +96,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - Add on firebase package readme, the steps to get the environment variables
 - Check if is possible pass props from Layout to Page in Next (if, yes, pass the userData when used the Protected from @repo/next-auth)
 - Documented the use for ProtectedWithFallback and userCount
+- Upgrade packages/react/shadcn/src/composition/paragraph-skeleton.tsx to be more flexible with sizes and number of "words" - And add the flex wrap padding, etc
 
 ### Future features
 
@@ -187,6 +183,11 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [x] Done for step 1
   - [x] Done for step 2
   - [x] Done for step 3
+- [x] Improve loading individually by step on New Image
+  - [x] Improve Loading page from Step 1 (not sure if it is working)
+  - [x] Improve Loading page from Step 2
+  - [x] Improve Loading page from Step 3
+  - [x] Improve Loading page from Step 4
 
 #### Tech Debit
 

@@ -13,6 +13,7 @@
     "./copy-button": "./src/composition/copy-button.tsx",
     "./flip-card": "./src/composition/flip-card.tsx",
     "./mode-toggle": "./src/composition/mode-toggle.tsx",
+    "./paragraph-skeleton": "./src/composition/paragraph-skeleton.tsx",
     "./progress-bar": "./src/composition/progress-bar.tsx",
     "./loading-button": "./src/expansions/loading-button.tsx",
     "./avatar": "./src/native-shadcn/avatar.tsx",

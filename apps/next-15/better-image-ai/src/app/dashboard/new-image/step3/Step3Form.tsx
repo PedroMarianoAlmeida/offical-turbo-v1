@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { LoadingButton } from "@repo/shadcn/loading-button";
 import { Skeleton } from "@repo/shadcn/skeleton";
+import { ParagraphSkeleton } from "@repo/shadcn/paragraph-skeleton";
 import {
   Form,
   FormControl,
@@ -105,21 +106,7 @@ export function Step3Form({
                 <div {...field}>
                   {loading ? (
                     <div className="border rounded flex py-2 pl-3 gap-1 flex-wrap">
-                      <Skeleton className="w-20 h-6 inline-block mb-2" />
-                      <Skeleton className="w-12 h-6 inline-block mb-2" />
-                      <Skeleton className="w-48 h-6 inline-block mb-2" />
-                      <Skeleton className="w-32 h-6 inline-block mb-2" />
-                      <Skeleton className="w-40 h-6 inline-block mb-2" />
-                      <Skeleton className="w-16 h-6 inline-block mb-2" />
-                      <Skeleton className="w-24 h-6 inline-block mb-2" />
-                      <Skeleton className="w-28 h-6 inline-block mb-2" />
-                      <Skeleton className="w-36 h-6 inline-block mb-2" />
-                      <Skeleton className="w-44 h-6 inline-block mb-2" />
-                      <Skeleton className="w-48 h-6 inline-block mb-2" />
-                      <Skeleton className="w-32 h-6 inline-block mb-2" />
-                      <Skeleton className="w-40 h-6 inline-block mb-2" />
-                      <Skeleton className="w-16 h-6 inline-block mb-2" />
-                      <Skeleton className="w-24 h-6 inline-block mb-2" />
+                      <ParagraphSkeleton />
                     </div>
                   ) : (
                     <Textarea {...field} />
