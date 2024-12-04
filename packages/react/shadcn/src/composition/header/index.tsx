@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { CoreSession } from "@repo/core-main/types";
+import { CoreSession, WithChildren } from "@repo/core-main/types";
 
 import { PublicMenu } from "./public-menu";
 import { AuthMenu } from "./auth-menu";
@@ -22,7 +22,6 @@ export interface MenuItemsByRole {
   authenticatedItems?: Item[];
 }
 
-
 interface PublicMenuItems {
   publicItems?: Item[];
 }
@@ -31,34 +30,44 @@ export interface AuthenticatedMenuItems extends PublicMenuItems {
   authenticatedItems: Item[];
 }
 
-export type HeaderProps =
-  | {
-      logo?: ReactNode;
-      setTheme?: SetTheme;
-      items?: MenuItemsByRole & { authenticatedItems?: never };
-      auth?: undefined;
-    }
-  | {
-      logo?: ReactNode;
-      setTheme?: SetTheme;
-      items?: MenuItemsByRole;
-      auth: Auth;
-    };
+interface BaseHeaderProps extends Partial<WithChildren> {
+  logo?: ReactNode;
+  setTheme?: SetTheme;
+  items?: MenuItemsByRole;
+}
 
-    export function Header({ logo = "Logo", setTheme, items, auth }: HeaderProps) {
-      return (
-        <Menubar className="justify-between h-15 px-3">
-          {logo}
-          <div className="flex items-center gap-2">
-            {setTheme && <ModeToggle setTheme={setTheme} />}
-            {auth ? (
-              <AuthMenu auth={auth} items={items} />
-            ) : (
-              <PublicMenu items={items} />
-            )}
-          </div>
-        </Menubar>
-      );
-    }
-    
-    
+interface AuthenticatedHeaderProps extends BaseHeaderProps {
+  items?: MenuItemsByRole & { authenticatedItems?: never };
+  auth?: undefined;
+}
+
+interface AuthenticatedWithAuthHeaderProps extends BaseHeaderProps {
+  auth: Auth;
+}
+
+export type HeaderProps =
+  | AuthenticatedHeaderProps
+  | AuthenticatedWithAuthHeaderProps;
+
+export function Header({
+  logo = "Logo",
+  setTheme,
+  items,
+  auth,
+  children,
+}: HeaderProps) {
+  return (
+    <Menubar className="justify-between h-15 px-3">
+      {logo}
+      <div className="flex items-center gap-2">
+        {children}
+        {setTheme && <ModeToggle setTheme={setTheme} />}
+        {auth ? (
+          <AuthMenu auth={auth} items={items} />
+        ) : (
+          <PublicMenu items={items} />
+        )}
+      </div>
+    </Menubar>
+  );
+}

@@ -39,11 +39,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 #### After MVP
 
-- [ ] Ju feedbacks
-
-  - Generate image on Step 3 (I will not implement, because maybe the user wants only a new prompt instead of generate image)
-  - Their initial ideas have false flag of "against policy", maybe remove this from response and leave for image generator handle
-
 - [ ] Check if it is possible improve the Query on Similar artwork
 - [ ] Upgrade Step 2 Form
   - [ ] Add size select - Fix on form and on generateImage
@@ -54,6 +49,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now
 - [ ] Clear the cookies after finish step 4? - Maybe
+- [ ] Add SignIn button on homepage
 
 ##### Save user history
 
@@ -96,11 +92,12 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - Add on firebase package readme, the steps to get the environment variables
 - Check if is possible pass props from Layout to Page in Next (if, yes, pass the userData when used the Protected from @repo/next-auth)
 - Documented the use for ProtectedWithFallback and userCount
-- Upgrade packages/react/shadcn/src/composition/paragraph-skeleton.tsx to be more flexible with sizes and number of "words" - And add the flex wrap padding, etc
 
 ### Future features
 
 - The Progress bar has links to the previous page steps
+- [ ] Remove auth menu background
+- [ ] Upgrade packages/react/shadcn/src/composition/paragraph-skeleton.tsx to be more flexible with sizes and number of "words" - And add the flex wrap padding, etc
 
 ## History
 
@@ -188,6 +185,10 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [x] Improve Loading page from Step 2
   - [x] Improve Loading page from Step 3
   - [x] Improve Loading page from Step 4
+  - [x] Add Daily Usage
+  - [-] Ju feedbacks
+  - Generate image on Step 3 (I will not implement, because maybe the user wants only a new prompt instead of generate image)
+  - Their initial ideas have false flag of "against policy", maybe remove this from response and leave for image generator handle - No one else complains about that
 
 #### Tech Debit
 

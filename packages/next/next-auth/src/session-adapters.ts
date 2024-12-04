@@ -4,7 +4,7 @@ import { Session, getServerSession } from "next-auth";
 import { CoreSession } from "@repo/core-main/types";
 import { urlSafeBase64Encode } from "@repo/core-main/utils";
 
-const sessionAdapter = (session: Session | null): CoreSession => {
+export const sessionAdapter = (session: Session | null): CoreSession => {
   if (session) {
     const { user } = session;
     if (user) {
