@@ -5,7 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
-import { Button } from "@repo/shadcn/button";
+import { LoadingButton } from "@repo/shadcn/loading-button";
+import { Skeleton } from "@repo/shadcn/skeleton";
 import {
   Form,
   FormControl,
@@ -29,11 +30,16 @@ const formSchema = z.object({
 interface Step3Props {
   originalIdea: string;
   aiGeneratedPrompt: string;
+  loading?: true;
 }
-export function Step3Form({ aiGeneratedPrompt, originalIdea }: Step3Props) {
+export function Step3Form({
+  aiGeneratedPrompt,
+  originalIdea,
+  loading,
+}: Step3Props) {
   const router = useRouter();
 
-  const { mutateAsync } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: setServerSideCookie,
     onSuccess: (data) => {
       if (data.success) {
@@ -69,7 +75,15 @@ export function Step3Form({ aiGeneratedPrompt, originalIdea }: Step3Props) {
             <FormItem>
               <FormLabel>{en.steps.step3.form.oldPrompt.label}</FormLabel>
               <FormControl>
-                <Input {...field} disabled />
+                <div {...field}>
+                  {loading ? (
+                    <div className="border rounded flex py-2 pl-3">
+                      <Skeleton className="w-52 h-6 inline-block" />
+                    </div>
+                  ) : (
+                    <Input {...field} disabled />
+                  )}
+                </div>
               </FormControl>
               <FormDescription>
                 {en.steps.step3.form.oldPrompt.description}
@@ -85,10 +99,32 @@ export function Step3Form({ aiGeneratedPrompt, originalIdea }: Step3Props) {
             <FormItem>
               <div className="mb-3 flex gap-5 items-center">
                 <FormLabel>{en.steps.step3.form.newPrompt.label}</FormLabel>
-                <CopyButton textToCopy={field.value} />
+                <CopyButton textToCopy={field.value} disabled={loading} />
               </div>
               <FormControl>
-                <Textarea {...field} />
+                <div {...field}>
+                  {loading ? (
+                    <div className="border rounded flex py-2 pl-3 gap-1 flex-wrap">
+                      <Skeleton className="w-20 h-6 inline-block mb-2" />
+                      <Skeleton className="w-12 h-6 inline-block mb-2" />
+                      <Skeleton className="w-48 h-6 inline-block mb-2" />
+                      <Skeleton className="w-32 h-6 inline-block mb-2" />
+                      <Skeleton className="w-40 h-6 inline-block mb-2" />
+                      <Skeleton className="w-16 h-6 inline-block mb-2" />
+                      <Skeleton className="w-24 h-6 inline-block mb-2" />
+                      <Skeleton className="w-28 h-6 inline-block mb-2" />
+                      <Skeleton className="w-36 h-6 inline-block mb-2" />
+                      <Skeleton className="w-44 h-6 inline-block mb-2" />
+                      <Skeleton className="w-48 h-6 inline-block mb-2" />
+                      <Skeleton className="w-32 h-6 inline-block mb-2" />
+                      <Skeleton className="w-40 h-6 inline-block mb-2" />
+                      <Skeleton className="w-16 h-6 inline-block mb-2" />
+                      <Skeleton className="w-24 h-6 inline-block mb-2" />
+                    </div>
+                  ) : (
+                    <Textarea {...field} />
+                  )}
+                </div>
               </FormControl>
               <FormDescription>
                 {en.steps.step3.form.newPrompt.description}
@@ -97,7 +133,13 @@ export function Step3Form({ aiGeneratedPrompt, originalIdea }: Step3Props) {
             </FormItem>
           )}
         />
-        <Button type="submit">{en.steps.step3.form.submit}</Button>
+        <LoadingButton
+          type="submit"
+          disabled={loading} // The state loading means the form is loading (so the button is disabled)
+          loading={isPending} // The prop loading means the form is trigger and should show the "loading spinner"
+        >
+          {en.steps.step3.form.submit}
+        </LoadingButton>
       </form>
     </Form>
   );

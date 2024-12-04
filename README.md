@@ -37,11 +37,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Improve loading individually by step on New Image
   - [x] Improve Loading page from Step 1 (not sure if it is working)
   - [x] Improve Loading page from Step 2
+  - [x] Improve Loading page from Step 3
   - [ ] Improve Loading page from Step 4
-  - [ ] Improve all remaining Loading Pages
-  - [ ] After click in the buttons take a time to redirect, it is possible add a Loading too?
-    - [x] Done for step 1
-    - [x] Done for step 2
 - [ ] After login, redirect to dashboard (at the moment for new image is better, update after have history)
 - [ ] Add a "run again" in each step that has AI response (to generate a new response - New question, new revised prompt and new images)
 
@@ -186,6 +183,10 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Add a Copy prompt button (then the user will be able to get the prompt and generate the image somewhere else) on Step 3
 - [-] Save the Step1 AI response on Cookies, if is there not run AI again - I face NextJs issues to set the cookie
   - I change my mind, actually but a button of (run again, for cases the user doesn't like the AI response)
+- [x] After click in the buttons take a time to redirect, it is possible add a Loading too?
+  - [x] Done for step 1
+  - [x] Done for step 2
+  - [x] Done for step 3
 
 #### Tech Debit
 

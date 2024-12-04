@@ -1,11 +1,11 @@
-import { LoadingWrapper } from "@/components/layout-related/ErrorAndLoadingWrapper";
+import { Step3Form } from "@/app/dashboard/new-image/step3/Step3Form";
 
-const LoadingStep2 = () => {
+export default async function Step3Loading() {
   return (
-    <LoadingWrapper>
-      <p>Generating new prompt...</p>
-    </LoadingWrapper>
+    <Step3Form
+      originalIdea="A monkey in a forest"
+      aiGeneratedPrompt="Create a cartoon image of a chimpanzee in a Chinese forest during twilight. The chimpanzee is depicted eating a banana, but it looks really upset. Additionally, in the background, there is a wreck of a crashed airplane."
+      loading
+    />
   );
-};
-
-export default LoadingStep2;
+}
