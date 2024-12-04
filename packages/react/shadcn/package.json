@@ -25,6 +25,7 @@
     "./menubar": "./src/native-shadcn/menubar.tsx",
     "./popover": "./src/native-shadcn/popover.tsx",
     "./select": "./src/native-shadcn/select.tsx",
+    "./skeleton": "./src/native-shadcn/skeleton.tsx",
     "./textarea": "./src/native-shadcn/textarea.tsx",
     "./toaster": "./src/native-shadcn/toaster.tsx"
   },

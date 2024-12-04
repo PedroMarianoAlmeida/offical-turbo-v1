@@ -6,7 +6,6 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
 import { Button } from "@repo/shadcn/button";
-
 import {
   Form,
   FormControl,
@@ -17,6 +16,8 @@ import {
   FormMessage,
 } from "@repo/shadcn/form";
 import { Input } from "@repo/shadcn/input";
+import { Skeleton } from "@repo/shadcn/skeleton";
+
 // import {
 //   Select,
 //   SelectContent,
@@ -48,6 +49,7 @@ export const formSchema = z.object({
 interface Step2FormProps
   extends Omit<z.infer<typeof receivingStep1Format>, "isValidPrompt"> {
   step1Prompt: string;
+  loading?: true;
 }
 export function Step2Form({
   // size,
@@ -55,6 +57,7 @@ export function Step2Form({
   suggestedReference,
   suggestedStyles,
   step1Prompt,
+  loading,
 }: Step2FormProps) {
   const router = useRouter();
 
@@ -93,11 +96,19 @@ export function Step2Form({
   return (
     <Form {...form}>
       <div className="pb-6 flex flex-col gap-3">
-        <Suggestions suggestedReference={suggestedReference} />
+        <Suggestions
+          suggestedReference={suggestedReference}
+          loading={loading}
+        />
         <p>{en.steps.step2.note}</p>
-        <p>
-          Prompt: <span className="font-bold">{step1Prompt}</span>
-        </p>
+        <label className="flex gap-1 items-center py-3">
+          Prompt:
+          {loading ? (
+            <Skeleton className="w-60 h-6 inline-block" />
+          ) : (
+            <span className="font-bold">{step1Prompt}</span>
+          )}
+        </label>
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {fields.map((field, index) => (
@@ -109,7 +120,15 @@ export function Step2Form({
               return (
                 <div className="grid md:grid-cols-[90%_10%] gap-3 grid-cols-1">
                   <FormItem>
-                    <FormLabel>{questions[index]?.question}</FormLabel>
+                    <FormLabel>
+                      {loading ? (
+                        <Skeleton
+                          className={`${["w-40", "w-52", "w-32", "w-20", "w-48"][index]} h-6 inline-block`}
+                        />
+                      ) : (
+                        questions[index]?.question
+                      )}
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}

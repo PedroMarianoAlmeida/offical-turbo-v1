@@ -34,9 +34,11 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
-- [ ] Improve Loading page from Step 2
-- [ ] Improve Loading page from Step 4
-- [ ] Improve all remaining Loading Pages
+- [ ] Improve loading individually by step on New Image
+  - [ ] Improve Loading page from Step 2
+  - [ ] Improve Loading page from Step 4
+  - [ ] Improve all remaining Loading Pages
+  - [ ] After click in the buttons take a time to redirect, it is possible add a Loading too?
 - [ ] After login, redirect to dashboard (at the moment for new image is better, update after have history)
 - [ ] Add a "run again" in each step that has AI response (to generate a new response - New question, new revised prompt and new images)
 
@@ -53,10 +55,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [ ] Check Controlling an input with a state variable error
 - [ ] Create About page
 - [ ] Improve loading dashboard page - On LoadingWrapper - Maybe with shadcn in his package?
-- [ ] Improve loading individually by step on New Image
 - [ ] Improve error pages - On ErrorWrapper - Maybe with shadcn in his package?
-- [-] Save the Step1 AI response on Cookies, if is there not run AI again - I face NextJs issues to set the cookie
-  - I change my mind, actually but a button of (run again, for cases the user doesn't like the AI response)
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now
 - [ ] Clear the cookies after finish step 4? - Maybe
@@ -178,6 +177,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [x] Add a button of "Keep suggestion" and the the placeholder will became the answer
 - [x] Create home page (or just Add the History first, because the plan is to put a feed of created images there)
 - [x] Add a Copy prompt button (then the user will be able to get the prompt and generate the image somewhere else) on Step 3
+- [-] Save the Step1 AI response on Cookies, if is there not run AI again - I face NextJs issues to set the cookie
+  - I change my mind, actually but a button of (run again, for cases the user doesn't like the AI response)
 
 #### Tech Debit
 
