@@ -16,9 +16,9 @@ export const DailyUsage = ({ currentUsage, totalCredits }: DailyUsageProps) => {
         </Badge>
       </HoverCardTrigger>
       <HoverCardContent className="w-80">
-        <div>
+        <div className="px-2">
           <p className="font-bold">Daily Usage Credits</p>
-          <ul>
+          <ul className="list-disc">
             <li>Questions: 1 credit</li>
             <li>New prompt: 1 credit</li>
             <li>Images: 2 credit</li>

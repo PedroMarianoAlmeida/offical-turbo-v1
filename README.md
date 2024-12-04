@@ -43,11 +43,9 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Upgrade Step 2 Form
   - [ ] Add size select - Fix on form and on generateImage
   - [ ] Check Controlling an input with a state variable error
-- [ ] Create About page
 - [ ] Improve loading dashboard page - On LoadingWrapper - Maybe with shadcn in his package?
 - [ ] Improve error pages - On ErrorWrapper - Maybe with shadcn in his package?
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
-- [ ] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now
 - [ ] Clear the cookies after finish step 4? - Maybe
 - [ ] Add SignIn button on homepage
 
@@ -189,6 +187,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
   - [-] Ju feedbacks
   - Generate image on Step 3 (I will not implement, because maybe the user wants only a new prompt instead of generate image)
   - Their initial ideas have false flag of "against policy", maybe remove this from response and leave for image generator handle - No one else complains about that
+- [x] Create About page
+- [-] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now - Makes sense this action be more expensive, so it is a feature, not a bug =P
 
 #### Tech Debit
 
