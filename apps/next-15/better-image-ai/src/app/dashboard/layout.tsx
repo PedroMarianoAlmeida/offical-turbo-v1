@@ -17,11 +17,13 @@ const UserValidated = async ({
   children: React.ReactNode;
 }) => {
   const { id } = userData;
-  const usageCount = await getUserCountUsageForToday({
-    userId: id.toString(),
-    database,
-    project: process.env.PROJECT_NAME,
-  });
+  const usageCount = process.env.DAILY_COUNT_DEV_ONLY
+    ? { success: true, result: Number(process.env.DAILY_COUNT_DEV_ONLY) }
+    : await getUserCountUsageForToday({
+        userId: id.toString(),
+        database,
+        project: process.env.PROJECT_NAME,
+      });
 
   let forceFallback = false;
   let fallbackMessage: React.ReactNode = "";
