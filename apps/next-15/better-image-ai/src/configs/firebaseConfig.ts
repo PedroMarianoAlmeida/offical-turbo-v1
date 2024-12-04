@@ -12,4 +12,3 @@ const firebaseConfig = {
 };
 
 export const { app, database } = initializeFirebase(firebaseConfig);
-
