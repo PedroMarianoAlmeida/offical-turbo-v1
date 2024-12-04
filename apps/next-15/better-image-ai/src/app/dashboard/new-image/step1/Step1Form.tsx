@@ -52,7 +52,7 @@ export function Step1Form({ loading }: { loading?: true }) {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const { originalIdea } = values;
-    mutateAsync({ key: "step2Question", value: originalIdea });
+    mutateAsync({ key: "step1Question", value: originalIdea });
   };
 
   return (
