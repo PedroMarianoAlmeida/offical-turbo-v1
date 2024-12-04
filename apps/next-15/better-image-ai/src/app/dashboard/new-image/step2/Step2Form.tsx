@@ -118,7 +118,7 @@ export function Step2Form({
             name={`questions.${index}.answer`}
             render={({ field }) => {
               return (
-                <div className="grid md:grid-cols-[90%_10%] gap-3 grid-cols-1">
+                <div className="grid lg:grid-cols-[90%_10%] gap-3 grid-cols-1">
                   <FormItem>
                     <FormLabel>
                       {loading ? (
@@ -130,12 +130,22 @@ export function Step2Form({
                       )}
                     </FormLabel>
                     <FormControl>
-                      <Input
-                        {...field}
-                        placeholder={
-                          questions[index]?.answer || "Your answer here"
-                        }
-                      />
+                      <div {...field}>
+                        {loading ? (
+                          <div className="border rounded flex py-2 pl-3">
+                            <Skeleton
+                              className={`${["w-40", "w-52", "w-32", "w-20", "w-48"][4 - index]} h-6 inline-block`}
+                            />
+                          </div>
+                        ) : (
+                          <Input
+                            {...field}
+                            placeholder={
+                              questions[index]?.answer || "Your answer here"
+                            }
+                          />
+                        )}
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -150,6 +160,7 @@ export function Step2Form({
                           questions[index].answer
                         )
                       }
+                      disabled={loading}
                     >
                       Keep Suggestion
                     </Button>
@@ -166,7 +177,18 @@ export function Step2Form({
             <FormItem>
               <FormLabel>{en.steps.step2.form.desiredStyle.label}</FormLabel>
               <FormControl>
-                <Input {...field} placeholder={suggestedStyles.join(", ")} />
+                <div {...field}>
+                  {loading ? (
+                    <div className="border rounded flex py-2 pl-3">
+                      <Skeleton className="w-40 h-6 inline-block" />
+                    </div>
+                  ) : (
+                    <Input
+                      {...field}
+                      placeholder={suggestedStyles.join(", ")}
+                    />
+                  )}
+                </div>
               </FormControl>
               <FormDescription>
                 {en.steps.step2.form.desiredStyle.description}
@@ -219,7 +241,15 @@ export function Step2Form({
             <FormItem>
               <FormLabel>{en.steps.step2.form.extraInfo.label}</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <div {...field}>
+                  {loading ? (
+                    <div className="border rounded flex py-2 pl-3">
+                      <Skeleton className="w-52 h-6 inline-block" />
+                    </div>
+                  ) : (
+                    <Input {...field} />
+                  )}
+                </div>
               </FormControl>
               <FormDescription>
                 {en.steps.step2.form.extraInfo.description}
@@ -228,7 +258,7 @@ export function Step2Form({
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full md:w-40">
+        <Button type="submit" className="w-full md:w-40" disabled={loading}>
           {en.steps.step2.form.submit}
         </Button>
       </form>

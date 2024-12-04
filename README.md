@@ -35,7 +35,7 @@ Pedro Almeida official monorepo, based in tailwind example.
 Receives a prompt for an image, but instead of creating right away, send to a text prompt to check how be more specific with the image, then creates both images
 
 - [ ] Improve loading individually by step on New Image
-  - [ ] Improve Loading page from Step 2
+  - [x] Improve Loading page from Step 2
   - [ ] Improve Loading page from Step 4
   - [ ] Improve all remaining Loading Pages
   - [ ] After click in the buttons take a time to redirect, it is possible add a Loading too?
@@ -71,6 +71,10 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - User can see all images create in User history
 - A feed with all images generated in homepage
 - After login goes to Dashboard instead of New Image
+
+##### Debit tech (Better Image AI)
+
+- The apps/next-15/better-image-ai/src/app/dashboard/new-image/step2/Step2Form.tsx is awful
 
 ##### Payment
 
