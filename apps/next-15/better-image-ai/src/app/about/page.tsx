@@ -1,4 +1,9 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About | Better Image AI",
+};
 
 export default function About() {
   return (

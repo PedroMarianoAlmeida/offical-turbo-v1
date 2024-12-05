@@ -9,6 +9,12 @@ import { Button } from "@repo/shadcn/button";
 
 import { database } from "@/configs/firebaseConfig";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard| Better Image AI",
+};
+
 const UserValidated = async ({
   userData,
   children,
