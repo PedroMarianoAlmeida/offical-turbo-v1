@@ -30,7 +30,7 @@ const formSchema = z.object({
 export function Step1Form({ loading }: { loading?: true }) {
   const router = useRouter();
 
-  const { mutateAsync, isPending } = useMutation({
+  const { mutateAsync, isIdle } = useMutation({
     mutationFn: setServerSideCookie,
     onSuccess: (data) => {
       if (data.success) {
@@ -92,7 +92,7 @@ export function Step1Form({ loading }: { loading?: true }) {
         <LoadingButton
           type="submit"
           disabled={loading} // The state loading means the form is loading (so the button is disabled)
-          loading={isPending} // The prop loading means the form is trigger and should show the "loading spinner"
+          loading={!isIdle} // The prop loading means the form is trigger and should show the "loading spinner"
         >
           {en.steps.step1.form.submit}
         </LoadingButton>
