@@ -35,13 +35,31 @@ const LayoutClient = ({
         auth={{ session, signIn, signOut }}
         items={{
           publicItems: [
-            { id: "home", element: <Link href="/">Home</Link> },
-            { id: "about", element: <Link href="/about">About</Link> },
+            {
+              id: "home",
+              element: (
+                <Link href="/" className="w-full">
+                  Home
+                </Link>
+              ),
+            },
+            {
+              id: "about",
+              element: (
+                <Link href="/about" className="w-full">
+                  About
+                </Link>
+              ),
+            },
           ],
           authenticatedItems: [
             {
               id: "dashboard",
-              element: <Link href="/dashboard">Dashboard</Link>,
+              element: (
+                <Link href="/dashboard" className="w-full">
+                  Dashboard
+                </Link>
+              ),
             },
           ],
         }}
