@@ -46,22 +46,8 @@ export default async function Step2() {
     );
 
   const {
-    result: {
-      size,
-      isValidPrompt,
-      questions,
-      suggestedReference,
-      suggestedStyles,
-    },
+    result: { size, questions, suggestedReference, suggestedStyles },
   } = responseAi;
-
-  if (!isValidPrompt)
-    return (
-      <p>
-        This prompt cannot generate an Image because is not following the model
-        policies, go back to step 1 and try a nicer one =D
-      </p>
-    );
 
   return (
     <Step2Form

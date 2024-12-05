@@ -3,7 +3,6 @@ import { sizeToResolution, SizeKey } from "@repo/openai/imageGeneration";
 import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
 
 export const receivingStep1Format = z.object({
-  isValidPrompt: z.boolean(),
   questions: z.array(
     z.object({
       question: z.string(),
@@ -27,7 +26,6 @@ export const receivingStep1Prompt = `
     - If there is some ambiguity on the text, make question for clarification
     
     The answer should have the following format:
-    - isValidPrompt: If the prompt contains content that cannot be generated according the guidelines of DALL·E 3 policies, keep all the other fields empty (since they are arrays, an empty array)
     - suggestedStyles: If the prompt doesn't suggest a specific style, suggest a few that will be a good fit for the prompt
     - suggestedReference: Based in the prompt, there is some world famous  art with similar image? Listed it in a array of strings... separate the art name and artist name
     - size: Retrieve if the prompt has some resolution that can be fit one of the options: Square: 1024 x 1024, Tall (portrait): 1024 x 1792, Wide (landscape): 1792 x 1024), if not add the value notDefined
