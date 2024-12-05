@@ -45,7 +45,7 @@ const WithItems = ({ auth, items }: { auth: Auth; items: MenuItemsByRole }) => {
   const { authenticatedItems, publicItems } = items;
   return (
     <MenubarMenu>
-      <MenubarTrigger>
+      <MenubarTrigger className="focus:bg-transparent data-[state=open]:bg-transparent">
         <div className="flex gap-2 items-center bg-accent px-4 rounded-full cursor-pointer">
           <Menu />
           <AuthAvatar session={session} />

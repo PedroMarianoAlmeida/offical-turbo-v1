@@ -93,7 +93,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 ### Future features
 
 - The Progress bar has links to the previous page steps
-- [ ] Remove auth menu background
 - [ ] Upgrade packages/react/shadcn/src/composition/paragraph-skeleton.tsx to be more flexible with sizes and number of "words" - And add the flex wrap padding, etc
 
 ## History
@@ -192,5 +191,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 #### Tech Debit
 
+- [x] Remove auth menu background
 - Add all shadcn components on package.json (this will solve by himself when I need to use some component)
 - Create the reachLimit validation in a single place (it is a simple comparison, but I did differently in layout and server side... so just a function of return userUsage > limit)
