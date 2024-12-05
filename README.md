@@ -47,7 +47,6 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Improve error pages - On ErrorWrapper - Maybe with shadcn in his package?
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] Clear the cookies after finish step 4? - Maybe
-- [ ] Add SignIn button on homepage
 
 ##### Save user history
 
@@ -136,6 +135,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 #### Better Image AI
 
+- [x] Add SignIn button on homepage
 - [x] Setup the project with dark theme, auth and firebase
 - [x] Protect dashboard for authenticated only - Redirect to homepage
   - [-] Remove the auth from Protected, instead pass the Session as props (then I can pass the same session for Protected by redirect and with fallback, and remove the complexity from those elements)

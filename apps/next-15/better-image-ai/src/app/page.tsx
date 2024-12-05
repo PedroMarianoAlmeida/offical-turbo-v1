@@ -4,6 +4,7 @@ import { getCoreServerSession } from "@repo/next-auth/session-adapters";
 import { Button } from "@repo/shadcn/button";
 
 import { ClientHome } from "@/components/page/client-home";
+import { SignInButton } from "@/components/LoginButton";
 
 export default async function Home() {
   const { userData } = await getCoreServerSession();
@@ -23,7 +24,10 @@ export default async function Home() {
           <Button>Give it a try</Button>
         </Link>
       ) : (
-        <p className="semi-bold">Sign in to give it a try</p>
+        <div className="flex gap-2 items-center">
+          <SignInButton />
+          <p className="semi-bold">to give it a try</p>
+        </div>
       )}
     </main>
   );
