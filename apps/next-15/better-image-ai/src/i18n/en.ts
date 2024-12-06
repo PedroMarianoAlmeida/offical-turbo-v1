@@ -47,7 +47,6 @@ export const en = {
     },
     step4: {
       title: "Get your Images",
-      note: `Note: The goal is not to compare the "best image", but the most aligned with your thoughts (both are generate by the same tool)`,
       original: "Original Prompt",
       final: "Final Prompt",
       goBack: "Go back to Dashboard",

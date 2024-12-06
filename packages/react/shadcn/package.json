@@ -11,6 +11,7 @@
     "./styles.css": "./dist/index.css",
     "./header": "./src/composition/header/index.tsx",
     "./copy-button": "./src/composition/copy-button.tsx",
+    "./download-button": "./src/composition/download-button.tsx",
     "./flip-card": "./src/composition/flip-card.tsx",
     "./mode-toggle": "./src/composition/mode-toggle.tsx",
     "./paragraph-skeleton": "./src/composition/paragraph-skeleton.tsx",

@@ -10,7 +10,6 @@ export default function Step1Layout({ children }: WithChildren) {
         <h1>{en.steps.step4.title}</h1>
       </ProgressBar>
       {children}
-      <p>{en.steps.step4.note}</p>
     </>
   );
 }

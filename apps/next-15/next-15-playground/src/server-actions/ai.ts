@@ -8,7 +8,7 @@ import {
   GeneratePromptProps,
 } from "@repo/openai/objectGeneration";
 import { actionWithDailyRateLimit } from "@repo/firebase/userCount";
-import { type asyncWrapperResponse } from "@repo/core-main/asyncWrapper";
+import { type AsyncWrapperResponse } from "@repo/core-main/asyncWrapper";
 
 import { projectName, dailyLimit } from "@/miscellaneous/constants";
 import { database } from "@/miscellaneous/firebaseConfig";
@@ -17,7 +17,7 @@ export const generateResponse = async ({
   userId,
 }: {
   userId: string;
-}): Promise<asyncWrapperResponse<string>> => {
+}): Promise<AsyncWrapperResponse<string>> => {
   const data = await actionWithDailyRateLimit({
     project: projectName,
     database,
@@ -36,7 +36,7 @@ export const generateImage = async ({
   userId,
 }: {
   userId: string;
-}): Promise<asyncWrapperResponse<string>> => {
+}): Promise<AsyncWrapperResponse<string>> => {
   const data = await actionWithDailyRateLimit({
     project: projectName,
     database,
@@ -69,7 +69,7 @@ export const generateObject = async <T extends ZodTypeAny>({
   // userPrompt,
   zodFormat,
   // systemPrompt,
-}: GenerateObjectProps<T>): Promise<asyncWrapperResponse<z.infer<T>>> => {
+}: GenerateObjectProps<T>): Promise<AsyncWrapperResponse<z.infer<T>>> => {
   const data = await actionWithDailyRateLimit({
     project: projectName,
     database,

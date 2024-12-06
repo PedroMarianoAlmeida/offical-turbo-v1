@@ -8,11 +8,13 @@ interface AsyncWrapperSuccess<T> {
   success: true;
 }
 
-export type asyncWrapperResponse<T> = AsyncWrapperSuccess<T> | AsyncWrapperError;
+export type AsyncWrapperResponse<T> =
+  | AsyncWrapperSuccess<T>
+  | AsyncWrapperError;
 
 export const asyncWrapper = async <T>(
   callback: () => Promise<T>
-): Promise<asyncWrapperResponse<T>> => {
+): Promise<AsyncWrapperResponse<T>> => {
   try {
     const result = await callback();
     return { success: true, result };

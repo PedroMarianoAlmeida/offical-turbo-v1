@@ -7,7 +7,7 @@ import {
 } from "firebase/database";
 import {
   asyncWrapper,
-  asyncWrapperResponse,
+  AsyncWrapperResponse,
 } from "@repo/core-main/asyncWrapper";
 import { reachLimit } from "@repo/core-main/numbers";
 import { areInTheSameDay } from "@repo/core-main/dates";
@@ -84,7 +84,7 @@ const incrementUserCountUsage = async ({
 
 interface ActionWithDailyRateLimitProps<T> extends UserAndDatabase {
   rateLimit: number;
-  callback(): Promise<asyncWrapperResponse<T>>;
+  callback(): Promise<AsyncWrapperResponse<T>>;
 }
 export const actionWithDailyRateLimit = async <T>({
   database,
@@ -92,7 +92,7 @@ export const actionWithDailyRateLimit = async <T>({
   userId,
   project,
   callback,
-}: ActionWithDailyRateLimitProps<T>): Promise<asyncWrapperResponse<T>> => {
+}: ActionWithDailyRateLimitProps<T>): Promise<AsyncWrapperResponse<T>> => {
   return asyncWrapper(async () => {
     const count = await getUserCountUsageForToday({
       database,
