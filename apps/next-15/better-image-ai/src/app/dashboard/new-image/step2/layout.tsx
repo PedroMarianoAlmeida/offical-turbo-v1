@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { WithChildren } from "@repo/core-main/types";
 import { ProgressBar } from "@repo/shadcn/progress-bar";
 
@@ -12,7 +14,15 @@ export const metadata: Metadata = {
 export default function Step2Layout({ children }: WithChildren) {
   return (
     <>
-      <ProgressBar currentStep={2} numberOfSteps={4}>
+      <ProgressBar
+        currentStep={2}
+        numberOfSteps={4}
+        steps={[
+          ({ children }) => (
+            <Link href="/dashboard/new-image/step1">{children}</Link>
+          ),
+        ]}
+      >
         <h1>{en.steps.step2.title}</h1>
       </ProgressBar>
       {children}
