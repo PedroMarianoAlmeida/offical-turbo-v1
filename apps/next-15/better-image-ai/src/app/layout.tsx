@@ -15,6 +15,20 @@ import { database } from "@/configs/firebaseConfig";
 export const metadata: Metadata = {
   title: "Better Image AI",
   description: "Craft a better image, think in the details",
+  openGraph: {
+    title: "Better Image AI",
+    description: "Craft a better image, think in the details",
+    url: "https://better-image-ai.vercel.app/",
+    type: "website",
+    images: [
+      {
+        url: "meta-image.png",
+        width: 414,
+        height: 220,
+        alt: "I image mixing before and after the image",
+      },
+    ],
+  },
 };
 
 export default async function RootLayout({
