@@ -9,14 +9,14 @@ export default function About() {
   return (
     <main>
       <section className="my-3">
-        <h1 className="font-bold">About</h1>
+        <h1>About</h1>
         <p>
           Conceived and created by{" "}
           <span className="font-medium font-mono">Pedro Almeida</span>
         </p>
       </section>
       <section>
-        <h2 className="font-bold">Contact</h2>
+        <h2>Contact</h2>
         <ul className="list-disc">
           <li>
             <Link
