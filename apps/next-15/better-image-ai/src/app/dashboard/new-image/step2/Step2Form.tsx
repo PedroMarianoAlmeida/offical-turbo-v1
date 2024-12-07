@@ -4,6 +4,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
+import { WandSparkles } from "lucide-react";
 
 import { Button } from "@repo/shadcn/button";
 import { LoadingButton } from "@repo/shadcn/loading-button";
@@ -266,7 +267,9 @@ export function Step2Form({
           disabled={loading} // The state loading means the form is loading (so the button is disabled)
           loading={!isIdle} // The prop loading means the form is trigger and should show the "loading spinner"
         >
-          {en.steps.step2.form.submit}
+          <WandSparkles />
+          <span className="px-2">{en.steps.step2.form.submit}</span>
+          <WandSparkles />
         </LoadingButton>
       </form>
     </Form>
