@@ -69,3 +69,5 @@ export const generateStep2AnswersUserPrompt = ({
   ${extraInformation ? "Extra Information: " + extraInformation : null}
   `;
 };
+
+export const maxCharacters = { step1: 300, step3: 500 };

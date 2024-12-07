@@ -1,3 +1,5 @@
+import { maxCharacters } from "@/prompts";
+
 export const en = {
   steps: {
     step1: {
@@ -5,10 +7,8 @@ export const en = {
       form: {
         initialDescriptionField: {
           errorMessage: "The idea should have at least 15 characters",
-          label: "Initial Description",
+          label: `Initial Description (in ${maxCharacters.step1} characters max)`,
           placeholder: "A boy riding a unicorn",
-          description:
-            "The first draft of your idea... be as specific as you can!",
         },
         submit: "Generate questions",
       },
@@ -38,9 +38,7 @@ export const en = {
           description: "The first draft of your idea",
         },
         newPrompt: {
-          label: "New prompt",
-          description:
-            "Our brand new prompt, feel free to edit it (last chance)!",
+          label: `New prompt - Max of ${maxCharacters.step3} characters`,
         },
         submit: "Generate image",
       },

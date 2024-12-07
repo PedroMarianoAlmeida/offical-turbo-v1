@@ -90,6 +90,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - Check if is possible pass props from Layout to Page in Next (if, yes, pass the userData when used the Protected from @repo/next-auth)
 - Documented the use for ProtectedWithFallback and userCount
 - Solve download button issue: Access to fetch at '' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+- Check tokens before try to generate the AI responses
 
 ### Future features
 

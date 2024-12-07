@@ -20,11 +20,15 @@ import { Input } from "@repo/shadcn/input";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
 import { en } from "@/i18n/en";
+import { maxCharacters } from "@/prompts";
 
 const formSchema = z.object({
-  originalIdea: z.string().min(15, {
-    message: en.steps.step1.form.initialDescriptionField.errorMessage,
-  }),
+  originalIdea: z
+    .string()
+    .min(15, {
+      message: en.steps.step1.form.initialDescriptionField.errorMessage,
+    })
+    .max(maxCharacters.step1),
 });
 
 export function Step1Form({ loading }: { loading?: true }) {
@@ -61,33 +65,38 @@ export function Step1Form({ loading }: { loading?: true }) {
         <FormField
           control={form.control}
           name="originalIdea"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                {en.steps.step1.form.initialDescriptionField.label}
-              </FormLabel>
-              <FormControl>
-                <div {...field}>
-                  {loading ? (
-                    <div className="border rounded flex py-2 pl-3">
-                      <Skeleton className="w-52 h-6 inline-block" />
-                    </div>
-                  ) : (
-                    <Input
-                      placeholder={
-                        en.steps.step1.form.initialDescriptionField.placeholder
-                      }
-                      {...field}
-                    />
-                  )}
-                </div>
-              </FormControl>
-              <FormDescription>
-                {en.steps.step1.form.initialDescriptionField.description}
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>
+                  {en.steps.step1.form.initialDescriptionField.label}
+                </FormLabel>
+                <FormControl>
+                  <div {...field}>
+                    {loading ? (
+                      <div className="border rounded flex py-2 pl-3">
+                        <Skeleton className="w-52 h-6 inline-block" />
+                      </div>
+                    ) : (
+                      <Input
+                        placeholder={
+                          en.steps.step1.form.initialDescriptionField
+                            .placeholder
+                        }
+                        maxLength={maxCharacters.step1}
+                        {...field}
+                      />
+                    )}
+                  </div>
+                </FormControl>
+                <FormDescription>
+                  {maxCharacters.step1 - field.value.length} characters
+                  remaining
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
         />
         <LoadingButton
           type="submit"

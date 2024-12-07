@@ -23,9 +23,10 @@ import { CopyButton } from "@repo/shadcn/copy-button";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
 import { en } from "@/i18n/en";
+import { maxCharacters } from "@/prompts";
 
 const formSchema = z.object({
-  revisedPrompt: z.string(),
+  revisedPrompt: z.string().max(maxCharacters.step3),
   originalIdea: z.string(),
 });
 interface Step3Props {
@@ -96,29 +97,32 @@ export function Step3Form({
         <FormField
           control={form.control}
           name="revisedPrompt"
-          render={({ field }) => (
-            <FormItem>
-              <div className="mb-3 flex gap-5 items-center">
-                <FormLabel>{en.steps.step3.form.newPrompt.label}</FormLabel>
-                <CopyButton textToCopy={field.value} disabled={loading} />
-              </div>
-              <FormControl>
-                <div {...field}>
-                  {loading ? (
-                    <div className="border rounded flex py-2 pl-3 gap-1 flex-wrap">
-                      <ParagraphSkeleton />
-                    </div>
-                  ) : (
-                    <Textarea {...field} />
-                  )}
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <div className="mb-3 flex gap-5 items-center">
+                  <FormLabel>{en.steps.step3.form.newPrompt.label}</FormLabel>
+                  <CopyButton textToCopy={field.value} disabled={loading} />
                 </div>
-              </FormControl>
-              <FormDescription>
-                {en.steps.step3.form.newPrompt.description}
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
+                <FormControl>
+                  <div {...field}>
+                    {loading ? (
+                      <div className="border rounded flex py-2 pl-3 gap-1 flex-wrap">
+                        <ParagraphSkeleton />
+                      </div>
+                    ) : (
+                      <Textarea {...field} maxLength={maxCharacters.step3} />
+                    )}
+                  </div>
+                </FormControl>
+                <FormDescription>
+                  {maxCharacters.step3 - field.value.length} characters
+                  remaining
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
         />
         <LoadingButton
           type="submit"
