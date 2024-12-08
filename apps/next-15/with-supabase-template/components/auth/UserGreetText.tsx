@@ -15,7 +15,7 @@ export const UserGreetText = () => {
     fetchUser();
   }, []);
   if (user !== null) {
-    console.log(user);
+    //console.log(user);
     return (
       <p
         className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 
