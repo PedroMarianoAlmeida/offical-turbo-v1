@@ -4,7 +4,11 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 # Projects
 
-- Last used is 3015
+- Last used is 3016
+
+## Next 14
+
+- [Next Supabase with Google Auth](http://localhost:3016/)
 
 ## Next 15
 

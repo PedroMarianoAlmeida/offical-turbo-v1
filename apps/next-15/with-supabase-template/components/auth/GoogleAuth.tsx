@@ -11,5 +11,9 @@ export const GoogleSignIn = () => {
     }
   };
 
-  return <button onClick={handleGoogleSignIn}>Sign in with Google</button>;
+  return (
+    <button onClick={handleGoogleSignIn} type="button">
+      Sign in with Google
+    </button>
+  );
 };

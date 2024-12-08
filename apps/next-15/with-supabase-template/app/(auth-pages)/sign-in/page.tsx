@@ -39,7 +39,7 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
           Sign in
         </SubmitButton>
         <FormMessage message={searchParams} />
-        <GoogleSignIn />
+        <GoogleSignIn/>
       </div>
     </form>
   );
