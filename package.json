@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "dev:nextjs-supabase-auth": "turbo dev --filter=nextjs-supabase-auth",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean",

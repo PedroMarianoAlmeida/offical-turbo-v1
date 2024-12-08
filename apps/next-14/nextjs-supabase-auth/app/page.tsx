@@ -2,15 +2,17 @@ import LoginButton from "@/components/LoginLogoutButton";
 import UserGreetText from "@/components/UserGreetText";
 import Image from "next/image";
 import { createClient } from "@/utils/supabase/server";
+import prisma from "@/lib/prismaClient";
 
 export default async function Home() {
   const supabase = createClient();
+  const allUsers = await prisma.user.findMany();
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  console.log({ user });
+  console.log({ allUsers });
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
