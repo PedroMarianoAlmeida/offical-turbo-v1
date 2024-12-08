@@ -1,0 +1,23 @@
+{
+  "name": "supabase-postgresql",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node script.ts",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.1",
+    "prisma": "5.22.0",
+    "supabase": "2.0.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  },
+  "dependencies": {
+    "@prisma/client": "5.22.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+}

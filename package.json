@@ -19,10 +19,11 @@
   },
   "packageManager": "npm@9.8.0",
   "workspaces": [
+    "apps/chrome-extensions/*",
+    "apps/miscellaneous/*",
     "apps/next-14/*",
     "apps/next-15/*",
     "apps/original/*",
-    "apps/chrome-extensions/*",
     "packages/ai/*",
     "packages/backend/*",
     "packages/core/*",
