@@ -1,0 +1,14 @@
+{
+  "name": "@repo/supabase",
+  "exports": {
+    "./add": "./src/add.ts",
+    "./add2": "./src/add.ts"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "autoprefixer": "^10.4.18",
+    "typescript": "5.5.4"
+  }
+}
