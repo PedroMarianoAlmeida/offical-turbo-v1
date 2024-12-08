@@ -1,7 +1,8 @@
 {
+  "name": "with-supabase-template",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack -p 3015",
     "build": "next build",
     "start": "next start"
   },

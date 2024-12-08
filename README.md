@@ -4,12 +4,13 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 # Projects
 
-- Last used is 3014
+- Last used is 3015
 
 ## Next 15
 
 - [Playground](http://localhost:3012/)
 - [Better Image](http://localhost:3014/)
+- [Supabase Template](http://localhost:3015/)
 
 ## Chrome Extensions
 
