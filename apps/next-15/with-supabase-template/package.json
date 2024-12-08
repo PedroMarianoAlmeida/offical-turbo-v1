@@ -23,7 +23,7 @@
     "prettier": "^3.3.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "@repo/supabase": "*"
+    "@repo/next-supabase": "*"
   },
   "devDependencies": {
     "@types/node": "22.9.0",

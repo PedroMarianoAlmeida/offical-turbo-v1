@@ -5,6 +5,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "dev:nextjs-supabase-auth": "turbo dev --filter=nextjs-supabase-auth",
+    "dev:nextjs-with-supabase-template": "turbo dev --filter=with-supabase-template",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean",

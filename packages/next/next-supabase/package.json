@@ -1,8 +1,7 @@
 {
-  "name": "@repo/supabase",
+  "name": "@repo/next-supabase",
   "exports": {
-    "./add": "./src/add.ts",
-    "./add2": "./src/add.ts"
+    "./add": "./src/add.ts"
   },
   "license": "MIT",
   "devDependencies": {
