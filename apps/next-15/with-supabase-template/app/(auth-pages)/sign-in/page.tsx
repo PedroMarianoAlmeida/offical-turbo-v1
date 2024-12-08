@@ -4,6 +4,7 @@ import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { GoogleSignIn } from "@/components/auth/GoogleAuth";
 
 export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
@@ -38,6 +39,7 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
           Sign in
         </SubmitButton>
         <FormMessage message={searchParams} />
+        <GoogleSignIn />
       </div>
     </form>
   );
