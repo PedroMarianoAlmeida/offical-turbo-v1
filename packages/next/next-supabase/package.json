@@ -1,9 +1,7 @@
 {
   "name": "@repo/next-supabase",
   "exports": {
-    "./add": "./src/add.ts",
-    "./serverAuth": "./src/auth/serverAuth.ts",
-    "./session-adapters": "./src/auth/session-adapters.ts"
+    "./session-adapters": "./src/adapters/session-adapters.ts"
   },
   "license": "MIT",
   "devDependencies": {
@@ -16,6 +14,7 @@
     "@repo/core-main": "*",
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.47.2",
-    "next": "^15.0.4"
+    "next": "^15.0.4",
+    "react": "^19.0.0"
   }
 }

@@ -63,8 +63,10 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - Documented the use for ProtectedWithFallback and userCount
 - Solve download button issue: Access to fetch at '' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 - Check tokens before try to generate the AI responses
+- Fix `@repo/next-auth` to mach the readme guide line (the config and readme)
 
 ## Future features
 
 - The Progress bar has links to the previous page steps
 - [ ] Upgrade packages/react/shadcn/src/composition/paragraph-skeleton.tsx to be more flexible with sizes and number of "words" - And add the flex wrap padding, etc
+- Implement Middleware of supabase auth
