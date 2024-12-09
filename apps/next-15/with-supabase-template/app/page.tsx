@@ -1,10 +1,10 @@
 import { SignInWithGoogleButton } from "@/components/auth/SignInWithGoogleButton";
 import { UserGreetText } from "@/components/auth/UserGreetText";
 import { sessionAdapter } from "@repo/next-supabase/session-adapters";
-import { getSupabase } from "@/config/supabaseAuth";
+import { createClient } from "@/config/supabase/server";
 
 export default async function Index() {
-  const supabase = await getSupabase();
+  const supabase = await createClient();
   const { hasUser, userData } = await sessionAdapter(supabase);
   console.log({ userData });
   return (
