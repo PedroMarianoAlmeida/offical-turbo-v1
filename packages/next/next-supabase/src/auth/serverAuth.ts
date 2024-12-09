@@ -11,14 +11,14 @@ interface InitializeSupabaseProps {
 // Store instances mapped by project name
 const supabaseInstances: Map<string, SupabaseClient> = new Map();
 
-export function initializeSupabase({
+export async function initializeSupabase({
   projectName,
   supabaseAnonKey,
   supabaseUrl,
-}: InitializeSupabaseProps): SupabaseClient {
+}: InitializeSupabaseProps): Promise<SupabaseClient> {
   // Use the project name to uniquely identify instances
   if (!supabaseInstances.has(projectName)) {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
 
     const newClient = createServerClient(supabaseUrl, supabaseAnonKey, {
       cookies: {
