@@ -1,0 +1,17 @@
+{
+  "name": "@repo/next-core",
+  "exports": {
+    "./protected": "./src/protected.ts"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "autoprefixer": "^10.4.18",
+    "typescript": "5.5.4"
+  },
+  "dependencies": {
+    "next": "^15.0.4",
+    "@repo/core-main": "*"
+  }
+}
