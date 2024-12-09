@@ -7,7 +7,7 @@ import {
 import { getUserCountUsageForToday } from "@repo/firebase/userCount";
 import { Button } from "@repo/shadcn/button";
 
-import { database } from "@/configs/firebaseConfig";
+import { database } from "@/config/firebaseConfig";
 
 import type { Metadata } from "next";
 

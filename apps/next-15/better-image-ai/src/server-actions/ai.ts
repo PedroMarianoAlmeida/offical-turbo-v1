@@ -13,8 +13,8 @@ import { textOutput } from "@repo/openai/textGeneration";
 import { actionWithDailyRateLimit } from "@repo/firebase/userCount";
 import { type AsyncWrapperResponse } from "@repo/core-main/asyncWrapper";
 
-import { openai } from "@/configs/openaiConfig";
-import { database } from "@/configs/firebaseConfig";
+import { openai } from "@/config/openai";
+import { database } from "@/config/firebaseConfig";
 
 const project = process.env.PROJECT_NAME;
 const rateLimit = Number(process.env.DAILY_LIMIT);

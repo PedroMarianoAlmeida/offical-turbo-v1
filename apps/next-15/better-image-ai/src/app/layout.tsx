@@ -10,7 +10,7 @@ import { QueryProvider } from "@/components/layout-related/QueryProvider";
 import "@repo/shadcn/styles.css";
 import "./globals.css";
 import LayoutClient from "@/components/layout-related/LayoutClient";
-import { database } from "@/configs/firebaseConfig";
+import { database } from "@/config/firebaseConfig";
 
 export const metadata: Metadata = {
   title: "Better Image AI",

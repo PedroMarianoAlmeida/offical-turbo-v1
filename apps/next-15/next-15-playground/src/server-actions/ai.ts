@@ -1,6 +1,6 @@
 "use server";
 import { z, ZodTypeAny } from "zod";
-import { openai } from "@/miscellaneous/openaiConfig";
+import { openai } from "@/config/openai";
 import { textOutput } from "@repo/openai/textGeneration";
 import { generateImage as generateImageOpenai } from "@repo/openai/imageGeneration";
 import {

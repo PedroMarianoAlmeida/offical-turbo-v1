@@ -18,8 +18,10 @@ Pedro Almeida official monorepo, based in tailwind example.
 
 #### For packages
 
-- The exports on package.json should reflect folder structure (to facilitate to check if some is missing)
+- The exports on package.json should reflect folder structure
+  - To facilitate to check if some is missing
 - If some `src/config` is necessary on the APP, add it on the package readme
+  - The `.env` should be in the Apps, so the config file is necessary, this way at least it is just copy paste (and use the same variable names)
 - `src/adapters`: Something from the package to a `core` package
 
 ## More
