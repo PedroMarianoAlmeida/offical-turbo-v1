@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^6.0.1",
     "@repo/core-main": "*",
     "@repo/firebase": "*",
     "@repo/next-auth": "*",
