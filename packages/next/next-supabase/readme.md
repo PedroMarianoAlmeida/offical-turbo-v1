@@ -2,7 +2,7 @@
 
 ## Configs
 
-### `/src/config/supabase/server.ts`
+### app`/src/config/supabase/server.ts`
 
 ```
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
@@ -46,9 +46,7 @@ export async function createClient(): Promise<SupabaseClient> {
 
 ```
 
-### `/src/config/supabase/client.ts`
-
-- No need to install something for this package, use directly the @supabase/ssr
+### app`/src/config/supabase/client.ts`
 
 ```
 import { createBrowserClient } from "@supabase/ssr";
@@ -64,6 +62,10 @@ export const createClient = () =>
 ### Middleware
 
 - Optional: Check later
+
+## Server actions
+- app`src/server-actions/package-next-supabase`
+
 
 ## Usage
 
