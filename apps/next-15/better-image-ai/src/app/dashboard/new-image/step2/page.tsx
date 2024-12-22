@@ -46,14 +46,13 @@ export default async function Step2() {
     );
 
   const {
-    result: { size, questions, suggestedReference, suggestedStyles },
+    result: { size, questions, suggestedStyles },
   } = responseAi;
 
   return (
     <Step2Form
       questions={questions}
       size={size}
-      suggestedReference={suggestedReference}
       suggestedStyles={suggestedStyles}
       step1Prompt={userPrompt}
     />

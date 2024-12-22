@@ -10,12 +10,6 @@ export const receivingStep1Format = z.object({
     })
   ),
   suggestedStyles: z.array(z.string()),
-  suggestedReference: z.array(
-    z.object({
-      artistName: z.string(),
-      artName: z.string(),
-    })
-  ),
   size: z.enum(Object.keys(sizeToResolution) as [SizeKey, ...SizeKey[]]),
 });
 
@@ -27,7 +21,6 @@ export const receivingStep1Prompt = `
     
     The answer should have the following format:
     - suggestedStyles: If the prompt doesn't suggest a specific style, suggest a few that will be a good fit for the prompt
-    - suggestedReference: Based in the prompt, there is some world famous  art with similar image? Listed it in a array of strings... separate the art name and artist name
     - size: Retrieve if the prompt has some resolution that can be fit one of the options: Square: 1024 x 1024, Tall (portrait): 1024 x 1792, Wide (landscape): 1792 x 1024), if not add the value notDefined
     - questions: Extra questions that were not on the other topics... around 5 and 10, provide also an possible answer
 `;
