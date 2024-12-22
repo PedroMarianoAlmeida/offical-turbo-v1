@@ -31,7 +31,8 @@
     "./select": "./src/native-shadcn/select.tsx",
     "./skeleton": "./src/native-shadcn/skeleton.tsx",
     "./textarea": "./src/native-shadcn/textarea.tsx",
-    "./toaster": "./src/native-shadcn/toaster.tsx"
+    "./toaster": "./src/native-shadcn/toaster.tsx",
+    "./iframe": "./src/only-using-collors-and-taiwind/iframe.tsx"
   },
   "license": "MIT",
   "scripts": {

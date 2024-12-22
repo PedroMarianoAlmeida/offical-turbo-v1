@@ -6,7 +6,7 @@
     "dev": "turbo dev",
     "dev:nextjs-supabase-auth": "turbo dev --filter=nextjs-supabase-auth",
     "dev:with-supabase-template": "turbo dev --filter=with-supabase-template",
-    "dev:better-image-ai": "turbo dev --filter=better-image-ai",
+    "dev:better-image-ai": "turbo dev --filter=better-image-ai --filter=@repo/shadcn",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean",
