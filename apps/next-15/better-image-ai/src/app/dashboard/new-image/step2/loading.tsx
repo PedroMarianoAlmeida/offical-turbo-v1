@@ -29,16 +29,6 @@ const LoadingStep2 = () => {
         },
       ]}
       size={"Square"}
-      suggestedReference={[
-        {
-          artistName: "Paul Gauguin",
-          artName: "Tahitian Landscape",
-        },
-        {
-          artistName: "Paul Gauguin",
-          artName: "Tahitian Landscape",
-        },
-      ]}
       suggestedStyles={["Cartoon", "Realistic", "Surreal", "Pop Art"]}
       loading
     />
