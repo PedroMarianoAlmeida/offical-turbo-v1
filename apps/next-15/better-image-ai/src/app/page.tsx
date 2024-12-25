@@ -5,12 +5,12 @@ import { Button } from "@repo/shadcn/button";
 
 import { ClientHome } from "@/components/page/client-home";
 import { SignInButton } from "@/components/LoginButton";
-import prisma from "@/config/prisma";
+import { generateResponse } from "@/server-actions/ai";
 
 export default async function Home() {
   const { userData } = await getCoreServerSession();
-  const users = await prisma.users.findMany();
-  console.log({ users });
+  const test = await generateResponse({ userId: "123X", userPrompt: "ping" });
+  console.log({ test });
   return (
     <main className="flex flex-col gap-4 items-center">
       <h1 className="font-mono">Better Image</h1>

@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack -p 3014",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate",
+    "prisma:generate": "npx prisma generate",
+    "prisma:format": "npx prisma format",
+    "prisma:push": "npx prisma db push"
   },
   "dependencies": {
     "@prisma/client": "^6.0.1",
@@ -15,6 +19,7 @@
     "@repo/next-auth": "*",
     "@repo/openai": "*",
     "@repo/shadcn": "*",
+    "@repo/prisma": "*",
     "@tanstack/react-query": "^5.61.4",
     "lucide-react": "^0.468.0",
     "next": "15.0.3",

@@ -10,13 +10,6 @@ export const receivingStep1Format = z.object({
     })
   ),
   suggestedStyles: z.array(z.string()),
-  suggestedReference: z.array(
-    z.object({
-      artistName: z.string(),
-      artName: z.string(),
-    })
-  ),
-  size: z.enum(Object.keys(sizeToResolution) as [SizeKey, ...SizeKey[]]),
 });
 
 export const receivingStep1Prompt = `

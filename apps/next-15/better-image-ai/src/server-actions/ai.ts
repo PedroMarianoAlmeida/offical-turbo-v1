@@ -10,13 +10,11 @@ import {
   // SizeKey,
 } from "@repo/openai/imageGeneration";
 import { textOutput } from "@repo/openai/textGeneration";
-import { actionWithDailyRateLimit } from "@repo/firebase/userCount";
 import { type AsyncWrapperResponse } from "@repo/core-main/asyncWrapper";
 
 import { openai } from "@/config/openai";
-import { database } from "@/config/firebaseConfig";
+import { actionWithDailyRateLimit } from "@/prisma/userCount";
 
-const project = process.env.PROJECT_NAME;
 const rateLimit = Number(process.env.DAILY_LIMIT);
 
 interface GenerateObjectProps<T extends ZodTypeAny>
@@ -35,8 +33,6 @@ export const generateObject = async <T extends ZodTypeAny>({
   systemPrompt,
 }: GenerateObjectProps<T>): Promise<AsyncWrapperResponse<z.infer<T>>> => {
   const data = await actionWithDailyRateLimit({
-    project,
-    database,
     rateLimit,
     userId,
     callback: () =>
@@ -61,14 +57,13 @@ interface GenerateTextProps
   extends Pick<GeneratePromptProps, "systemPrompt" | "userPrompt"> {
   userId: string;
 }
+
 export const generateResponse = async ({
   userId,
   userPrompt,
   systemPrompt,
 }: GenerateTextProps): Promise<AsyncWrapperResponse<string>> => {
   const data = await actionWithDailyRateLimit({
-    project,
-    database,
     rateLimit,
     userId,
     callback: () => textOutput({ openai, userPrompt, systemPrompt }),
@@ -91,8 +86,6 @@ export const generateImage = async ({
   userPrompt,
 }: GenerateImageProps): Promise<AsyncWrapperResponse<string>> => {
   const data = await actionWithDailyRateLimit({
-    project,
-    database,
     rateLimit,
     userId,
     callback: () =>

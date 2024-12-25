@@ -22,6 +22,10 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 #### Save user history
 
+##### Migrate to MongoDB Prisma feature:
+
+- [ ] Remove everything from Firebase package and use the local prisma
+
 - When create the image, save the image in database, get the string name and put it in 2 places:
   - User history
   - General history
@@ -34,7 +38,8 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 #### Debit tech (Better Image AI)
 
-- The apps/next-15/better-image-ai/src/app/dashboard/new-image/step2/Step2Form.tsx is awful
+- [ ] The apps/next-15/better-image-ai/src/app/dashboard/new-image/step2/Step2Form.tsx is awful
+- [ ] incrementUserCountUsage, incrementUserCountUsage and actionWithDailyRateLimit should be only one of each - and where a get the daily count and how to update the user as callbacks
 
 #### Payment
 
