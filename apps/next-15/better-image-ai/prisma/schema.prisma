@@ -10,6 +10,8 @@ datasource db {
 model User {
   id         String      @id @default(cuid()) @map("_id")
   dailyUsage DailyUsage? @relation("UserToDailyUsage")
+
+  flows        Flow[]
 }
 
 model DailyUsage {
@@ -18,4 +20,13 @@ model DailyUsage {
   userId    String?  @unique
   lastUsage DateTime
   count     Int
+}
+
+model Flow {
+  id         String     @id @default(cuid()) @map("_id")
+
+  userId     String
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  originalPrompt      String
 }

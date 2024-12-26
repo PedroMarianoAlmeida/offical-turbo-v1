@@ -19,7 +19,7 @@ import {
 } from "@repo/shadcn/form";
 import { Input } from "@repo/shadcn/input";
 
-import { setServerSideCookie } from "@/server-actions/cookies";
+import { startFlowWithPrompt } from "@/server-actions/flow";
 import { en } from "@/i18n/en";
 import { maxCharacters } from "@/prompts";
 
@@ -36,7 +36,7 @@ export function Step1Form({ loading }: { loading?: true }) {
   const router = useRouter();
 
   const { mutateAsync, isIdle } = useMutation({
-    mutationFn: setServerSideCookie,
+    mutationFn: startFlowWithPrompt,
     onSuccess: (data) => {
       if (data.success) {
         router.push("/dashboard/new-image/step2");
@@ -57,7 +57,7 @@ export function Step1Form({ loading }: { loading?: true }) {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const { originalIdea } = values;
-    mutateAsync({ key: "step1Question", value: originalIdea });
+    mutateAsync({ originalPrompt: originalIdea });
   };
 
   return (
