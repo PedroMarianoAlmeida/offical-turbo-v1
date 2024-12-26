@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { WandSparkles } from "lucide-react";
+import type { Question, Flow } from "@prisma/client";
 
 import { Button } from "@repo/shadcn/button";
 import { LoadingButton } from "@repo/shadcn/loading-button";
@@ -20,19 +21,7 @@ import {
 import { Input } from "@repo/shadcn/input";
 import { Skeleton } from "@repo/shadcn/skeleton";
 
-// import {
-//   Select,
-//   SelectContent,
-//   SelectGroup,
-//   SelectItem,
-//   SelectLabel,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@repo/shadcn/select";
-// import { SizeKey, sizeToResolution } from "@repo/openai/imageGeneration";
-
 import { setServerSideCookie } from "@/server-actions/cookies";
-import { receivingStep1Format } from "@/prompts";
 import { en } from "@/i18n/en";
 
 export const formSchema = z.object({
@@ -47,9 +36,10 @@ export const formSchema = z.object({
   extraInformation: z.string().optional(),
 });
 
-interface Step2FormProps
-  extends Omit<z.infer<typeof receivingStep1Format>, "isValidPrompt"> {
-  step1Prompt: string;
+interface Step2FormProps {
+  questions: Question[];
+  step1Prompt: Flow["originalPrompt"];
+  suggestedStyles: Question | null;
   loading?: true;
 }
 export function Step2Form({
@@ -60,6 +50,14 @@ export function Step2Form({
   loading,
 }: Step2FormProps) {
   const router = useRouter();
+  const questionsWithoutSuggested = questions.filter(
+    ({ question }) => question !== ""
+  );
+  console.log({
+    questions,
+    suggestedStyles,
+    filterd: questions.filter(({ question }) => question !== ""),
+  });
 
   const { mutateAsync, isIdle } = useMutation({
     mutationFn: setServerSideCookie,
@@ -77,9 +75,9 @@ export function Step2Form({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      // size: size,
-      questions: questions.map(({ question }) => ({
+      questions: questionsWithoutSuggested.map(({ question, answer }) => ({
         question,
+        answer: answer ?? "",
       })),
     },
   });
@@ -122,7 +120,7 @@ export function Step2Form({
                           className={`${["w-40", "w-52", "w-32", "w-20", "w-48"][index]} h-6 inline-block`}
                         />
                       ) : (
-                        questions[index]?.question
+                        questionsWithoutSuggested[index]?.question
                       )}
                     </FormLabel>
                     <FormControl>
@@ -137,7 +135,8 @@ export function Step2Form({
                           <Input
                             {...field}
                             placeholder={
-                              questions[index]?.answer || "Your answer here"
+                              questionsWithoutSuggested[index]?.placeholder ||
+                              "Your answer here"
                             }
                           />
                         )}
@@ -145,7 +144,7 @@ export function Step2Form({
                     </FormControl>
                     <FormMessage />
                   </FormItem>
-                  {questions[index]?.answer ? (
+                  {questionsWithoutSuggested[index]?.placeholder ? (
                     <Button
                       type="button"
                       className="self-end"
@@ -153,7 +152,7 @@ export function Step2Form({
                       onClick={() =>
                         form.setValue(
                           `questions.${index}.answer`,
-                          questions[index].answer
+                          questionsWithoutSuggested[index].answer ?? ""
                         )
                       }
                       disabled={loading}
@@ -181,7 +180,7 @@ export function Step2Form({
                   ) : (
                     <Input
                       {...field}
-                      placeholder={suggestedStyles.join(", ")}
+                      placeholder={suggestedStyles?.placeholder}
                     />
                   )}
                 </div>
@@ -193,43 +192,6 @@ export function Step2Form({
             </FormItem>
           )}
         />
-        {/* <FormField
-          control={form.control}
-          name="size"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                {size === "notDefined"
-                  ? "Do you have some resolution in mind?"
-                  : "Do you want to change the resolution?"}
-              </FormLabel>
-              <FormControl>
-                <Select {...field}>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select a fruit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Resolution</SelectLabel>
-                      {Object.entries(sizeToResolution)
-                        .filter(([key]) => key !== "notDefined")
-                        .map(([key, value]) => (
-                          <SelectItem key={key} value={key}>
-                            {`${key} (${value})`}
-                          </SelectItem>
-                        ))}
-                      <SelectItem value="not-defined">
-                        Leave for AI decide
-                      </SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormDescription>Resolution of image</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        /> */}
         <FormField
           control={form.control}
           name="extraInformation"

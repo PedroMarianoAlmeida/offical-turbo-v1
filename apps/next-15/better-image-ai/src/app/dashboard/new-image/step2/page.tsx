@@ -1,12 +1,9 @@
 export const maxDuration = 60;
 
-import { cookies } from "next/headers";
-
 import { getCoreServerSession } from "@repo/next-auth/session-adapters";
 
-import { generateObject } from "@/server-actions/ai";
-import { receivingStep1Format, receivingStep1Prompt } from "@/prompts";
 import { ErrorWrapper } from "@/components/layout-related/ErrorAndLoadingWrapper";
+import { receiveQuestions } from "@/server-actions/flow";
 import { Step2Form } from "./Step2Form";
 
 export default async function Step2() {
@@ -20,40 +17,28 @@ export default async function Step2() {
     );
   }
 
-  const cookieStore = await cookies();
-  const userPrompt = cookieStore.get("step1Question")?.value;
-  if (userPrompt === undefined) {
+  const res = await receiveQuestions();
+  if (!res.success) {
     return (
       <ErrorWrapper>
-        <p>Error, go back to Step 1</p>
+        <p>
+          {res.message === "User reached daily usage limit"
+            ? res.message
+            : "Error, go back to Step 1"}
+        </p>
       </ErrorWrapper>
     );
   }
 
-  const responseAi = await generateObject({
-    userPrompt,
-    userId: String(userData.id),
-    zodFormat: receivingStep1Format,
-    systemPrompt: receivingStep1Prompt,
-  });
-
-  const { success } = responseAi;
-  if (!success)
-    return (
-      <ErrorWrapper>
-        <p>Error generating response, try refresh the page</p>
-      </ErrorWrapper>
-    );
-
   const {
-    result: { questions, suggestedStyles },
-  } = responseAi;
+    result: { originalPrompt, questions, suggestedStyle },
+  } = res;
 
   return (
     <Step2Form
       questions={questions}
-      step1Prompt={userPrompt}
-      suggestedStyles={suggestedStyles}
+      step1Prompt={originalPrompt}
+      suggestedStyles={suggestedStyle}
     />
   );
 }

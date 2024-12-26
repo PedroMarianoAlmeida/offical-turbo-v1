@@ -11,7 +11,7 @@ model User {
   id         String      @id @default(cuid()) @map("_id")
   dailyUsage DailyUsage? @relation("UserToDailyUsage")
 
-  flows        Flow[]
+  flows Flow[]
 }
 
 model DailyUsage {
@@ -23,10 +23,30 @@ model DailyUsage {
 }
 
 model Flow {
-  id         String     @id @default(cuid()) @map("_id")
+  id String @id @default(cuid()) @map("_id")
 
-  userId     String
-  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  originalPrompt      String
+  originalPrompt   String
+  
+  questions        Question[] @relation("FlowToQuestion")
+  suggestedStyle   Question?  @relation("FlowToSuggestedStyle", fields: [suggestedStyleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  suggestedStyleId String?    @unique
+}
+
+model Question {
+  id String @id @default(cuid()) @map("_id")
+
+  flowId String
+  flow   Flow   @relation("FlowToQuestion", fields: [flowId], references: [id], onDelete: Cascade)
+
+  suggestedInFlow Flow?  @relation("FlowToSuggestedStyle")
+  
+  question        String
+  placeholder     String
+  answer String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
