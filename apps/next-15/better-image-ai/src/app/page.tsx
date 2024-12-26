@@ -8,6 +8,7 @@ import { SignInButton } from "@/components/LoginButton";
 
 export default async function Home() {
   const { userData } = await getCoreServerSession();
+
   return (
     <main className="flex flex-col gap-4 items-center">
       <h1 className="font-mono">Better Image</h1>

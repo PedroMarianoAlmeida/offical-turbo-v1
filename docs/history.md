@@ -92,6 +92,11 @@
 - [x] Create About page
 - [-] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now - Makes sense this action be more expensive, so it is a feature, not a bug =P
 
+#### Migrate to MongoDB Prisma feature:
+- [x] Copy the behaviour of packages/backend/firebase/src/userCount.ts in a new prisma package
+  - Actually this doesn't works as expected, the prisma should be in the APP
+- [x] Remove everything from Firebase package and use the local prisma
+
 ### Tech Debit
 
 - [x] Remove auth menu background
