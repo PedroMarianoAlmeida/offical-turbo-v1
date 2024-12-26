@@ -30,26 +30,26 @@ export const getUserCountUsageForToday = async ({
   });
 };
 
-const incrementUserCountUsage = async ({ userId }: { userId: string }) => {
+const updateUserCountUsage = async ({
+  userId,
+  newValue,
+}: {
+  userId: string;
+  newValue: number;
+}) => {
   return asyncWrapper(async () => {
-    const currentUsage = await getUserCountUsageForToday({
-      userId,
+    await prisma.dailyUsage.upsert({
+      where: { userId },
+      update: {
+        lastUsage: new Date(),
+        count: newValue,
+      },
+      create: {
+        userId,
+        lastUsage: new Date(),
+        count: newValue,
+      },
     });
-
-    if (currentUsage.success) {
-      await prisma.dailyUsage.upsert({
-        where: { userId },
-        update: {
-          lastUsage: new Date(),
-          count: currentUsage.result + 1,
-        },
-        create: {
-          userId,
-          lastUsage: new Date(),
-          count: currentUsage.result + 1,
-        },
-      });
-    }
   });
 };
 
@@ -84,7 +84,7 @@ export const actionWithDailyRateLimit = async <T>({
       throw new Error(callbackResult.message);
     }
 
-    await incrementUserCountUsage({ userId });
+    await updateUserCountUsage({ userId, newValue: count.result + 1 });
     return callbackResult.result;
   });
 };
