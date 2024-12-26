@@ -10,6 +10,7 @@ export const receivingStep1Format = z.object({
       answer: z.string(),
     })
   ),
+  suggestedStyles: z.array(z.string()),
 });
 
 export const receivingStep1Prompt = `
@@ -18,6 +19,7 @@ export const receivingStep1Prompt = `
     - The questions should be in ENGLISH
     - If there is some ambiguity on the text, make question for clarification
     - Around 5 and 10 questions, provide also an possible answer
+    - suggestedStyles: If the prompt doesn't suggest a specific style, suggest a few that will be a good fit for the prompt
 `;
 
 export const sendStep2AnswersSystemPrompt = `

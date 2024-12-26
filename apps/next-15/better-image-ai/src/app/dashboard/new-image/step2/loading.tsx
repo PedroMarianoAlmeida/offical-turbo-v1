@@ -28,6 +28,7 @@ const LoadingStep2 = () => {
           answer: "Bright red with white and green tropical patterns",
         },
       ]}
+      suggestedStyles={["Cartoon", "Realistic", "Surreal", "Pop Art"]}
       loading
     />
   );
