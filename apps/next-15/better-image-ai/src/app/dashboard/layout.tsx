@@ -4,10 +4,8 @@ import {
   ProtectedWithRedirect,
   ProtectedWithFallback,
 } from "@repo/next-auth/protected";
-import { getUserCountUsageForToday } from "@repo/firebase/userCount";
+import { getUserCountUsageForToday } from "@/prisma/userCount";
 import { Button } from "@repo/shadcn/button";
-
-import { database } from "@/config/firebaseConfig";
 
 import type { Metadata } from "next";
 
@@ -27,8 +25,6 @@ const UserValidated = async ({
     ? { success: true, result: Number(process.env.DAILY_COUNT_DEV_ONLY) }
     : await getUserCountUsageForToday({
         userId: id.toString(),
-        database,
-        project: process.env.PROJECT_NAME,
       });
 
   let forceFallback = false;

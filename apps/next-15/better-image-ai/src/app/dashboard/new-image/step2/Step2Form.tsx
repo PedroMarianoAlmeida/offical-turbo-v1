@@ -34,7 +34,6 @@ import { Skeleton } from "@repo/shadcn/skeleton";
 import { setServerSideCookie } from "@/server-actions/cookies";
 import { receivingStep1Format } from "@/prompts";
 import { en } from "@/i18n/en";
-import { Suggestions } from "./suggestions";
 
 export const formSchema = z.object({
   suggestedStyle: z.string().optional(),
@@ -56,7 +55,6 @@ interface Step2FormProps
 export function Step2Form({
   // size,
   questions,
-  suggestedReference,
   suggestedStyles,
   step1Prompt,
   loading,
@@ -98,10 +96,6 @@ export function Step2Form({
   return (
     <Form {...form}>
       <div className="pb-6 flex flex-col gap-3">
-        <Suggestions
-          suggestedReference={suggestedReference}
-          loading={loading}
-        />
         <p>{en.steps.step2.note}</p>
         <label className="flex gap-1 items-center py-3">
           Prompt:

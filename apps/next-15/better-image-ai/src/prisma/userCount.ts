@@ -37,7 +37,7 @@ const incrementUserCountUsage = async ({ userId }: { userId: string }) => {
     });
 
     if (currentUsage.success) {
-      const upsertUser = await prisma.dailyUsage.upsert({
+      await prisma.dailyUsage.upsert({
         where: { userId },
         update: {
           lastUsage: new Date(),

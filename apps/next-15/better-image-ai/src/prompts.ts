@@ -1,6 +1,7 @@
 import { z } from "zod";
-import { sizeToResolution, SizeKey } from "@repo/openai/imageGeneration";
 import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
+
+export const maxCharacters = { step1: 300, step3: 500 };
 
 export const receivingStep1Format = z.object({
   questions: z.array(
@@ -29,7 +30,7 @@ export const sendStep2AnswersSystemPrompt = `
   You will act like a Prompt Engineer, you will receive a structured data and your function is compile all the information in a new prompt that will make sense for the user and for the image generator
   - Do not include info related to resolution (size)
   - The answer should have only the new prompt in plain text without any extra data (no need of "Prompt:")
-  - The questions should be in ENGLISH
+  - The prompt should be in ENGLISH and in a max of ${maxCharacters.step3} characters
 `;
 
 interface GenerateStep2AnswersUserPromptProps
@@ -62,5 +63,3 @@ export const generateStep2AnswersUserPrompt = ({
   ${extraInformation ? "Extra Information: " + extraInformation : null}
   `;
 };
-
-export const maxCharacters = { step1: 300, step3: 500 };

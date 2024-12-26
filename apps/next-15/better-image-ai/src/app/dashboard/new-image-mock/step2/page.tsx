@@ -28,17 +28,6 @@ export default async function Step2() {
           answer: "Bright red with white and green tropical patterns",
         },
       ]}
-      size={"Square"}
-      suggestedReference={[
-        {
-          artistName: "Paul Gauguin",
-          artName: "Tahitian Landscape",
-        },
-        {
-          artistName: "Paul Gauguin",
-          artName: "Tahitian Landscape",
-        },
-      ]}
       suggestedStyles={["Cartoon", "Realistic", "Surreal", "Pop Art"]}
     />
   );
