@@ -23,6 +23,7 @@ import { Skeleton } from "@repo/shadcn/skeleton";
 
 import { setServerSideCookie } from "@/server-actions/cookies";
 import { en } from "@/i18n/en";
+import { saveAnswers } from "@/server-actions/flow";
 
 export const formSchema = z.object({
   suggestedStyle: z.string().optional(),
@@ -57,7 +58,7 @@ export function Step2Form({
   );
 
   const { mutateAsync, isIdle } = useMutation({
-    mutationFn: setServerSideCookie,
+    mutationFn: saveAnswers,
     onSuccess: (data) => {
       if (data.success) {
         router.push("/dashboard/new-image/step3");
@@ -87,7 +88,7 @@ export function Step2Form({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    mutateAsync({ key: "step2Question", value: JSON.stringify(values) });
+    mutateAsync({ ...values });
   }
 
   return (
