@@ -31,7 +31,7 @@ export default async function Step2() {
   }
 
   const {
-    result: { originalPrompt, questions, suggestedStyle },
+    result: { originalPrompt, questions, suggestedStyle, extraThought },
   } = res;
 
   return (
@@ -39,6 +39,7 @@ export default async function Step2() {
       questions={questions}
       step1Prompt={originalPrompt}
       suggestedStyles={suggestedStyle}
+      extraThought={extraThought}
     />
   );
 }

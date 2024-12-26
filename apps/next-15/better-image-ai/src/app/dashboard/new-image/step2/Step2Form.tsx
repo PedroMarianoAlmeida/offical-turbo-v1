@@ -40,6 +40,7 @@ interface Step2FormProps {
   questions: Question[];
   step1Prompt: Flow["originalPrompt"];
   suggestedStyles: Question | null;
+  extraThought: Question | null;
   loading?: true;
 }
 export function Step2Form({
@@ -47,17 +48,13 @@ export function Step2Form({
   questions,
   suggestedStyles,
   step1Prompt,
+  extraThought,
   loading,
 }: Step2FormProps) {
   const router = useRouter();
   const questionsWithoutSuggested = questions.filter(
     ({ question }) => question !== ""
   );
-  console.log({
-    questions,
-    suggestedStyles,
-    filterd: questions.filter(({ question }) => question !== ""),
-  });
 
   const { mutateAsync, isIdle } = useMutation({
     mutationFn: setServerSideCookie,
@@ -79,6 +76,8 @@ export function Step2Form({
         question,
         answer: answer ?? "",
       })),
+      suggestedStyle: suggestedStyles?.answer ?? "",
+      extraInformation: extraThought?.answer ?? "",
     },
   });
 
@@ -205,7 +204,7 @@ export function Step2Form({
                       <Skeleton className="w-52 h-6 inline-block" />
                     </div>
                   ) : (
-                    <Input {...field} />
+                    <Input {...field} placeholder={extraThought?.placeholder} />
                   )}
                 </div>
               </FormControl>

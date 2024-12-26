@@ -33,6 +33,8 @@ model Flow {
   questions        Question[] @relation("FlowToQuestion")
   suggestedStyle   Question?  @relation("FlowToSuggestedStyle", fields: [suggestedStyleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   suggestedStyleId String?    @unique
+  extraThought   Question?  @relation("FlowToExtraThought", fields: [suggestedStyleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  extraThoughtId String?    @unique
 }
 
 model Question {
@@ -42,6 +44,7 @@ model Question {
   flow   Flow   @relation("FlowToQuestion", fields: [flowId], references: [id], onDelete: Cascade)
 
   suggestedInFlow Flow?  @relation("FlowToSuggestedStyle")
+  extraThoughtInFlow Flow?  @relation("FlowToExtraThought")
   
   question        String
   placeholder     String

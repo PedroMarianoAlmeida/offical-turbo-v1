@@ -35,11 +35,12 @@ export const receiveQuestions = async () => {
 
     const flow = await prisma.flow.findUnique({
       where: { id: flowId },
-      include: { questions: true, suggestedStyle: true },
+      include: { questions: true, suggestedStyle: true, extraThought: true },
     });
     if (!flow) throw Error("Flow not found");
 
-    const { questions, suggestedStyle, originalPrompt, userId } = flow;
+    const { questions, suggestedStyle, originalPrompt, userId, extraThought } =
+      flow;
     if (questions.length === 0 && !suggestedStyle) {
       const responseAi = await generateObject({
         userPrompt: originalPrompt,
@@ -50,32 +51,39 @@ export const receiveQuestions = async () => {
 
       if (!responseAi.success) throw Error(responseAi.message);
 
-      const { questions, suggestedStyle } = await prisma.flow.update({
-        where: { id: flowId },
-        include: { questions: true, suggestedStyle: true },
-        data: {
-          suggestedStyle: {
-            create: {
-              question: "", // This question doesn't need a value, because is the Style question
-              placeholder: responseAi.result.suggestedStyles.join(", "),
-              flow: {
-                connect: { id: flowId },
+      const { questions, suggestedStyle, extraThought } =
+        await prisma.flow.update({
+          where: { id: flowId },
+          include: {
+            questions: true,
+            suggestedStyle: true,
+            extraThought: true,
+          },
+          data: {
+            suggestedStyle: {
+              create: {
+                question: "", // This question doesn't need a value, because is the Style question
+                placeholder: responseAi.result.suggestedStyles.join(", "),
+                flow: {
+                  connect: { id: flowId },
+                },
               },
             },
+            questions: {
+              create: responseAi.result.questions.map(
+                ({ answer, question }) => ({
+                  question,
+                  placeholder: answer,
+                  answer: null,
+                })
+              ),
+            },
           },
-          questions: {
-            create: responseAi.result.questions.map(({ answer, question }) => ({
-              question,
-              placeholder: answer,
-              answer: null,
-            })),
-          },
-        },
-      });
+        });
 
-      return { questions, suggestedStyle, originalPrompt };
+      return { questions, suggestedStyle, originalPrompt, extraThought };
     }
-    return { questions, suggestedStyle, originalPrompt };
+    return { questions, suggestedStyle, originalPrompt, extraThought };
   });
 };
 
