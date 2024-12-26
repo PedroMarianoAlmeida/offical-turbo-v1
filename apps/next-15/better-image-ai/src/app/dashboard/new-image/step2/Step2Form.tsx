@@ -152,7 +152,7 @@ export function Step2Form({
                       onClick={() =>
                         form.setValue(
                           `questions.${index}.answer`,
-                          questionsWithoutSuggested[index].answer ?? ""
+                          questionsWithoutSuggested[index].placeholder ?? ""
                         )
                       }
                       disabled={loading}
