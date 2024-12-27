@@ -38,6 +38,9 @@ model Flow {
 
   aiGeneratedPrompt String?
   userModifiedPrompt String?
+
+  originalPromptImage String?
+  finalPromptImage String?
 }
 
 model Question {

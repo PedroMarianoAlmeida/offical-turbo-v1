@@ -13,7 +13,11 @@ import {
   receivingStep1Prompt,
   generateStep2AnswersUserPrompt,
 } from "@/prompts";
-import { generateObject, generateResponse } from "@/server-actions/ai";
+import {
+  generateObject,
+  generateResponse,
+  generateImage,
+} from "@/server-actions/ai";
 import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
 
 export const startFlowWithPrompt = async ({
@@ -228,4 +232,75 @@ export const saveUserEditedAiPrompt = async ({
     });
   });
 };
-// getPromptAndGenerateImage (check if the images already exist, if not generate)
+
+export const getPromptAndGenerateImage = async () => {
+  return asyncWrapper(async () => {
+    const { flowId } = await getFlowId();
+
+    const flow = await prisma.flow.findUnique({
+      where: { id: flowId },
+      select: {
+        id: true,
+        userId: true,
+        aiGeneratedPrompt: true,
+        originalPrompt: true,
+        userModifiedPrompt: true,
+        originalPromptImage: true,
+        finalPromptImage: true,
+      },
+    });
+    if (!flow) throw Error("Flow not found");
+
+    const {
+      aiGeneratedPrompt,
+      finalPromptImage,
+      originalPrompt,
+      originalPromptImage,
+      userId,
+      userModifiedPrompt,
+    } = flow;
+    if (!aiGeneratedPrompt || !originalPrompt) throw Error("Missing prompts");
+
+    const finalPrompt = userModifiedPrompt ?? aiGeneratedPrompt;
+    if (!originalPromptImage || !finalPromptImage) {
+      const imageOriginalPrompt = generateImage({
+        userPrompt: originalPrompt,
+        userId,
+      });
+
+      const imageFinalPrompt = generateImage({
+        userPrompt: finalPrompt,
+        userId,
+      });
+
+      const [originalRes, finalRes] = await Promise.all([
+        imageOriginalPrompt,
+        imageFinalPrompt,
+      ]);
+
+      if (!originalRes.success) throw Error(originalRes.message);
+      if (!finalRes.success) throw Error(finalRes.message);
+
+      await prisma.flow.update({
+        where: { id: flowId },
+        data: {
+          finalPromptImage: finalRes.result,
+          originalPromptImage: originalRes.result,
+        },
+      });
+
+      return {
+        originalPrompt,
+        originalPromptImage: originalRes.result,
+        finalPromptImage: finalRes.result,
+        finalPrompt,
+      };
+    }
+    return {
+      originalPrompt,
+      originalPromptImage,
+      finalPromptImage,
+      finalPrompt,
+    };
+  });
+};
