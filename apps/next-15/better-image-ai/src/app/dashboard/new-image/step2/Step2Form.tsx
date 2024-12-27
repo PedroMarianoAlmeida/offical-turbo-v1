@@ -204,7 +204,7 @@ export function Step2Form({
                       <Skeleton className="w-52 h-6 inline-block" />
                     </div>
                   ) : (
-                    <Input {...field} placeholder={extraThought?.placeholder} />
+                    <Input {...field} />
                   )}
                 </div>
               </FormControl>
