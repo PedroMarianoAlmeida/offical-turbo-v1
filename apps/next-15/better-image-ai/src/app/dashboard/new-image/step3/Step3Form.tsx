@@ -47,8 +47,10 @@ export function Step3Form({
   loading,
 }: Step3Props) {
   const router = useRouter();
-  const [aiPromptAfterUserEdit, setAiPromptAfterUserEdit] = useState(false);
-  const [userEditText, setUserEditText] = useState("");
+  const [aiPromptAfterUserEdit, setAiPromptAfterUserEdit] = useState(
+    Boolean(userModifiedPrompt)
+  );
+  const [userEditText, setUserEditText] = useState(userModifiedPrompt || "");
 
   const { mutateAsync, isIdle } = useMutation({
     mutationFn: saveUserEditedAiPrompt,
