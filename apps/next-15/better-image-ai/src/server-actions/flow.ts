@@ -7,8 +7,12 @@ import { asyncWrapper } from "@repo/core-main/asyncWrapper";
 
 import prisma from "@/config/prisma";
 
-import { receivingStep1Format, receivingStep1Prompt } from "@/prompts";
-import { generateObject } from "@/server-actions/ai";
+import {
+  receivingStep1Format,
+  receivingStep1Prompt,
+  generateStep2AnswersUserPrompt,
+} from "@/prompts";
+import { generateObject, generateResponse } from "@/server-actions/ai";
 import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
 
 export const startFlowWithPrompt = async ({
@@ -41,7 +45,7 @@ export const receiveQuestions = async () => {
 
     const flow = await prisma.flow.findUnique({
       where: { id: flowId },
-      include: { questions: true, suggestedStyle: true, extraThought: true },
+      include: { questions: true, suggestedStyle: true, extraThought: true }, // Replace by select?
     });
     if (!flow) throw Error("Flow not found");
 
@@ -148,5 +152,60 @@ export const saveAnswers = async ({
   });
 };
 
-// export const getQuestionsAndGenerateNewPrompt (again check if already exist prompt, if not then generate)
+export const getQuestionsAndGenerateNewPrompt = async () => {
+  return asyncWrapper(async () => {
+    const { flowId } = await getFlowId();
+
+    const flow = await prisma.flow.findUnique({
+      where: { id: flowId },
+      select: {
+        id: true,
+        userId: true,
+        aiGeneratedPrompt: true,
+        questions: true,
+        suggestedStyle: true,
+        extraThought: true,
+        originalPrompt: true,
+        userModifiedPrompt: true,
+      },
+    });
+    if (!flow) throw Error("Flow not found");
+
+    const {
+      questions,
+      suggestedStyle,
+      originalPrompt,
+      extraThought,
+      userModifiedPrompt,
+      aiGeneratedPrompt,
+      userId,
+    } = flow;
+
+    if (!aiGeneratedPrompt) {
+      const responseAi = await generateResponse({
+        userPrompt: originalPrompt,
+        userId: userId,
+        systemPrompt: generateStep2AnswersUserPrompt({
+          extraThought,
+          originalPrompt,
+          questions,
+          suggestedStyles: suggestedStyle,
+        }),
+      });
+      if (!responseAi.success) throw Error(responseAi.message);
+
+      await prisma.flow.update({
+        where: { id: flowId },
+        data: { aiGeneratedPrompt: responseAi.result },
+      });
+
+      return {
+        originalPrompt,
+        aiGeneratedPrompt: responseAi.result,
+        userModifiedPrompt: null,
+      };
+    }
+    return { originalPrompt, aiGeneratedPrompt, userModifiedPrompt };
+  });
+};
 // getPromptAndGenerateImage (check if the images already exist, if not generate)

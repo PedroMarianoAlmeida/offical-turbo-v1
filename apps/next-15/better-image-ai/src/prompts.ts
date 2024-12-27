@@ -1,7 +1,9 @@
 import { z } from "zod";
+import type { Question, Flow } from "@prisma/client";
+
 import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
 
-export const maxCharacters = { step1: 300, step3: 500 };
+export const maxCharacters = { step1: 300, step3: 600 };
 
 export const receivingStep1Format = z.object({
   questions: z.array(
@@ -29,15 +31,19 @@ export const sendStep2AnswersSystemPrompt = `
   - The prompt should be in ENGLISH and in a max of ${maxCharacters.step3} characters
 `;
 
-interface GenerateStep2AnswersUserPromptProps
-  extends z.infer<typeof formSchema> {
-  originalPrompt: string;
+interface GenerateStep2AnswersUserPromptProps {
+  questions: Question[];
+  originalPrompt: Flow["originalPrompt"];
+  suggestedStyles: Question | null;
+  extraThought: Question | null;
+  loading?: true;
 }
+
 export const generateStep2AnswersUserPrompt = ({
   questions,
-  extraInformation,
-  suggestedStyle,
+  extraThought,
   originalPrompt,
+  suggestedStyles,
 }: GenerateStep2AnswersUserPromptProps) => {
   const questionAnswersTreated = questions
     .filter(({ answer }) => answer)
@@ -55,7 +61,7 @@ export const generateStep2AnswersUserPrompt = ({
   return `
   Original Prompt: ${originalPrompt}
   ${questionsTreated}
-  ${suggestedStyle ? "Style: " + suggestedStyle : null}
-  ${extraInformation ? "Extra Information: " + extraInformation : null}
+  ${suggestedStyles ? "Style: " + suggestedStyles.answer : null}
+  ${extraThought ? "Extra Information: " + extraThought.answer : null}
   `;
 };

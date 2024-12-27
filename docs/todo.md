@@ -24,6 +24,9 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 ##### Migrate to MongoDB Prisma feature:
 
+- [ ] Add the consent checkbox on Step 1
+- [ ] On step 3 put a button to revert to aiGeneratedPrompt
+
 - When create the image, save the image in database, get the string name and put it in 2 places:
   - User history
   - General history

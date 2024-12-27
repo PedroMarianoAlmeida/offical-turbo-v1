@@ -28,13 +28,16 @@ model Flow {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  originalPrompt   String
-  
+  originalPrompt String
+
   questions        Question[] @relation("FlowToQuestion")
   suggestedStyle   Question?  @relation("FlowToSuggestedStyle", fields: [suggestedStyleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   suggestedStyleId String?    @unique
-  extraThought   Question?  @relation("FlowToExtraThought", fields: [suggestedStyleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  extraThoughtId String?    @unique
+  extraThought     Question?  @relation("FlowToExtraThought", fields: [suggestedStyleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  extraThoughtId   String?    @unique
+
+  aiGeneratedPrompt String?
+  userModifiedPrompt String?
 }
 
 model Question {
@@ -43,12 +46,12 @@ model Question {
   flowId String
   flow   Flow   @relation("FlowToQuestion", fields: [flowId], references: [id], onDelete: Cascade)
 
-  suggestedInFlow Flow?  @relation("FlowToSuggestedStyle")
-  extraThoughtInFlow Flow?  @relation("FlowToExtraThought")
-  
-  question        String
-  placeholder     String
-  answer String?
+  suggestedInFlow    Flow? @relation("FlowToSuggestedStyle")
+  extraThoughtInFlow Flow? @relation("FlowToExtraThought")
+
+  question    String
+  placeholder String
+  answer      String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

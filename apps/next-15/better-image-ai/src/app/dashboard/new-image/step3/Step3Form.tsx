@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { WandSparkles } from "lucide-react";
+import type { Flow } from "@prisma/client";
 
 import { LoadingButton } from "@repo/shadcn/loading-button";
 import { Skeleton } from "@repo/shadcn/skeleton";
@@ -31,12 +32,14 @@ const formSchema = z.object({
   originalIdea: z.string(),
 });
 interface Step3Props {
-  originalIdea: string;
+  originalIdea: Flow["originalPrompt"];
   aiGeneratedPrompt: string;
+  userModifiedPrompt: Flow["userModifiedPrompt"]
   loading?: true;
 }
 export function Step3Form({
   aiGeneratedPrompt,
+  userModifiedPrompt,
   originalIdea,
   loading,
 }: Step3Props) {
@@ -58,7 +61,7 @@ export function Step3Form({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      revisedPrompt: aiGeneratedPrompt,
+      revisedPrompt: userModifiedPrompt ?? aiGeneratedPrompt,
       originalIdea,
     },
   });
