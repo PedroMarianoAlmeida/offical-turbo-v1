@@ -9,6 +9,11 @@ import {
   TableHeader,
   TableRow,
 } from "@repo/shadcn/table";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@repo/shadcn/hover-card";
 
 import { getUserHistory } from "@/server-actions/flow";
 
@@ -49,7 +54,9 @@ export const UserHistory = async () => {
                   />
                 ) : null}
               </TableCell>
-              <TableCell>{userModifiedPrompt ?? aiGeneratedPrompt}</TableCell>
+              <TableCell className="line-clamp-6">
+                {userModifiedPrompt ?? aiGeneratedPrompt}
+              </TableCell>
               <TableCell>
                 {finalPromptImage ? (
                   <Image
