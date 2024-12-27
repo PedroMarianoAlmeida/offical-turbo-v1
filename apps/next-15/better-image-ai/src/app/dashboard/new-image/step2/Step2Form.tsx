@@ -37,10 +37,10 @@ export const formSchema = z.object({
 });
 
 interface Step2FormProps {
-  questions: Question[];
+  questions: Pick<Question, "question" | "answer" | "placeholder">[];
   step1Prompt: Flow["originalPrompt"];
-  suggestedStyles: Question | null;
-  extraThought: Question | null;
+  suggestedStyles: Pick<Question, "question" | "answer" | "placeholder"> | null;
+  extraThought: Pick<Question, "question" | "answer" | "placeholder"> | null;
   loading?: true;
 }
 export function Step2Form({

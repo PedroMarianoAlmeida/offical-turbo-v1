@@ -25,7 +25,6 @@ import { Input } from "@repo/shadcn/input";
 import { Textarea } from "@repo/shadcn/textarea";
 import { CopyButton } from "@repo/shadcn/copy-button";
 
-import { setServerSideCookie } from "@/server-actions/cookies";
 import { en } from "@/i18n/en";
 import { maxCharacters } from "@/prompts";
 import { saveUserEditedAiPrompt } from "@/server-actions/flow";

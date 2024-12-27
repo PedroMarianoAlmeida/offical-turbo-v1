@@ -5,6 +5,7 @@ export default async function Step3() {
     <Step3Form
       originalIdea="A monkey in a forest"
       aiGeneratedPrompt="Create a cartoon image of a chimpanzee in a Chinese forest during twilight. The chimpanzee is depicted eating a banana, but it looks really upset. Additionally, in the background, there is a wreck of a crashed airplane."
+      userModifiedPrompt=""
       // loading
     />
   );
