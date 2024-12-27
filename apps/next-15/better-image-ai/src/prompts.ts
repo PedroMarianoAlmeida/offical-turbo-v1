@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { Question, Flow } from "@prisma/client";
 
-export const maxCharacters = { step1: 300, step3: 600 };
+export const maxCharacters = { step1: 300, step3: 1000 };
 
 export const receivingStep1Format = z.object({
   questions: z.array(
