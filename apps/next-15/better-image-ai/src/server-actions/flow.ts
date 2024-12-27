@@ -1,6 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 import { z } from "zod";
+import type { Flow } from "@prisma/client";
 
 import { getCoreServerSession } from "@repo/next-auth/session-adapters";
 import { asyncWrapper } from "@repo/core-main/asyncWrapper";
@@ -206,6 +207,25 @@ export const getQuestionsAndGenerateNewPrompt = async () => {
       };
     }
     return { originalPrompt, aiGeneratedPrompt, userModifiedPrompt };
+  });
+};
+interface SaveUserEditedAiPromptProps {
+  userModifiedPrompt: Flow["userModifiedPrompt"];
+  aiGeneratedPrompt: string;
+}
+export const saveUserEditedAiPrompt = async ({
+  aiGeneratedPrompt,
+  userModifiedPrompt,
+}: SaveUserEditedAiPromptProps) => {
+  return asyncWrapper(async () => {
+    if (aiGeneratedPrompt === userModifiedPrompt) return; //There is nothing to update
+
+    const { flowId } = await getFlowId();
+
+    await prisma.flow.update({
+      where: { id: flowId },
+      data: { userModifiedPrompt },
+    });
   });
 };
 // getPromptAndGenerateImage (check if the images already exist, if not generate)

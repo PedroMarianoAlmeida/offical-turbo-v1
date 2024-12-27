@@ -28,6 +28,7 @@ import { CopyButton } from "@repo/shadcn/copy-button";
 import { setServerSideCookie } from "@/server-actions/cookies";
 import { en } from "@/i18n/en";
 import { maxCharacters } from "@/prompts";
+import { saveUserEditedAiPrompt } from "@/server-actions/flow";
 
 const formSchema = z.object({
   revisedPrompt: z.string().max(maxCharacters.step3),
@@ -50,7 +51,7 @@ export function Step3Form({
   const [userEditText, setUserEditText] = useState("");
 
   const { mutateAsync, isIdle } = useMutation({
-    mutationFn: setServerSideCookie,
+    mutationFn: saveUserEditedAiPrompt,
     onSuccess: (data) => {
       if (data.success) {
         router.push("/dashboard/new-image/step4");
@@ -72,7 +73,7 @@ export function Step3Form({
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const { revisedPrompt } = values;
-    mutateAsync({ key: "step3Question", value: revisedPrompt });
+    mutateAsync({ aiGeneratedPrompt, userModifiedPrompt: revisedPrompt });
   }
 
   return (
