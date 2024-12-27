@@ -19,6 +19,7 @@
     "@repo/openai": "*",
     "@repo/prisma": "*",
     "@repo/shadcn": "*",
+    "@repo/aws": "*",
     "@tanstack/react-query": "^5.61.4",
     "lucide-react": "^0.468.0",
     "next": "15.0.3",

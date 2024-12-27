@@ -5,6 +5,7 @@ import type { Flow } from "@prisma/client";
 
 import { getCoreServerSession } from "@repo/next-auth/session-adapters";
 import { asyncWrapper } from "@repo/core-main/asyncWrapper";
+import { addImageInS3BucketWithCallback } from "@repo/aws/addImageInS3Bucket";
 
 import prisma from "@/config/prisma";
 
@@ -263,14 +264,24 @@ export const getPromptAndGenerateImage = async () => {
 
     const finalPrompt = userModifiedPrompt ?? aiGeneratedPrompt;
     if (!originalPromptImage || !finalPromptImage) {
-      const imageOriginalPrompt = generateImage({
-        userPrompt: originalPrompt,
-        userId,
+      const imageOriginalPrompt = addImageInS3BucketWithCallback({
+        callback: () => generateImage({ userPrompt: originalPrompt, userId }),
+        config: {
+          bucketName: process.env.AWS_BUCKET_NAME ?? "",
+          region: process.env.AWS_REGION ?? "",
+          accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "",
+          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "",
+        },
       });
 
-      const imageFinalPrompt = generateImage({
-        userPrompt: finalPrompt,
-        userId,
+      const imageFinalPrompt = addImageInS3BucketWithCallback({
+        callback: () => generateImage({ userPrompt: finalPrompt, userId }),
+        config: {
+          bucketName: process.env.AWS_BUCKET_NAME ?? "",
+          region: process.env.AWS_REGION ?? "",
+          accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "",
+          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "",
+        },
       });
 
       const [originalRes, finalRes] = await Promise.all([
@@ -284,15 +295,15 @@ export const getPromptAndGenerateImage = async () => {
       await prisma.flow.update({
         where: { id: flowId },
         data: {
-          finalPromptImage: finalRes.result,
-          originalPromptImage: originalRes.result,
+          finalPromptImage: finalRes.result.publicUrl,
+          originalPromptImage: originalRes.result.publicUrl,
         },
       });
 
       return {
         originalPrompt,
-        originalPromptImage: originalRes.result,
-        finalPromptImage: finalRes.result,
+        originalPromptImage: originalRes.result.publicUrl,
+        finalPromptImage: finalRes.result.publicUrl,
         finalPrompt,
       };
     }

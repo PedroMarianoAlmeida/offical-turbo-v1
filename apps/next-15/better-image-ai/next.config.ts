@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "oaidalleapiprodscus.blob.core.windows.net",
+        hostname: "public-ror-1.s3.us-east-1.amazonaws.com",
         pathname: "/**",
       },
     ],
