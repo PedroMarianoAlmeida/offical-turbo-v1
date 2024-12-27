@@ -21,6 +21,12 @@ import {
 } from "@/server-actions/ai";
 import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
 
+// Error: Cookies can only be modified in a Server Action or Route Handler.
+// But startFlowWithPrompt also use cookies and there is no Next complaining
+export const clearFlow = async () => {
+  const cookieStore = await cookies();
+  cookieStore.delete("flowId");
+};
 export const startFlowWithPrompt = async ({
   originalPrompt,
 }: {
@@ -314,4 +320,23 @@ export const getPromptAndGenerateImage = async () => {
       finalPrompt,
     };
   });
+};
+
+export const getUserHistory = async () => {
+  const session = await getCoreServerSession();
+  if (!session.hasUser) throw Error("No user");
+
+  const rows = await prisma.flow.findMany({
+    where: { userId: String(session.userData.id) },
+    select: {
+      originalPrompt: true,
+      originalPromptImage: true,
+      finalPromptImage: true,
+      aiGeneratedPrompt: true,
+      userModifiedPrompt: true,
+      id: true,
+    }
+  });
+
+  return { rows };
 };
