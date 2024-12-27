@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,6 +11,7 @@ import type { Flow } from "@prisma/client";
 import { LoadingButton } from "@repo/shadcn/loading-button";
 import { Skeleton } from "@repo/shadcn/skeleton";
 import { ParagraphSkeleton } from "@repo/shadcn/paragraph-skeleton";
+import { Button } from "@repo/shadcn/button";
 import {
   Form,
   FormControl,
@@ -34,7 +36,7 @@ const formSchema = z.object({
 interface Step3Props {
   originalIdea: Flow["originalPrompt"];
   aiGeneratedPrompt: string;
-  userModifiedPrompt: Flow["userModifiedPrompt"]
+  userModifiedPrompt: Flow["userModifiedPrompt"];
   loading?: true;
 }
 export function Step3Form({
@@ -44,6 +46,8 @@ export function Step3Form({
   loading,
 }: Step3Props) {
   const router = useRouter();
+  const [aiPromptAfterUserEdit, setAiPromptAfterUserEdit] = useState(false);
+  const [userEditText, setUserEditText] = useState("");
 
   const { mutateAsync, isIdle } = useMutation({
     mutationFn: setServerSideCookie,
@@ -102,32 +106,74 @@ export function Step3Form({
           control={form.control}
           name="revisedPrompt"
           render={({ field }) => {
+            const handleInputChange = (
+              e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+              const newValue = e.target.value;
+              setUserEditText(newValue); // Save the user's changes
+              form.setValue("revisedPrompt", newValue);
+
+              // Enable toggling when the user modifies the AI prompt
+              if (newValue !== aiGeneratedPrompt) {
+                setAiPromptAfterUserEdit(true);
+              }
+            };
+
             return (
-              <FormItem>
-                <div className="mb-3 flex gap-5 items-center">
-                  <FormLabel>{en.steps.step3.form.newPrompt.label}</FormLabel>
-                  <CopyButton textToCopy={field.value} disabled={loading} />
-                </div>
-                <FormControl>
-                  <div {...field}>
-                    {loading ? (
-                      <div className="border rounded flex py-2 pl-3 gap-1 flex-wrap">
-                        <ParagraphSkeleton />
-                      </div>
-                    ) : (
-                      <Textarea {...field} maxLength={maxCharacters.step3} />
-                    )}
+              <div className="flex flex-col gap-2">
+                <FormItem>
+                  <div className="mb-3 flex gap-5 items-center">
+                    <FormLabel>{en.steps.step3.form.newPrompt.label}</FormLabel>
+                    <CopyButton textToCopy={field.value} disabled={loading} />
                   </div>
-                </FormControl>
-                <FormDescription>
-                  {maxCharacters.step3 - field.value.length} characters
-                  remaining
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
+                  <FormControl>
+                    <div>
+                      {loading ? (
+                        <div className="border rounded flex py-2 pl-3 gap-1 flex-wrap">
+                          <ParagraphSkeleton />
+                        </div>
+                      ) : (
+                        <Textarea
+                          {...field}
+                          maxLength={maxCharacters.step3}
+                          onChange={handleInputChange}
+                        />
+                      )}
+                    </div>
+                  </FormControl>
+                  <FormDescription>
+                    {maxCharacters.step3 - field.value.length} characters
+                    remaining
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+                {aiPromptAfterUserEdit && (
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    className="self-start"
+                    onClick={() => {
+                      if (
+                        form.getValues().revisedPrompt === aiGeneratedPrompt
+                      ) {
+                        form.setValue("revisedPrompt", userEditText);
+                      } else {
+                        setUserEditText(form.getValues().revisedPrompt);
+                        form.setValue("revisedPrompt", aiGeneratedPrompt);
+                      }
+                    }}
+                    disabled={loading}
+                  >
+                    {form.getValues().revisedPrompt === aiGeneratedPrompt
+                      ? "Go back to your changes"
+                      : "Roll back to AI prompt"}
+                  </Button>
+                )}
+              </div>
             );
           }}
         />
+
         <LoadingButton
           type="submit"
           disabled={loading} // The state loading means the form is loading (so the button is disabled)

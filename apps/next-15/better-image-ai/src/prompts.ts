@@ -1,8 +1,6 @@
 import { z } from "zod";
 import type { Question, Flow } from "@prisma/client";
 
-import { formSchema } from "@/app/dashboard/new-image/step2/Step2Form";
-
 export const maxCharacters = { step1: 300, step3: 600 };
 
 export const receivingStep1Format = z.object({
