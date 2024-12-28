@@ -1,3 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
+import { usePathname } from 'next/navigation'
+
+import { getDailyUsageWithoutUser } from "@/server-actions/user-count";
+
 import { Badge } from "@repo/shadcn/badge";
 import {
   HoverCard,
@@ -5,9 +10,20 @@ import {
   HoverCardTrigger,
 } from "@repo/shadcn/hover-card";
 
-import { DailyUsageProps } from "@/components/layout-related/LayoutClient";
-export const DailyUsage = ({ currentUsage, totalCredits }: DailyUsageProps) => {
-  if (currentUsage === null) return;
+export const DailyUsage = ({ totalCredits }: { totalCredits: number }) => {
+  const pathname = usePathname()
+  const isDashboardImageRoute = pathname.startsWith("/dashboard/new-image/");
+  const refetchInterval = isDashboardImageRoute ? 1000 : false
+
+  const { data } = useQuery({
+    queryKey: ["dailyUsage"],
+    queryFn: getDailyUsageWithoutUser,
+    refetchInterval,
+  });
+
+  const currentUsage = data && data.success && data.result;
+
+  if (typeof currentUsage !== "number") return;
   return (
     <HoverCard>
       <HoverCardTrigger asChild>

@@ -10,16 +10,10 @@ import { useCoreSession } from "@repo/next-auth/session-adapters";
 
 import { DailyUsage } from "@/components/DailyUsage";
 
-export interface DailyUsageProps {
-  currentUsage: number | null;
+interface LayoutClientProps extends WithChildren {
   totalCredits: number;
 }
-interface LayoutClientProps extends WithChildren, DailyUsageProps {}
-const LayoutClient = ({
-  children,
-  currentUsage,
-  totalCredits,
-}: LayoutClientProps) => {
+const LayoutClient = ({ children, totalCredits }: LayoutClientProps) => {
   const { setTheme } = useTheme();
   const session = useCoreSession();
 
@@ -64,7 +58,7 @@ const LayoutClient = ({
           ],
         }}
       >
-        <DailyUsage currentUsage={currentUsage} totalCredits={totalCredits} />
+        <DailyUsage totalCredits={totalCredits} />
       </Header>
       <Toaster />
       <main className="container mx-auto p-4">{children}</main>
