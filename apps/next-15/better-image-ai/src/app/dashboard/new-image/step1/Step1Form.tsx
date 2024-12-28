@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@repo/shadcn/form";
 import { Input } from "@repo/shadcn/input";
+import { Checkbox } from "@repo/shadcn/checkbox";
 
 import { startFlowWithPrompt } from "@/server-actions/flow";
 import { en } from "@/i18n/en";
@@ -30,6 +31,7 @@ const formSchema = z.object({
       message: en.steps.step1.form.initialDescriptionField.errorMessage,
     })
     .max(maxCharacters.step1),
+  acceptTermsAndConditions: z.boolean(),
 });
 
 export function Step1Form({ loading }: { loading?: true }) {
@@ -52,6 +54,7 @@ export function Step1Form({ loading }: { loading?: true }) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       originalIdea: "",
+      acceptTermsAndConditions: false,
     },
   });
 
@@ -99,9 +102,41 @@ export function Step1Form({ loading }: { loading?: true }) {
             );
           }}
         />
+        <FormField
+          control={form.control}
+          name="acceptTermsAndConditions"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <div className="flex gap-2">
+                  <FormLabel>Accept terms and conditions</FormLabel>
+                  <FormControl>
+                    {loading ? (
+                      <div className="border rounded flex py-2 pl-3">
+                        <Skeleton className="w-4 h-6 inline-block" />
+                      </div>
+                    ) : (
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    )}
+                  </FormControl>
+                </div>
+                <FormDescription>
+                  Please accept the terms and conditions to proceed.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
+
         <LoadingButton
           type="submit"
-          disabled={loading} // The state loading means the form is loading (so the button is disabled)
+          disabled={loading || !form.watch("acceptTermsAndConditions")} // The state loading means the form is loading (so the button is disabled)
           loading={!isIdle} // The prop loading means the form is trigger and should show the "loading spinner"
         >
           <WandSparkles />
