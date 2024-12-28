@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 
 import { getDailyUsageWithoutUser } from "@/server-actions/user-count";
 
@@ -9,26 +9,45 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@repo/shadcn/hover-card";
+import { Skeleton } from "@repo/shadcn/skeleton";
 
-export const DailyUsage = ({ totalCredits }: { totalCredits: number }) => {
-  const pathname = usePathname()
+export const DailyUsage = ({
+  totalCredits,
+  hasUser,
+}: {
+  totalCredits: number;
+  hasUser: boolean;
+}) => {
+  const pathname = usePathname();
   const isDashboardImageRoute = pathname.startsWith("/dashboard/new-image/");
-  const refetchInterval = isDashboardImageRoute ? 1000 : false
+  const refetchInterval = isDashboardImageRoute ? 1000 : false;
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["dailyUsage"],
     queryFn: getDailyUsageWithoutUser,
     refetchInterval,
   });
 
   const currentUsage = data && data.success && data.result;
+  const dynamicValue =
+    typeof currentUsage === "number" ? (
+      currentUsage
+    ) : (
+      <Skeleton className="w-5 h-4" />
+    );
 
-  if (typeof currentUsage !== "number") return;
+  const dynamicBadgeVariant =
+    isLoading ||
+    (typeof currentUsage === "number" && currentUsage < totalCredits)
+      ? "default"
+      : "destructive";
+
+  if (!hasUser) return;
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Badge className="cursor-pointer">
-          {currentUsage}/{totalCredits}
+        <Badge className="cursor-pointer" variant={dynamicBadgeVariant}>
+          {dynamicValue} /{totalCredits}
         </Badge>
       </HoverCardTrigger>
       <HoverCardContent className="w-80">

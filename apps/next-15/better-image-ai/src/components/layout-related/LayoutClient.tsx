@@ -58,7 +58,7 @@ const LayoutClient = ({ children, totalCredits }: LayoutClientProps) => {
           ],
         }}
       >
-        <DailyUsage totalCredits={totalCredits} />
+        <DailyUsage totalCredits={totalCredits} hasUser={session.hasUser} />
       </Header>
       <Toaster />
       <main className="container mx-auto p-4">{children}</main>
