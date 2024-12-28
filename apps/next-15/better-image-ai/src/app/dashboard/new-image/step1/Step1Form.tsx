@@ -23,6 +23,7 @@ import { Checkbox } from "@repo/shadcn/checkbox";
 import { startFlowWithPrompt } from "@/server-actions/flow";
 import { en } from "@/i18n/en";
 import { maxCharacters } from "@/prompts";
+import { TermsAndConditions } from "./terms-and-conditions";
 
 const formSchema = z.object({
   originalIdea: z
@@ -109,7 +110,9 @@ export function Step1Form({ loading }: { loading?: true }) {
             return (
               <FormItem>
                 <div className="flex gap-2">
-                  <FormLabel>Accept terms and conditions</FormLabel>
+                  <FormLabel>
+                    Accept <TermsAndConditions />
+                  </FormLabel>
                   <FormControl>
                     {loading ? (
                       <div className="border rounded flex py-2 pl-3">
