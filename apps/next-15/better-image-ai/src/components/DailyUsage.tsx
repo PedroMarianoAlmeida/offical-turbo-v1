@@ -28,7 +28,10 @@ export const DailyUsage = ({
     refetchInterval,
   });
 
-  const currentUsage = data && data.success && data.result;
+  const currentUsage =
+    Number(process.env.NEXT_PUBLIC_DAILY_COUNT_DEV_ONLY) ||
+    (data && data.success && data.result);
+
   const dynamicValue =
     typeof currentUsage === "number" ? (
       currentUsage
