@@ -21,12 +21,12 @@ export const Feed = () => {
   const [page, setPage] = useState(1);
   const [completeFeed, setCompleteFeed] = useState<FeedItem[]>([]);
   const { status, data, error, isFetching, isPlaceholderData } = useQuery({
-    queryKey: ["", page],
+    queryKey: ["feed", page],
     queryFn: () => getFeed({ page }),
     placeholderData: keepPreviousData,
     staleTime: Infinity,
   });
-
+  // console.log({ data });
   useEffect(() => {
     if (data?.success && data.result.rows) {
       setCompleteFeed((oldFeed) => [...oldFeed, ...data.result.rows]);

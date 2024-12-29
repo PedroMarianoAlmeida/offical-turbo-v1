@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { type FeedItem } from "./index";
 import { FeedElement } from "./feed-element";
 
@@ -21,7 +20,7 @@ export const FeedGroup = ({ feedGroup }: { feedGroup: FeedItem[] }) => {
           key={feedItem.id}
           item={feedItem}
           isFlipped={isFlipped}
-          delay={index * 200}
+          delay={index * 0.2}
         />
       ))}
     </section>

@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
 import Image from "next/image";
-
-import { FlipCard } from "@repo/shadcn/flip-card";
 import { Dialog, DialogContent, DialogTrigger } from "@repo/shadcn/dialog";
+import { FlipCard } from "@repo/shadcn/flip-card";
 
 import { type FeedItem } from "./index";
 
-export const FeedElement = ({
-  item,
-  isFlipped,
-  delay,
-}: {
+type FeedElementProps = {
   item: FeedItem;
   isFlipped: boolean;
   delay: number;
-}) => {
+};
+
+export function FeedElement({ item, isFlipped, delay }: FeedElementProps) {
   const {
     aiGeneratedPrompt,
     finalPromptImage,
@@ -23,18 +19,9 @@ export const FeedElement = ({
     userModifiedPrompt,
   } = item;
 
-  const [delayedFlip, setDelayedFlip] = useState(isFlipped);
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setDelayedFlip(isFlipped);
-    }, delay);
-
-    return () => clearTimeout(timeoutId);
-  }, [isFlipped, delay]);
-
-  if (!aiGeneratedPrompt || !finalPromptImage || !originalPromptImage)
+  if (!aiGeneratedPrompt || !finalPromptImage || !originalPromptImage) {
     return null;
+  }
 
   const finalPrompt = userModifiedPrompt ?? aiGeneratedPrompt;
 
@@ -43,30 +30,28 @@ export const FeedElement = ({
       <DialogTrigger>
         <FlipCard
           frontContent={
-            <div className="relative round">
-              <Image
-                src={finalPromptImage}
-                alt={finalPrompt}
-                width={100}
-                height={100}
-                className="w-full h-full"
-              />
-            </div>
+            <Image
+              src={finalPromptImage}
+              alt={finalPrompt}
+              width={100}
+              height={100}
+              className="w-full h-full"
+            />
           }
           backContent={
-            <div className="relative round">
-              <Image
-                src={originalPromptImage}
-                alt={originalPrompt}
-                width={100}
-                height={100}
-                className="w-full h-full"
-              />
-            </div>
+            <Image
+              src={originalPromptImage}
+              alt={originalPrompt}
+              width={100}
+              height={100}
+              className="w-full h-full"
+            />
           }
-          isFlipped={delayedFlip}
+          isFlipped={isFlipped}
+          delay={delay}
         />
       </DialogTrigger>
+
       <DialogContent>
         <ul className="list-disc text-left flex flex-col gap-3">
           <li>Original Prompt: {originalPrompt}</li>
@@ -75,4 +60,4 @@ export const FeedElement = ({
       </DialogContent>
     </Dialog>
   );
-};
+}
