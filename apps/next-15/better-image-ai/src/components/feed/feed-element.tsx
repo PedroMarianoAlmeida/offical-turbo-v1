@@ -35,7 +35,7 @@ export function FeedElement({ item, isFlipped, delay }: FeedElementProps) {
               alt={finalPrompt}
               width={100}
               height={100}
-              className="w-full h-full"
+              className="w-full h-full border-green-500 border-2 rounded"
             />
           }
           backContent={
@@ -44,7 +44,7 @@ export function FeedElement({ item, isFlipped, delay }: FeedElementProps) {
               alt={originalPrompt}
               width={100}
               height={100}
-              className="w-full h-full"
+              className="w-full h-full border-orange-500 border-2 rounded"
             />
           }
           isFlipped={isFlipped}

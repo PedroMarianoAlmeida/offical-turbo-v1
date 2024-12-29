@@ -14,15 +14,27 @@ export const FeedGroup = ({ feedGroup }: { feedGroup: FeedItem[] }) => {
   }, []);
 
   return (
-    <section>
-      {feedGroup.map((feedItem, index) => (
-        <FeedElement
-          key={feedItem.id}
-          item={feedItem}
-          isFlipped={isFlipped}
-          delay={index * 0.2}
-        />
-      ))}
+    <section className="flex flex-col gap-5">
+      <h2 className="">
+        <span className="border-green-500 border-2 px-3 py-1 rounded">
+          Improved Prompt
+        </span>{" "}
+        -{" "}
+        <span className="border-orange-500 border-2 px-3 py-1 rounded">
+          Initial Prompt
+        </span>{" "}
+        <span className="text-sm">(click on image to see both)</span>
+      </h2>
+      <div className="flex flex-wrap gap-2">
+        {feedGroup.map((feedItem, index) => (
+          <FeedElement
+            key={feedItem.id}
+            item={feedItem}
+            isFlipped={isFlipped}
+            delay={index * 0.2}
+          />
+        ))}
+      </div>
     </section>
   );
 };

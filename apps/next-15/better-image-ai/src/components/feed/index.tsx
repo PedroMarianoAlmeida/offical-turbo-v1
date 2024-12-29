@@ -26,7 +26,7 @@ export const Feed = () => {
     placeholderData: keepPreviousData,
     staleTime: Infinity,
   });
-  // console.log({ data });
+
   useEffect(() => {
     if (data?.success && data.result.rows) {
       setCompleteFeed((oldFeed) => [...oldFeed, ...data.result.rows]);
@@ -40,9 +40,7 @@ export const Feed = () => {
 
   return (
     <section className="flex flex-col">
-      <div className="flex flex-wrap">
-        <FeedGroup feedGroup={completeFeed} />
-      </div>
+      <FeedGroup feedGroup={completeFeed} />
 
       {hasMore ? (
         <Button

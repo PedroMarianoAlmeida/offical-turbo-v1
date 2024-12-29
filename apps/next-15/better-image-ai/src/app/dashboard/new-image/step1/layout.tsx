@@ -17,8 +17,11 @@ export default function Step1Layout({ children }: WithChildren) {
         <h1>{en.steps.step1.title}</h1>
       </ProgressBar>
       {children}
-      <p>
-        Need help? Check the <Link href="/tutorial">tutorial page</Link>
+      <p className="mt-10 text-center">
+        Need help? Check the{" "}
+        <Link href="/tutorial" className="underline">
+          tutorial page
+        </Link>
       </p>
     </>
   );
