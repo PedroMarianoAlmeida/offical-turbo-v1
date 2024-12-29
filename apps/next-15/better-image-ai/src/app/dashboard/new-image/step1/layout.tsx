@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { WithChildren } from "@repo/core-main/types";
 import { ProgressBar } from "@repo/shadcn/progress-bar";
 import { en } from "@/i18n/en";
@@ -15,6 +17,9 @@ export default function Step1Layout({ children }: WithChildren) {
         <h1>{en.steps.step1.title}</h1>
       </ProgressBar>
       {children}
+      <p>
+        Need help? Check the <Link href="/tutorial">tutorial page</Link>
+      </p>
     </>
   );
 }

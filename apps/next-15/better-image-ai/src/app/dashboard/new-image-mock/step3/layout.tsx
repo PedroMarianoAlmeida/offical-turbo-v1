@@ -29,6 +29,12 @@ export default function Step3Layout({ children }: WithChildren) {
         <h1>{en.steps.step3.title}</h1>
       </ProgressBar>
       {children}
+      <p className="mt-10 text-center">
+        Need help? Check the{" "}
+        <Link href="/tutorial" className="underline">
+          tutorial page
+        </Link>
+      </p>
     </>
   );
 }
