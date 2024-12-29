@@ -24,7 +24,8 @@ export const TermsAndConditions = (): React.ReactNode => {
               </li>
               <li>
                 We will make text, prompt, image publicly available. This means
-                that anyone may access, view, share the content
+                that anyone may access, view, share the content - It is on the
+                Home page (the image feed)
               </li>
               <li>
                 We will not share any means to the public identity who created
