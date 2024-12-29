@@ -21,7 +21,7 @@ const LayoutClient = ({ children, totalCredits }: LayoutClientProps) => {
     <>
       <Header
         logo={
-          <Link href="/" className="font-mono font-bold">
+          <Link href="/" className="font-mono font-bold text-xs sm:text-base">
             Better Image AI
           </Link>
         }

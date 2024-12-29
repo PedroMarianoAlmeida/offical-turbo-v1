@@ -4,11 +4,8 @@ import { usePathname } from "next/navigation";
 import { getDailyUsageWithoutUser } from "@/server-actions/user-count";
 
 import { Badge } from "@repo/shadcn/badge";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@repo/shadcn/hover-card";
+
+import { Dialog, DialogContent, DialogTrigger } from "@repo/shadcn/dialog";
 import { Skeleton } from "@repo/shadcn/skeleton";
 
 export const DailyUsage = ({
@@ -47,13 +44,13 @@ export const DailyUsage = ({
 
   if (!hasUser) return;
   return (
-    <HoverCard>
-      <HoverCardTrigger asChild>
+    <Dialog>
+      <DialogTrigger asChild>
         <Badge className="cursor-pointer" variant={dynamicBadgeVariant}>
           {dynamicValue} /{totalCredits}
         </Badge>
-      </HoverCardTrigger>
-      <HoverCardContent className="w-80">
+      </DialogTrigger>
+      <DialogContent className="w-80">
         <div className="px-2">
           <p className="font-bold">Daily Usage Credits</p>
           <ul className="list-disc">
@@ -62,7 +59,7 @@ export const DailyUsage = ({
             <li>Images: 2 credit</li>
           </ul>
         </div>
-      </HoverCardContent>
-    </HoverCard>
+      </DialogContent>
+    </Dialog>
   );
 };

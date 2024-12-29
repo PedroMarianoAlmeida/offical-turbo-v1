@@ -8,7 +8,6 @@ import {
 } from "@repo/shadcn/dialog";
 
 export const TermsAndConditions = (): React.ReactNode => {
-  console.log("RUN");
   return (
     <Dialog>
       <DialogTrigger asChild>
