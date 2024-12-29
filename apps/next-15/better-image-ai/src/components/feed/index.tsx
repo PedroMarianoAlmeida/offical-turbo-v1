@@ -1,21 +1,38 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import type { Flow } from "@prisma/client";
 
 import { FlipCard } from "@repo/shadcn/flip-card";
 
 import { getFeed } from "@/server-actions/flow";
 
+type Feed = Pick<
+  Flow,
+  | "aiGeneratedPrompt"
+  | "finalPromptImage"
+  | "id"
+  | "originalPrompt"
+  | "originalPromptImage"
+  | "userModifiedPrompt"
+>;
+
 export const Feed = () => {
   const [page, setPage] = useState(1);
+  const [completeFeed, setCompleteFeed] = useState<Feed[]>([]);
   const { status, data, error, isFetching, isPlaceholderData } = useQuery({
-    queryKey: ["projects", page],
+    queryKey: ["", page],
     queryFn: () => getFeed({ page }),
     placeholderData: keepPreviousData,
-    staleTime: 5000,
+    staleTime: Infinity,
   });
 
+  useEffect(() => {
+    if (data?.success && data.result.rows) {
+      setCompleteFeed((oldFeed) => [...oldFeed, ...data.result.rows]);
+    }
+  }, [data]);
   if (!data || !data.success) return;
 
   const {
@@ -25,7 +42,7 @@ export const Feed = () => {
   return (
     <section className="flex flex-col">
       <div className="flex flex-wrap">
-        {rows.map(
+        {completeFeed.map(
           ({
             id,
             aiGeneratedPrompt,

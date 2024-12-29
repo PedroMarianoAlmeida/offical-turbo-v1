@@ -340,7 +340,7 @@ export const getUserHistory = async () => {
 
   return { rows };
 };
-const elementsPerPage = 3;
+const elementsPerPage = 10;
 export const getFeed = async ({ page }: { page: number }) => {
   return asyncWrapper(async () => {
     const rows = await prisma.flow.findMany({
@@ -359,9 +359,7 @@ export const getFeed = async ({ page }: { page: number }) => {
         userModifiedPrompt: true,
         id: true,
       },
-      orderBy: {
-        updatedAt: "desc",
-      },
+      orderBy: [{ updatedAt: "desc" }, { id: "asc" }],
     });
 
     const hasMore = rows.length >= elementsPerPage;
