@@ -96,6 +96,8 @@
 - [x] Copy the behaviour of packages/backend/firebase/src/userCount.ts in a new prisma package
   - Actually this doesn't works as expected, the prisma should be in the APP
 - [x] Remove everything from Firebase package and use the local prisma
+- [x] Add the consent checkbox on Step 1
+- [x] On step 3 put a button to revert to aiGeneratedPrompt
 
 ### Tech Debit
 

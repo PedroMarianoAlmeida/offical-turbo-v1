@@ -19,13 +19,13 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Improve error pages - On ErrorWrapper - Maybe with shadcn in his package?
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] Clear the cookies after finish step 4? - Maybe
+- [ ] Add more login providers
 
 #### Save user history
 
 ##### Migrate to MongoDB Prisma feature:
 
-- [ ] Add the consent checkbox on Step 1
-- [ ] On step 3 put a button to revert to aiGeneratedPrompt
+- [ ] Small bug: On step 3, if the user toggle back for ai prompt after change it, should clean the "user prompt field" (only if send this way)
 
 - When create the image, save the image in database, get the string name and put it in 2 places:
   - User history
