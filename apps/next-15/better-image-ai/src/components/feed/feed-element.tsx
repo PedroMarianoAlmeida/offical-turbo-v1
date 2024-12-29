@@ -5,7 +5,13 @@ import { Dialog, DialogContent, DialogTrigger } from "@repo/shadcn/dialog";
 
 import { type FeedItem } from "./index";
 
-export const FeedItemElement = ({ item }: { item: FeedItem }) => {
+export const FeedElement = ({
+  item,
+  isFlipped,
+}: {
+  item: FeedItem;
+  isFlipped: boolean;
+}) => {
   const {
     aiGeneratedPrompt,
     finalPromptImage,
@@ -43,7 +49,7 @@ export const FeedItemElement = ({ item }: { item: FeedItem }) => {
               />
             </div>
           }
-          isFlipped={true}
+          isFlipped={isFlipped}
         />
       </DialogTrigger>
       <DialogContent>

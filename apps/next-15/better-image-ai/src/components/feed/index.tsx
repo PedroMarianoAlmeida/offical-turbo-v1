@@ -4,7 +4,7 @@ import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import type { Flow } from "@prisma/client";
 
 import { getFeed } from "@/server-actions/flow";
-import { FeedItemElement } from "./feed-item";
+import { FeedGroup } from "./feed-group";
 import { Button } from "@repo/shadcn/button";
 
 export type FeedItem = Pick<
@@ -41,9 +41,7 @@ export const Feed = () => {
   return (
     <section className="flex flex-col">
       <div className="flex flex-wrap">
-        {completeFeed.map((feedItem) => (
-          <FeedItemElement item={feedItem} />
-        ))}
+        <FeedGroup feedGroup={completeFeed} />
       </div>
 
       {hasMore ? (
