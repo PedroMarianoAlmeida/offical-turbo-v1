@@ -1,14 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import type { Flow } from "@prisma/client";
 
-import { FlipCard } from "@repo/shadcn/flip-card";
-
 import { getFeed } from "@/server-actions/flow";
+import { FeedItemElement } from "./feed-item";
+import { Button } from "@repo/shadcn/button";
 
-type Feed = Pick<
+export type FeedItem = Pick<
   Flow,
   | "aiGeneratedPrompt"
   | "finalPromptImage"
@@ -20,7 +19,7 @@ type Feed = Pick<
 
 export const Feed = () => {
   const [page, setPage] = useState(1);
-  const [completeFeed, setCompleteFeed] = useState<Feed[]>([]);
+  const [completeFeed, setCompleteFeed] = useState<FeedItem[]>([]);
   const { status, data, error, isFetching, isPlaceholderData } = useQuery({
     queryKey: ["", page],
     queryFn: () => getFeed({ page }),
@@ -36,66 +35,26 @@ export const Feed = () => {
   if (!data || !data.success) return;
 
   const {
-    result: { hasMore, rows },
+    result: { hasMore },
   } = data;
 
   return (
     <section className="flex flex-col">
       <div className="flex flex-wrap">
-        {completeFeed.map(
-          ({
-            id,
-            aiGeneratedPrompt,
-            finalPromptImage,
-            originalPrompt,
-            originalPromptImage,
-            userModifiedPrompt,
-          }) => {
-            if (!aiGeneratedPrompt || !finalPromptImage || !originalPromptImage)
-              return;
-            const finalPrompt = userModifiedPrompt ?? aiGeneratedPrompt;
-            return (
-              <div key={id}>
-                <FlipCard
-                  frontContent={
-                    <div className="relative round">
-                      <Image
-                        src={finalPromptImage}
-                        alt={finalPrompt}
-                        width={100}
-                        height={100}
-                        className="w-full h-full"
-                      />
-                    </div>
-                  }
-                  backContent={
-                    <div className="relative round">
-                      <Image
-                        src={originalPromptImage}
-                        alt={originalPrompt}
-                        width={100}
-                        height={100}
-                        className="w-full h-full"
-                      />
-                    </div>
-                  }
-                  isFlipped={true}
-                />
-              </div>
-            );
-          }
-        )}
+        {completeFeed.map((feedItem) => (
+          <FeedItemElement item={feedItem} />
+        ))}
       </div>
 
       {hasMore ? (
-        <button
+        <Button
           onClick={() => {
             setPage((old) => (hasMore ? old + 1 : old));
           }}
           disabled={isPlaceholderData}
         >
           More
-        </button>
+        </Button>
       ) : null}
     </section>
   );

@@ -20,6 +20,7 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] Clear the cookies after finish step 4? - Maybe
 - [ ] Add more login providers
+- [ ] Add Download Image button
 
 #### Save user history
 
