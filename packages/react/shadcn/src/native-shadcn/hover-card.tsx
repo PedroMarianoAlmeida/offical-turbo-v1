@@ -1,5 +1,5 @@
 "use client";
-
+// This component doesn't work for mobile
 import * as React from "react";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 

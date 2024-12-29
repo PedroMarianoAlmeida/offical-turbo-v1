@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { getCoreServerSession } from "@repo/next-auth/session-adapters";
 import { Button } from "@repo/shadcn/button";
-import { Iframe } from "@repo/shadcn/iframe";
 
 import { SignInButton } from "@/components/LoginButton";
+import { Feed } from "@/components/feed";
 
 export default async function Home() {
   const { userData } = await getCoreServerSession();
@@ -17,11 +17,6 @@ export default async function Home() {
         Image to craft more detailed and creative prompts, unlocking unique and
         compelling visuals every time!
       </p>
-      <h2>Check the creator explaining the flow</h2>
-      <Iframe
-        embedUrl="RzEfBKXqp3U?si=Ve7w3cjRt1GFL5s-"
-        title="How to use Better Image AI"
-      />
       {userData ? (
         <Link href="/dashboard">
           <Button>Give it a try</Button>
@@ -32,6 +27,7 @@ export default async function Home() {
           <p className="semi-bold">to give it a try</p>
         </div>
       )}
+      <Feed />
     </main>
   );
 }

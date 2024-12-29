@@ -335,8 +335,37 @@ export const getUserHistory = async () => {
       aiGeneratedPrompt: true,
       userModifiedPrompt: true,
       id: true,
-    }
+    },
   });
 
   return { rows };
+};
+const elementsPerPage = 3;
+export const getFeed = async ({ page }: { page: number }) => {
+  return asyncWrapper(async () => {
+    const rows = await prisma.flow.findMany({
+      skip: (page - 1) * elementsPerPage,
+      take: elementsPerPage,
+      where: {
+        finalPromptImage: {
+          not: null,
+        },
+      },
+      select: {
+        originalPrompt: true,
+        originalPromptImage: true,
+        finalPromptImage: true,
+        aiGeneratedPrompt: true,
+        userModifiedPrompt: true,
+        id: true,
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    });
+
+    const hasMore = rows.length >= elementsPerPage;
+
+    return { rows, hasMore };
+  });
 };
