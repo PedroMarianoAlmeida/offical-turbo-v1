@@ -14,6 +14,7 @@ import {
 import { Button } from "./../../native-shadcn/button";
 import { Auth, MenuItemsByRole } from "./index";
 
+const NoImage = () => <CircleUserRound className="!w-full !h-full m-1" />;
 const AuthAvatar = ({ session }: Pick<Auth, "session">) => {
   const { hasUser } = session;
   if (hasUser) {
@@ -28,14 +29,14 @@ const AuthAvatar = ({ session }: Pick<Auth, "session">) => {
           className="w-full h-full"
         />
         <AvatarFallback>
-          <CircleUserRound className="!w-full !h-full" />
+          <NoImage />
         </AvatarFallback>
       </Avatar>
     );
   }
   return (
-    <Avatar className="w-10 h-10">
-      <CircleUserRound className="!w-full !h-full" />
+    <Avatar className="w-10 h-10 flex justify-center items-center">
+      <NoImage />
     </Avatar>
   );
 };
