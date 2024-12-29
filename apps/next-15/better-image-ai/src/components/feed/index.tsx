@@ -20,7 +20,7 @@ export type FeedItem = Pick<
 export const Feed = () => {
   const [page, setPage] = useState(1);
   const [completeFeed, setCompleteFeed] = useState<FeedItem[]>([]);
-  const { status, data, error, isFetching, isPlaceholderData } = useQuery({
+  const { data, isPlaceholderData } = useQuery({
     queryKey: ["feed", page],
     queryFn: () => getFeed({ page }),
     placeholderData: keepPreviousData,
