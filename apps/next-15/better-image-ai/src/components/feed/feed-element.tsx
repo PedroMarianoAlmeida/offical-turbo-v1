@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { FlipCard } from "@repo/shadcn/flip-card";
@@ -8,9 +9,11 @@ import { type FeedItem } from "./index";
 export const FeedElement = ({
   item,
   isFlipped,
+  delay,
 }: {
   item: FeedItem;
   isFlipped: boolean;
+  delay: number;
 }) => {
   const {
     aiGeneratedPrompt,
@@ -20,7 +23,19 @@ export const FeedElement = ({
     userModifiedPrompt,
   } = item;
 
-  if (!aiGeneratedPrompt || !finalPromptImage || !originalPromptImage) return;
+  const [delayedFlip, setDelayedFlip] = useState(isFlipped);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDelayedFlip(isFlipped);
+    }, delay);
+
+    return () => clearTimeout(timeoutId);
+  }, [isFlipped, delay]);
+
+  if (!aiGeneratedPrompt || !finalPromptImage || !originalPromptImage)
+    return null;
+
   const finalPrompt = userModifiedPrompt ?? aiGeneratedPrompt;
 
   return (
@@ -49,7 +64,7 @@ export const FeedElement = ({
               />
             </div>
           }
-          isFlipped={isFlipped}
+          isFlipped={delayedFlip}
         />
       </DialogTrigger>
       <DialogContent>

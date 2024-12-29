@@ -16,8 +16,13 @@ export const FeedGroup = ({ feedGroup }: { feedGroup: FeedItem[] }) => {
 
   return (
     <section>
-      {feedGroup.map((feedItem) => (
-        <FeedElement item={feedItem} isFlipped={isFlipped} />
+      {feedGroup.map((feedItem, index) => (
+        <FeedElement
+          key={feedItem.id}
+          item={feedItem}
+          isFlipped={isFlipped}
+          delay={index * 200}
+        />
       ))}
     </section>
   );
