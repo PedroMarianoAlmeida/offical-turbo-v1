@@ -147,7 +147,6 @@ export function Step2Form({
                     <Button
                       type="button"
                       className="self-end"
-                      variant="secondary"
                       onClick={() =>
                         form.setValue(
                           `questions.${index}.answer`,
@@ -218,7 +217,7 @@ export function Step2Form({
 
         <LoadingButton
           type="submit"
-          className="w-full lg:w-42"
+          className="w-full lg:w-42 py-10"
           disabled={loading} // The state loading means the form is loading (so the button is disabled)
           loading={!isIdle} // The prop loading means the form is trigger and should show the "loading spinner"
         >

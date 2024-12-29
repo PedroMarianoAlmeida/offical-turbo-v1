@@ -8,17 +8,17 @@ export default async function Step2() {
         {
           question: "What time of year is the scene set in?",
           answer: "Summer in July",
-          placeholder: "",
+          placeholder: "Summer in July",
         },
         {
           question: "What specific beach location is Santa Claus visiting?",
           answer: "Bondi Beach in Australia",
-          placeholder: "",
+          placeholder: "Summer in July",
         },
         {
           question: "What mood or atmosphere should the image convey?",
           answer: "Joyful and Relaxed",
-          placeholder: "",
+          placeholder: "Summer in July",
         },
         {
           question:
