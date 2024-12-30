@@ -52,7 +52,7 @@ export const UserTable = ({ rows, loading }: UserTableProps) => {
     setFlowClicked("");
   };
 
-  let renderRows = loading
+  const renderRows = loading
     ? [
         {
           id: "1",
@@ -80,7 +80,6 @@ export const UserTable = ({ rows, loading }: UserTableProps) => {
         },
       ]
     : rows;
-
 
   if (renderRows.length === 0) return;
   return (
