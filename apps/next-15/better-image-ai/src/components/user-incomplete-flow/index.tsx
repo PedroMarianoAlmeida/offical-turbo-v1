@@ -20,7 +20,6 @@ export const UserIncompleteFlow = () => {
     queryKey: ["user-incomplete-feed", page],
     queryFn: () => getUserIncompleteFlow({ page }),
     placeholderData: keepPreviousData,
-    staleTime: Infinity,
   });
 
   useEffect(() => {

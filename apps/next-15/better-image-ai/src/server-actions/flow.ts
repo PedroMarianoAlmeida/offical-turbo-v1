@@ -1,4 +1,5 @@
 "use server";
+import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { z } from "zod";
 import type { Flow } from "@prisma/client";
@@ -436,4 +437,19 @@ export const getFeed = async ({ page }: { page: number }) => {
 
     return { rows, hasMore };
   });
+};
+
+export const resumeFlow = async ({
+  flow: { aiGeneratedPrompt, id, originalPrompt, userModifiedPrompt },
+}: {
+  flow: Pick<
+    Flow,
+    "aiGeneratedPrompt" | "id" | "originalPrompt" | "userModifiedPrompt"
+  >;
+}) => {
+  console.log("run");
+  const cookieStore = await cookies();
+  cookieStore.set("flowId", id);
+
+  redirect(`/dashboard/new-image/step${aiGeneratedPrompt ? 3 : 2}`);
 };
