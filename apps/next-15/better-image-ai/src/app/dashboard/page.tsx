@@ -14,8 +14,8 @@ const DashboardPage = async () => {
       </Link>
 
       <UserIncompleteFlow />
-      <h2>Your completed images</h2>
-      <Feed ownUser={true} />
+
+      <Feed ownUser={true} title="Your completed images" />
     </main>
   );
 };

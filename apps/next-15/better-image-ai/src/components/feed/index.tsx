@@ -16,7 +16,13 @@ export type FeedItem = Pick<
   | "userModifiedPrompt"
 >;
 
-export const Feed = ({ ownUser = false }: { ownUser?: boolean }) => {
+export const Feed = ({
+  ownUser = false,
+  title,
+}: {
+  ownUser?: boolean;
+  title?: string;
+}) => {
   const {
     data,
     fetchNextPage,
@@ -56,8 +62,10 @@ export const Feed = ({ ownUser = false }: { ownUser?: boolean }) => {
       return page.result.rows;
     }) ?? [];
 
+  if (completeFeed.length === 0) return null;
   return (
     <section className="flex flex-col">
+      {title ? <h2>{title}</h2> : null}
       <FeedGroup feedGroup={completeFeed} />
 
       {hasNextPage && (
