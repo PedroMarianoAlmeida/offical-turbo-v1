@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CameraIcon } from "lucide-react";
+import { CameraIcon, Trash2Icon } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
 
 import {
   Table,
@@ -13,14 +14,29 @@ import {
 import { LoadingButton } from "@repo/shadcn/loading-button";
 
 import { IncompleteFlowItem } from "./index";
-import { resumeFlow } from "@/server-actions/flow";
+import { resumeFlow, deleteFlow } from "@/server-actions/flow";
 
 export const UserTable = ({ rows }: { rows: IncompleteFlowItem[] }) => {
   const [flowClicked, setFlowClicked] = useState("");
+  const queryClient = useQueryClient();
 
-  const handleClick = (flow: IncompleteFlowItem) => {
+  const handleResumeFlow = (flow: IncompleteFlowItem) => {
     setFlowClicked(flow.id);
     resumeFlow({ flow });
+  };
+
+  const handleDeleteFlow = async (flow: IncompleteFlowItem) => {
+    setFlowClicked(flow.id);
+    const response = await deleteFlow(flow.id);
+
+    if (response.success) {
+      queryClient.invalidateQueries({ queryKey: ["user-incomplete-feed"] });
+    } else {
+      console.error("Error deleting flow:", response.message);
+      // Optionally, display an error message to the user
+    }
+
+    setFlowClicked("");
   };
 
   if (rows.length === 0) return;
@@ -40,15 +56,21 @@ export const UserTable = ({ rows }: { rows: IncompleteFlowItem[] }) => {
             <TableCell className="line-clamp-6">
               {row.userModifiedPrompt ?? row.aiGeneratedPrompt}
             </TableCell>
-            <TableCell className="text-center">
+            <TableCell className="text-center w-60">
               <LoadingButton
                 className="w-6 h-6 p-1"
-                onClick={() => handleClick(row)}
+                onClick={() => handleResumeFlow(row)}
                 loading={flowClicked === row.id}
               >
                 <CameraIcon />
               </LoadingButton>
-              {/* <Button>Delete</Button> */}
+              <LoadingButton
+                className="w-6 h-6 p-1 ml-2"
+                onClick={() => handleDeleteFlow(row)}
+                loading={flowClicked === row.id}
+              >
+                <Trash2Icon />
+              </LoadingButton>
             </TableCell>
           </TableRow>
         ))}

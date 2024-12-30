@@ -440,16 +440,28 @@ export const getFeed = async ({ page }: { page: number }) => {
 };
 
 export const resumeFlow = async ({
-  flow: { aiGeneratedPrompt, id, originalPrompt, userModifiedPrompt },
+  flow: { aiGeneratedPrompt, id },
 }: {
   flow: Pick<
     Flow,
     "aiGeneratedPrompt" | "id" | "originalPrompt" | "userModifiedPrompt"
   >;
 }) => {
-  console.log("run");
   const cookieStore = await cookies();
   cookieStore.set("flowId", id);
 
   redirect(`/dashboard/new-image/step${aiGeneratedPrompt ? 3 : 2}`);
+};
+
+export const deleteFlow = async (flowId: string) => {
+  return asyncWrapper(async () => {
+    const session = await getCoreServerSession();
+    if (!session.hasUser) {
+      throw new Error("No user");
+    }
+
+    await prisma.flow.delete({
+      where: { id: flowId, userId: String(session.userData.id) },
+    });
+  });
 };
