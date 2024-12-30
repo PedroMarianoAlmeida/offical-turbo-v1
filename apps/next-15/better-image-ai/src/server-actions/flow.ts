@@ -269,7 +269,7 @@ export const getPromptAndGenerateImage = async () => {
     } = flow;
     if (!aiGeneratedPrompt || !originalPrompt) throw Error("Missing prompts");
 
-    const finalPrompt = userModifiedPrompt ?? aiGeneratedPrompt;
+    const finalPrompt = userModifiedPrompt || aiGeneratedPrompt;
     if (!originalPromptImage || !finalPromptImage) {
       const imageOriginalPrompt = addImageInS3BucketWithCallback({
         callback: () => generateImage({ userPrompt: originalPrompt, userId }),
