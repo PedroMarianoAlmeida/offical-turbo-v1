@@ -12,7 +12,7 @@ const DashboardPage = async () => {
       <Link href="dashboard/new-image/step1">
         <Button>Generate New Image</Button>
       </Link>
-      <h2>Your prompts without images</h2>
+
       <UserIncompleteFlow />
       <h2>Your completed images</h2>
       <Feed ownUser={true} />

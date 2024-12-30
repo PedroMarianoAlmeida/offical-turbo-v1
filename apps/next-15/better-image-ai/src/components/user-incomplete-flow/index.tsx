@@ -50,8 +50,10 @@ export const UserIncompleteFlow = () => {
       return page.result.rows;
     }) ?? [];
 
+  if (completeFeed.length === 0) return null;
   return (
     <section className="flex flex-col container">
+      <h2 className="text-center">Your prompts without images</h2>
       <UserTable rows={completeFeed} />
       {hasNextPage && (
         <Button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
