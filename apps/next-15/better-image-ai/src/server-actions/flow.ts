@@ -322,25 +322,91 @@ export const getPromptAndGenerateImage = async () => {
   });
 };
 
-export const getUserHistory = async () => {
-  const session = await getCoreServerSession();
-  if (!session.hasUser) throw Error("No user");
-
-  const rows = await prisma.flow.findMany({
-    where: { userId: String(session.userData.id) },
-    select: {
-      originalPrompt: true,
-      originalPromptImage: true,
-      finalPromptImage: true,
-      aiGeneratedPrompt: true,
-      userModifiedPrompt: true,
-      id: true,
-    },
-  });
-
-  return { rows };
-};
 const elementsPerPage = 10;
+export const getUserFeed = async ({
+  page,
+  userId,
+}: {
+  page: number;
+  userId?: string;
+}) => {
+  return asyncWrapper(async () => {
+    let userIdTreated: string = userId ?? "";
+    if (!userIdTreated) {
+      const session = await getCoreServerSession();
+      if (!session.hasUser) {
+        throw new Error("No user");
+      }
+      userIdTreated = String(session.userData.id);
+    }
+
+    const rows = await prisma.flow.findMany({
+      skip: (page - 1) * elementsPerPage,
+      take: elementsPerPage,
+      where: {
+        finalPromptImage: {
+          not: null,
+        },
+        userId: userIdTreated,
+      },
+      select: {
+        originalPrompt: true,
+        originalPromptImage: true,
+        finalPromptImage: true,
+        aiGeneratedPrompt: true,
+        userModifiedPrompt: true,
+        id: true,
+      },
+      orderBy: [{ updatedAt: "desc" }, { id: "asc" }],
+    });
+
+    const hasMore = rows.length >= elementsPerPage;
+
+    return { rows, hasMore };
+  });
+};
+
+export const getUserIncompleteFlow = async ({
+  page,
+  userId,
+}: {
+  page: number;
+  userId?: string;
+}) => {
+  return asyncWrapper(async () => {
+    let userIdTreated: string = userId ?? "";
+    if (!userIdTreated) {
+      const session = await getCoreServerSession();
+      if (!session.hasUser) {
+        throw new Error("No user");
+      }
+      userIdTreated = String(session.userData.id);
+    }
+
+    const rows = await prisma.flow.findMany({
+      skip: (page - 1) * elementsPerPage,
+      take: elementsPerPage,
+      where: {
+        finalPromptImage: null,
+        userId: userIdTreated,
+      },
+      select: {
+        originalPrompt: true,
+        originalPromptImage: true,
+        finalPromptImage: true,
+        aiGeneratedPrompt: true,
+        userModifiedPrompt: true,
+        id: true,
+      },
+      orderBy: [{ updatedAt: "desc" }, { id: "asc" }],
+    });
+
+    const hasMore = rows.length >= elementsPerPage;
+
+    return { rows, hasMore };
+  });
+};
+
 export const getFeed = async ({ page }: { page: number }) => {
   return asyncWrapper(async () => {
     const rows = await prisma.flow.findMany({

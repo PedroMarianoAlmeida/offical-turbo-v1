@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Button } from "@repo/shadcn/button";
 
-import { UserHistory } from "@/components/user-history";
+import { Feed } from "@/components/feed";
 
 const DashboardPage = async () => {
   return (
@@ -11,7 +11,8 @@ const DashboardPage = async () => {
       <Link href="dashboard/new-image/step1">
         <Button>Generate New Image</Button>
       </Link>
-      <UserHistory />
+      <h2>Your completed images</h2>
+      <Feed ownUser={true} />
     </main>
   );
 };

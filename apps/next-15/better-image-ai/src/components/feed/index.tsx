@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import type { Flow } from "@prisma/client";
 
-import { getFeed } from "@/server-actions/flow";
+import { getFeed, getUserFeed } from "@/server-actions/flow";
 import { FeedGroup } from "./feed-group";
 import { Button } from "@repo/shadcn/button";
 
@@ -17,12 +17,12 @@ export type FeedItem = Pick<
   | "userModifiedPrompt"
 >;
 
-export const Feed = () => {
+export const Feed = ({ ownUser = false }: { ownUser?: boolean }) => {
   const [page, setPage] = useState(1);
   const [completeFeed, setCompleteFeed] = useState<FeedItem[]>([]);
   const { data, isPlaceholderData } = useQuery({
     queryKey: ["feed", page],
-    queryFn: () => getFeed({ page }),
+    queryFn: () => (ownUser ? getUserFeed({ page }) : getFeed({ page })),
     placeholderData: keepPreviousData,
     staleTime: Infinity,
   });
