@@ -105,7 +105,7 @@ export const UserTable = ({ rows, loading }: UserTableProps) => {
               {loading ? (
                 <Skeleton className="h-10 w-52" />
               ) : (
-                (row.userModifiedPrompt ?? row.aiGeneratedPrompt)
+                row.userModifiedPrompt || row.aiGeneratedPrompt
               )}
             </TableCell>
             <TableCell className="text-center w-60">
