@@ -67,14 +67,17 @@ export function Step3Form({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      revisedPrompt: userModifiedPrompt ?? aiGeneratedPrompt,
+      revisedPrompt: userModifiedPrompt || aiGeneratedPrompt,
       originalIdea,
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const { revisedPrompt } = values;
-    mutateAsync({ aiGeneratedPrompt, userModifiedPrompt: revisedPrompt });
+    const userModified =
+      revisedPrompt === aiGeneratedPrompt ? null : revisedPrompt;
+
+    mutateAsync({ aiGeneratedPrompt, userModifiedPrompt: userModified });
   }
 
   return (
