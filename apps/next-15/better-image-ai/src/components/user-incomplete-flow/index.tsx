@@ -1,11 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import type { Flow } from "@prisma/client";
 
 import { getUserIncompleteFlow } from "@/server-actions/flow";
 import { Button } from "@repo/shadcn/button";
-
 import { UserTable } from "./user-table";
 
 export type IncompleteFlowItem = Pick<
@@ -14,38 +12,52 @@ export type IncompleteFlowItem = Pick<
 >;
 
 export const UserIncompleteFlow = () => {
-  const [page, setPage] = useState(1);
-  const [completeFeed, setCompleteFeed] = useState<IncompleteFlowItem[]>([]);
-  const { data, isPlaceholderData } = useQuery({
-    queryKey: ["user-incomplete-feed", page],
-    queryFn: () => getUserIncompleteFlow({ page }),
-    placeholderData: keepPreviousData,
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status,
+    error,
+  } = useInfiniteQuery({
+    queryKey: ["user-incomplete-feed"],
+    initialPageParam: 1,
+    queryFn: ({ pageParam = 1 }) => {
+      return getUserIncompleteFlow({ page: pageParam });
+    },
+    getNextPageParam: (lastPage, pages) => {
+      if (lastPage?.success && lastPage.result.hasMore) {
+        return pages.length + 1;
+      }
+      return undefined;
+    },
   });
 
-  useEffect(() => {
-    if (data?.success && data.result.rows) {
-      setCompleteFeed((oldFeed) => [...oldFeed, ...data.result.rows]);
-    }
-  }, [data]);
-  if (!data || !data.success) return;
+  if (status === "pending") {
+    return <div>Loading feed...</div>;
+  }
 
-  const {
-    result: { hasMore },
-  } = data;
+  if (status === "error") {
+    return <div>Error: {(error as Error)?.message ?? "Unknown"}</div>;
+  }
+
+  const completeFeed =
+    data?.pages.flatMap((page) => {
+      if (!page.success) {
+        return [];
+      }
+
+      return page.result.rows;
+    }) ?? [];
 
   return (
     <section className="flex flex-col container">
       <UserTable rows={completeFeed} />
-      {hasMore ? (
-        <Button
-          onClick={() => {
-            setPage((old) => (hasMore ? old + 1 : old));
-          }}
-          disabled={isPlaceholderData}
-        >
-          More
+      {hasNextPage && (
+        <Button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+          {isFetchingNextPage ? "Loading more..." : "More"}
         </Button>
-      ) : null}
+      )}
     </section>
   );
 };
