@@ -6,6 +6,7 @@ import { getFeed, getUserFeed } from "@/server-actions/flow";
 import { FeedGroup } from "./feed-group";
 import { Button } from "@repo/shadcn/button";
 
+import { LoadingFeed } from "./loading-feed";
 export type FeedItem = Pick<
   Flow,
   | "aiGeneratedPrompt"
@@ -47,7 +48,7 @@ export const Feed = ({
   });
 
   if (status === "pending") {
-    return <div>Loading feed...</div>;
+    return <LoadingFeed title={title} />;
   }
 
   if (status === "error") {
@@ -64,7 +65,7 @@ export const Feed = ({
 
   if (completeFeed.length === 0) return null;
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col items-center gap-4">
       {title ? <h2>{title}</h2> : null}
       <FeedGroup feedGroup={completeFeed} />
 
