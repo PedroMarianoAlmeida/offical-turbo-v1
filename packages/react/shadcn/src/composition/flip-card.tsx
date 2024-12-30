@@ -16,7 +16,7 @@ export function FlipCard({
   delay = 0,
 }: FlipCardProps) {
   return (
-    <div className="w-96 h-96 [perspective:1000px]">
+    <div className="w-full h-full [perspective:1000px]">
       <motion.div
         className="w-full h-full relative [transform-style:preserve-3d]"
         initial={false}
