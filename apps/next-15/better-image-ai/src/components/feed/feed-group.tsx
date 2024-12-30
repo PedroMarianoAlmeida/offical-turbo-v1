@@ -30,7 +30,7 @@ export const FeedGroup = ({ feedGroup }: { feedGroup: FeedItem[] }) => {
           <FeedElement
             key={feedItem.id}
             item={feedItem}
-            isFlipped={isFlipped}
+            isFlipped={index % 2 === 0 ? isFlipped : !isFlipped}
             delay={index * 0.2}
           />
         ))}
