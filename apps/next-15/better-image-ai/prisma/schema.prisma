@@ -39,11 +39,11 @@ model Flow {
   extraThought     Question?  @relation("FlowToExtraThought", fields: [suggestedStyleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   extraThoughtId   String?    @unique
 
-  aiGeneratedPrompt  String?
-  userModifiedPrompt String?
+  aiGeneratedPrompt  String? @default("")
+  userModifiedPrompt String? @default("")
 
-  originalPromptImage String?
-  finalPromptImage    String?
+  originalPromptImage String? @default("")
+  finalPromptImage    String? @default("")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -60,7 +60,7 @@ model Question {
 
   question    String
   placeholder String
-  answer      String?
+  answer      String? @default("")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

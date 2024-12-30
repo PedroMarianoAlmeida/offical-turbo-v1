@@ -387,8 +387,12 @@ export const getUserIncompleteFlow = async ({
       skip: (page - 1) * elementsPerPage,
       take: elementsPerPage,
       where: {
-        finalPromptImage: null,
         userId: userIdTreated,
+        OR: [
+          { finalPromptImage: { isSet: false } },
+          { finalPromptImage: null },
+          { finalPromptImage: "" },
+        ],
       },
       select: {
         originalPrompt: true,

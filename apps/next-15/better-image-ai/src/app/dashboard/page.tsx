@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@repo/shadcn/button";
 
 import { Feed } from "@/components/feed";
+import { UserIncompleteFlow } from "@/components/user-incomplete-flow";
 
 const DashboardPage = async () => {
   return (
@@ -11,6 +12,7 @@ const DashboardPage = async () => {
       <Link href="dashboard/new-image/step1">
         <Button>Generate New Image</Button>
       </Link>
+      <UserIncompleteFlow />
       <h2>Your completed images</h2>
       <Feed ownUser={true} />
     </main>

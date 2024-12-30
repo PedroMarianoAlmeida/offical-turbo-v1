@@ -3,26 +3,22 @@ import { useState, useEffect } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import type { Flow } from "@prisma/client";
 
-import { getFeed, getUserFeed } from "@/server-actions/flow";
-import { FeedGroup } from "./feed-group";
+import { getUserIncompleteFlow } from "@/server-actions/flow";
 import { Button } from "@repo/shadcn/button";
 
-export type FeedItem = Pick<
+import { UserTable } from "./user-table";
+
+export type IncompleteFlowItem = Pick<
   Flow,
-  | "aiGeneratedPrompt"
-  | "finalPromptImage"
-  | "id"
-  | "originalPrompt"
-  | "originalPromptImage"
-  | "userModifiedPrompt"
+  "aiGeneratedPrompt" | "id" | "originalPrompt" | "userModifiedPrompt"
 >;
 
-export const Feed = ({ ownUser = false }: { ownUser?: boolean }) => {
+export const UserIncompleteFlow = () => {
   const [page, setPage] = useState(1);
-  const [completeFeed, setCompleteFeed] = useState<FeedItem[]>([]);
+  const [completeFeed, setCompleteFeed] = useState<IncompleteFlowItem[]>([]);
   const { data, isPlaceholderData } = useQuery({
-    queryKey: [ownUser ? "own-feed" : "feed", page],
-    queryFn: () => (ownUser ? getUserFeed({ page }) : getFeed({ page })),
+    queryKey: ["user-incomplete-feed", page],
+    queryFn: () => getUserIncompleteFlow({ page }),
     placeholderData: keepPreviousData,
     staleTime: Infinity,
   });
@@ -39,9 +35,8 @@ export const Feed = ({ ownUser = false }: { ownUser?: boolean }) => {
   } = data;
 
   return (
-    <section className="flex flex-col">
-      <FeedGroup feedGroup={completeFeed} />
-
+    <section className="flex flex-col container">
+      <UserTable rows={completeFeed} />
       {hasMore ? (
         <Button
           onClick={() => {
