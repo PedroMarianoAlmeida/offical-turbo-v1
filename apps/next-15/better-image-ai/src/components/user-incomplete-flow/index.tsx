@@ -34,7 +34,7 @@ export const UserIncompleteFlow = () => {
   });
 
   if (status === "pending") {
-    return <div>Loading feed...</div>;
+    return <UserTable loading />;
   }
 
   if (status === "error") {

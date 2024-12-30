@@ -10,13 +10,26 @@ import {
   TableHeader,
   TableRow,
 } from "@repo/shadcn/table";
+import { Skeleton } from "@repo/shadcn/skeleton";
 
 import { LoadingButton } from "@repo/shadcn/loading-button";
 
 import { IncompleteFlowItem } from "./index";
 import { resumeFlow, deleteFlow } from "@/server-actions/flow";
 
-export const UserTable = ({ rows }: { rows: IncompleteFlowItem[] }) => {
+interface UserTableLoadingProps {
+  loading: true;
+  rows?: null;
+}
+
+interface UserTableRegularProps {
+  loading?: false;
+  rows: IncompleteFlowItem[];
+}
+
+type UserTableProps = UserTableLoadingProps | UserTableRegularProps;
+
+export const UserTable = ({ rows, loading }: UserTableProps) => {
   const [flowClicked, setFlowClicked] = useState("");
   const queryClient = useQueryClient();
 
@@ -39,7 +52,37 @@ export const UserTable = ({ rows }: { rows: IncompleteFlowItem[] }) => {
     setFlowClicked("");
   };
 
-  if (rows.length === 0) return;
+  let renderRows = loading
+    ? [
+        {
+          id: "1",
+          originalPrompt: "",
+          aiGeneratedPrompt: "",
+          userModifiedPrompt: "",
+        },
+        {
+          id: "2",
+          originalPrompt: "",
+          aiGeneratedPrompt: "",
+          userModifiedPrompt: "",
+        },
+        {
+          id: "3",
+          originalPrompt: "",
+          aiGeneratedPrompt: "",
+          userModifiedPrompt: "",
+        },
+        {
+          id: "4",
+          originalPrompt: "",
+          aiGeneratedPrompt: "",
+          userModifiedPrompt: "",
+        },
+      ]
+    : rows;
+
+
+  if (renderRows.length === 0) return;
   return (
     <Table>
       <TableHeader>
@@ -50,17 +93,28 @@ export const UserTable = ({ rows }: { rows: IncompleteFlowItem[] }) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {rows.map((row) => (
+        {renderRows.map((row) => (
           <TableRow key={row.id}>
-            <TableCell>{row.originalPrompt}</TableCell>
+            <TableCell>
+              {loading ? (
+                <Skeleton className="h-10 w-52" />
+              ) : (
+                row.originalPrompt
+              )}
+            </TableCell>
             <TableCell className="line-clamp-6">
-              {row.userModifiedPrompt ?? row.aiGeneratedPrompt}
+              {loading ? (
+                <Skeleton className="h-10 w-52" />
+              ) : (
+                (row.userModifiedPrompt ?? row.aiGeneratedPrompt)
+              )}
             </TableCell>
             <TableCell className="text-center w-60">
               <LoadingButton
                 className="w-6 h-6 p-1"
                 onClick={() => handleResumeFlow(row)}
                 loading={flowClicked === row.id}
+                disabled={loading}
               >
                 <CameraIcon />
               </LoadingButton>
@@ -68,6 +122,7 @@ export const UserTable = ({ rows }: { rows: IncompleteFlowItem[] }) => {
                 className="w-6 h-6 p-1 ml-2"
                 onClick={() => handleDeleteFlow(row)}
                 loading={flowClicked === row.id}
+                disabled={loading}
               >
                 <Trash2Icon />
               </LoadingButton>
