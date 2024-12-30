@@ -38,6 +38,14 @@ const LayoutClient = ({ children, totalCredits }: LayoutClientProps) => {
               ),
             },
             {
+              id: "tutorial",
+              element: (
+                <Link href="/tutorial" className="w-full">
+                  Tutorial
+                </Link>
+              ),
+            },
+            {
               id: "about",
               element: (
                 <Link href="/about" className="w-full">
