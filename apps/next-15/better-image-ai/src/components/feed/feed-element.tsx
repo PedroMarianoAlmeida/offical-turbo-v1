@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { FadeCard } from "@repo/shadcn/fade-card";
 import { Dialog, DialogContent, DialogTrigger } from "@repo/shadcn/dialog";
+import { DownloadButton } from "@repo/shadcn/download-button";
 
 import { type FeedItem } from "./index";
 
@@ -50,7 +51,7 @@ export function FeedElement({ item, isFlipped, delay = 0 }: FeedElementProps) {
     return null;
   }
   const finalPrompt = userModifiedPrompt || aiGeneratedPrompt;
-  
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -79,12 +80,26 @@ export function FeedElement({ item, isFlipped, delay = 0 }: FeedElementProps) {
         </div>
       </DialogTrigger>
       <DialogContent>
-        <ul className="list-disc text-left flex flex-col gap-3">
-          <li>Original Prompt: {item.originalPrompt}</li>
-          <li>
-            Final Prompt: {item.userModifiedPrompt || item.aiGeneratedPrompt}
-          </li>
-        </ul>
+        <div className="flex gap-2 flex-col items-center">
+          <ul className="list-disc text-left flex flex-col gap-3">
+            <li>Original Prompt : {item.originalPrompt}</li>
+            <li>
+              Final Prompt: {item.userModifiedPrompt || item.aiGeneratedPrompt}
+            </li>
+          </ul>
+          <div className="flex gap-2">
+          <DownloadButton
+            url={originalPromptImage}
+            filename={`better-image-initial-${id}`}
+            label="Original"
+          />
+          <DownloadButton
+            url={finalPromptImage}
+            filename={`better-image-final-${id}`}
+            label="Final"
+          />
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

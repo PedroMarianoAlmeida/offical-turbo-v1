@@ -9,6 +9,7 @@ export interface DownloadButtonProps {
   disabled?: boolean;
   successMessage?: string;
   errorMessage?: string;
+  label?: string;
 }
 
 export const DownloadButton = ({
@@ -17,6 +18,7 @@ export const DownloadButton = ({
   url,
   errorMessage = "Download failed",
   successMessage = "Downloaded successfully",
+  label = "Download",
 }: DownloadButtonProps) => {
   const handleClick = async () => {
     const result = await download(url, filename);
@@ -40,7 +42,7 @@ export const DownloadButton = ({
         variant="secondary"
         disabled={disabled}
       >
-        <span className="text-xs">Download</span> <FileDown />
+        <span className="text-xs">{label}</span> <FileDown />
       </Button>
     </>
   );
