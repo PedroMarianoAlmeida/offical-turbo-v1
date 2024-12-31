@@ -7,6 +7,7 @@ export default async function Step4() {
       finalSrc="/mock/betterimage1.webp"
       originalPrompt="Original prompt from step 1"
       originalSrc="/mock/betterimage2.webp"
+      id="1"
       // loading
     />
   );
