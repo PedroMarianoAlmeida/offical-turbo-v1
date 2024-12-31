@@ -345,10 +345,28 @@ export const getUserFeed = async ({
       skip: (page - 1) * elementsPerPage,
       take: elementsPerPage,
       where: {
-        finalPromptImage: {
-          not: null,
-        },
-        userId: userIdTreated,
+        AND: [
+          {
+            finalPromptImage: {
+              not: null,
+            },
+          },
+          {
+            finalPromptImage: {
+              not: "",
+            },
+          },
+          {
+            originalPromptImage: {
+              not: null,
+            },
+          },
+          {
+            originalPromptImage: {
+              not: "",
+            },
+          },
+        ],
       },
       select: {
         originalPrompt: true,
@@ -418,9 +436,28 @@ export const getFeed = async ({ page }: { page: number }) => {
       skip: (page - 1) * elementsPerPage,
       take: elementsPerPage,
       where: {
-        finalPromptImage: {
-          not: null,
-        },
+        AND: [
+          {
+            finalPromptImage: {
+              not: null,
+            },
+          },
+          {
+            finalPromptImage: {
+              not: "",
+            },
+          },
+          {
+            originalPromptImage: {
+              not: null,
+            },
+          },
+          {
+            originalPromptImage: {
+              not: "",
+            },
+          },
+        ],
       },
       select: {
         originalPrompt: true,
