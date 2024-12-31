@@ -28,8 +28,8 @@ const Content = ({
 }) => {
   return (
     <Image
-      src={isFrontSide ? originalPromptImage : finalPromptImage}
-      alt={isFrontSide ? originalPrompt : finalPrompt}
+      src={isFrontSide ? finalPromptImage : originalPromptImage}
+      alt={isFrontSide ? finalPrompt : originalPrompt}
       width={80}
       height={80}
       className="w-full h-full rounded"
@@ -88,16 +88,16 @@ export function FeedElement({ item, isFlipped, delay = 0 }: FeedElementProps) {
             </li>
           </ul>
           <div className="flex gap-2">
-          <DownloadButton
-            url={originalPromptImage}
-            filename={`better-image-initial-${id}`}
-            label="Original"
-          />
-          <DownloadButton
-            url={finalPromptImage}
-            filename={`better-image-final-${id}`}
-            label="Final"
-          />
+            <DownloadButton
+              url={originalPromptImage}
+              filename={`better-image-initial-${id}`}
+              label="Original"
+            />
+            <DownloadButton
+              url={finalPromptImage}
+              filename={`better-image-final-${id}`}
+              label="Final"
+            />
           </div>
         </div>
       </DialogContent>

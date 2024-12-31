@@ -8,7 +8,7 @@ export const FeedGroup = ({ feedGroup }: { feedGroup: FeedItem[] }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setIsFlipped((prev) => !prev);
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(timer);
   }, []);
