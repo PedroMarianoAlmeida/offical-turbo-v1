@@ -93,6 +93,7 @@
 - [-] The generateImage is using 2 credits (one per image) - And the promise all is on step4... maybe the "generate image" should generate both images... but I had problems of Promise All and my async wrapper (that is required on actionWithDailyRateLimit), so I leave this way for now - Makes sense this action be more expensive, so it is a feature, not a bug =P
 
 #### Migrate to MongoDB Prisma feature:
+
 - [x] Copy the behaviour of packages/backend/firebase/src/userCount.ts in a new prisma package
   - Actually this doesn't works as expected, the prisma should be in the APP
 - [x] Remove everything from Firebase package and use the local prisma
@@ -104,3 +105,21 @@
 - [x] Remove auth menu background
 - Add all shadcn components on package.json (this will solve by himself when I need to use some component)
 - Create the reachLimit validation in a single place (it is a simple comparison, but I did differently in layout and server side... so just a function of return userUsage > limit)
+
+## After MVP
+
+- [x] Improve loading dashboard page - On LoadingWrapper - Maybe with shadcn in his package?
+- [x] Add Download Image button
+- [-] Check if it is possible improve the Query on Similar artwork - I remove similar
+
+## Migrate to mongo DB
+
+- [x] Small bug: On step 3, if the user toggle back for ai prompt after change it, should clean the "user prompt field" (only if send this way)
+
+- When create the image, save the image in database, get the string name and put it in 2 places:
+  - User history
+  - General history
+  - So the place to see the image will be in /result/resultId
+  - User can see all images create in User history
+- A feed with all images generated in homepage
+- After login goes to Dashboard instead of New Image

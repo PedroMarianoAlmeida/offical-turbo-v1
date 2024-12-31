@@ -11,37 +11,24 @@ Receives a prompt for an image, but instead of creating right away, send to a te
 
 ### After MVP
 
-- [ ] Check if it is possible improve the Query on Similar artwork
 - [ ] Upgrade Step 2 Form
   - [ ] Add size select - Fix on form and on generateImage
   - [ ] Check Controlling an input with a state variable error
-- [ ] Improve loading dashboard page - On LoadingWrapper - Maybe with shadcn in his package?
 - [ ] Improve error pages - On ErrorWrapper - Maybe with shadcn in his package?
 - [ ] Add i18n (for Portuguese) - Check the prompts, I hard coded that the answer should be in english
 - [ ] Clear the cookies after finish step 4? - Maybe
 - [ ] Add more login providers
-- [ ] Add Download Image button
-
-#### Save user history
 
 ##### Migrate to MongoDB Prisma feature:
 
-- [ ] Small bug: On step 3, if the user toggle back for ai prompt after change it, should clean the "user prompt field" (only if send this way)
-
-- When create the image, save the image in database, get the string name and put it in 2 places:
-  - User history
-  - General history
-  - So the place to see the image will be in /result/resultId
 - Share option
   - The resultId
-- User can see all images create in User history
-- A feed with all images generated in homepage
-- After login goes to Dashboard instead of New Image
 
 #### Debit tech (Better Image AI)
 
 - [ ] The apps/next-15/better-image-ai/src/app/dashboard/new-image/step2/Step2Form.tsx is awful
 - [ ] incrementUserCountUsage, incrementUserCountUsage and actionWithDailyRateLimit should be only one of each - and where a get the daily count and how to update the user as callbacks
+- [ ] flow server action has more then 400 lines
 
 #### Payment
 
