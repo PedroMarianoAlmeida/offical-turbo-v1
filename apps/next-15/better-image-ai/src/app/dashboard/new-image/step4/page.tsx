@@ -29,7 +29,7 @@ export default async function Step4() {
       </ErrorWrapper>
     );
   }
-  const { finalPrompt, finalPromptImage, originalPrompt, originalPromptImage } =
+  const { finalPrompt, finalPromptImage, originalPrompt, originalPromptImage,id} =
     res.result;
   return (
     <Result
@@ -37,6 +37,7 @@ export default async function Step4() {
       finalSrc={finalPromptImage}
       originalPrompt={originalPrompt}
       originalSrc={originalPromptImage}
+      id={id}
     />
   );
 }

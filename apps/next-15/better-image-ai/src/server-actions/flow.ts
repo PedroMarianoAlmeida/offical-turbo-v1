@@ -312,6 +312,7 @@ export const getPromptAndGenerateImage = async () => {
         originalPromptImage: originalRes.result.publicUrl,
         finalPromptImage: finalRes.result.publicUrl,
         finalPrompt,
+        id: flowId
       };
     }
     return {
@@ -319,6 +320,7 @@ export const getPromptAndGenerateImage = async () => {
       originalPromptImage,
       finalPromptImage,
       finalPrompt,
+      id: flowId
     };
   });
 };

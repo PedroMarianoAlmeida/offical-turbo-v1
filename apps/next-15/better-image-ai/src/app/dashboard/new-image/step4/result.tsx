@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@repo/shadcn/button";
 import { Skeleton } from "@repo/shadcn/skeleton";
 import { ParagraphSkeleton } from "@repo/shadcn/paragraph-skeleton";
-// import { DownloadButton } from "@/components/DownloadButton";
+import { DownloadButton } from "@/components/DownloadButton";
 
 import { en } from "@/i18n/en";
 
@@ -14,6 +14,7 @@ interface ResultProps {
   finalSrc: string;
   finalPrompt: string;
   loading?: true;
+  id: string;
 }
 
 export const Result = ({
@@ -22,6 +23,7 @@ export const Result = ({
   originalPrompt,
   originalSrc,
   loading,
+  id,
 }: ResultProps) => {
   return (
     <main className="flex flex-col gap-10 items-center pb-4">
@@ -31,11 +33,11 @@ export const Result = ({
             <h2 className="text-center font-bold inline-block">
               {en.steps.step4.original}
             </h2>
-            {/* <DownloadButton
-              filename={originalPrompt.slice(0, 30)}
+            <DownloadButton
+              filename={`better-image-initial-${id}`}
               url={originalSrc}
               disabled={loading}
-            /> */}
+            />
           </div>
           {loading ? (
             <>
@@ -60,11 +62,11 @@ export const Result = ({
         <div className="flex flex-col gap-2">
           <div className="flex gap-5 items-center justify-center">
             <h2 className="text-center font-bold">{en.steps.step4.final}</h2>
-            {/* <DownloadButton
-              filename={finalPrompt.slice(0, 30)}
+            <DownloadButton
+              filename={`better-image-final-${id}`}
               url={finalSrc}
               disabled={loading}
-            /> */}
+            />
           </div>
           {loading ? (
             <>
