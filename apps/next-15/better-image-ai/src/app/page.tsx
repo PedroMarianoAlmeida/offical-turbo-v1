@@ -22,7 +22,7 @@ export default async function Home() {
           <Button>Give it a try</Button>
         </Link>
       ) : (
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center border-2 py-4 px-8 rounded-lg">
           <SignInButton />
           <p className="semi-bold">to give it a try</p>
         </div>

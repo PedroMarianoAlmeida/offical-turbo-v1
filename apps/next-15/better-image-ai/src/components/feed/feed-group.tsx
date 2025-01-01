@@ -16,7 +16,7 @@ export const FeedGroup = ({ feedGroup }: { feedGroup: FeedItem[] }) => {
   return (
     <section className="flex flex-col gap-5 items-center">
       <h2>{isFlipped ? "Original prompt image" : "Final Prompt Image"}</h2>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3 justify-center">
         {feedGroup.map((feedItem) => (
           <FeedElement
             key={feedItem.id}
