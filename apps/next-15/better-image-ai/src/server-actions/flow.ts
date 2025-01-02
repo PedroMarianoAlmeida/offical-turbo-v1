@@ -347,6 +347,7 @@ export const getUserFeed = async ({
       skip: (page - 1) * elementsPerPage,
       take: elementsPerPage,
       where: {
+        userId: userIdTreated,
         AND: [
           {
             finalPromptImage: {
