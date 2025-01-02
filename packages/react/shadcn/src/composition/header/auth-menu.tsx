@@ -5,6 +5,7 @@ import {
   MenubarItem,
   MenubarMenu,
   MenubarTrigger,
+  Menubar,
 } from "../../native-shadcn/menubar";
 import {
   Avatar,
@@ -45,47 +46,49 @@ const WithItems = ({ auth, items }: { auth: Auth; items: MenuItemsByRole }) => {
   const { session, signIn, signOut } = auth;
   const { authenticatedItems, publicItems } = items;
   return (
-    <MenubarMenu>
-      <MenubarTrigger className="focus:bg-transparent data-[state=open]:bg-transparent">
-        <div className="flex gap-2 items-center bg-accent px-4 rounded-full cursor-pointer">
-          <Menu />
-          <AuthAvatar session={session} />
-        </div>
-      </MenubarTrigger>
-      <MenubarContent>
-        {session.hasUser ? (
-          <>
-            <MenubarItem onClick={signOut} asChild>
-              <div>Sign out</div>
-            </MenubarItem>
-            {authenticatedItems &&
-              authenticatedItems.map(({ id, element }) => (
-                <MenubarItem key={id} asChild>
-                  {element}
-                </MenubarItem>
-              ))}
-            {publicItems &&
-              publicItems.map(({ id, element }) => (
-                <MenubarItem key={id} asChild>
-                  {element}
-                </MenubarItem>
-              ))}
-          </>
-        ) : (
-          <>
-            <MenubarItem onClick={signIn} asChild>
-              <div>Sign in</div>
-            </MenubarItem>
-            {publicItems &&
-              publicItems.map(({ id, element }) => (
-                <MenubarItem key={id} asChild>
-                  {element}
-                </MenubarItem>
-              ))}
-          </>
-        )}
-      </MenubarContent>
-    </MenubarMenu>
+    <Menubar className="bg-accent rounded-full h-12">
+      <MenubarMenu>
+        <MenubarTrigger className="focus:bg-transparent data-[state=open]:bg-transparent">
+          <div className="flex gap-2 items-center cursor-pointer">
+            <Menu />
+            <AuthAvatar session={session} />
+          </div>
+        </MenubarTrigger>
+        <MenubarContent>
+          {session.hasUser ? (
+            <>
+              <MenubarItem onClick={signOut} asChild>
+                <div>Sign out</div>
+              </MenubarItem>
+              {authenticatedItems &&
+                authenticatedItems.map(({ id, element }) => (
+                  <MenubarItem key={id} asChild>
+                    {element}
+                  </MenubarItem>
+                ))}
+              {publicItems &&
+                publicItems.map(({ id, element }) => (
+                  <MenubarItem key={id} asChild>
+                    {element}
+                  </MenubarItem>
+                ))}
+            </>
+          ) : (
+            <>
+              <MenubarItem onClick={signIn} asChild>
+                <div>Sign in</div>
+              </MenubarItem>
+              {publicItems &&
+                publicItems.map(({ id, element }) => (
+                  <MenubarItem key={id} asChild>
+                    {element}
+                  </MenubarItem>
+                ))}
+            </>
+          )}
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
   );
 };
 
