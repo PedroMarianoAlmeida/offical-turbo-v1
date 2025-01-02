@@ -7,6 +7,7 @@ import { Header } from "@repo/shadcn/header";
 import { Toaster } from "@repo/shadcn/toaster";
 import { WithChildren } from "@repo/core-main/types";
 import { useCoreSession } from "@repo/next-auth/session-adapters";
+import { possibleThemesSanitizer } from "@repo/shadcn/mode-toggle-lite";
 
 import { DailyUsage } from "@/components/DailyUsage";
 
@@ -14,8 +15,10 @@ interface LayoutClientProps extends WithChildren {
   totalCredits: number;
 }
 const LayoutClient = ({ children, totalCredits }: LayoutClientProps) => {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
   const session = useCoreSession();
+
+  const currentTheme = possibleThemesSanitizer(theme ?? "");
 
   return (
     <>
@@ -25,7 +28,7 @@ const LayoutClient = ({ children, totalCredits }: LayoutClientProps) => {
             Better Image AI
           </Link>
         }
-        setTheme={setTheme}
+        theme={{ setTheme, currentTheme }}
         auth={{ session, signIn, signOut }}
         items={{
           publicItems: [

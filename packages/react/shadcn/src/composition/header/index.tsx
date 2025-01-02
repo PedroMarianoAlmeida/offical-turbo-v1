@@ -4,7 +4,7 @@ import { CoreSession, WithChildren } from "@repo/core-main/types";
 import { PublicMenu } from "./public-menu";
 import { AuthMenu } from "./auth-menu";
 import { Menubar } from "../../native-shadcn/menubar";
-import { ModeToggle, SetTheme } from "../mode-toggle";
+import { ModeToggle, ModeToggleProps } from "../mode-toggle-lite";
 
 export interface Auth {
   session: CoreSession;
@@ -32,7 +32,7 @@ export interface AuthenticatedMenuItems extends PublicMenuItems {
 
 interface BaseHeaderProps extends Partial<WithChildren> {
   logo?: ReactNode;
-  setTheme?: SetTheme;
+  theme?: ModeToggleProps;
   items?: MenuItemsByRole;
 }
 
@@ -51,7 +51,7 @@ export type HeaderProps =
 
 export function Header({
   logo = "Logo",
-  setTheme,
+  theme,
   items,
   auth,
   children,
@@ -61,7 +61,12 @@ export function Header({
       {logo}
       <div className="flex items-center gap-2">
         {children}
-        {setTheme && <ModeToggle setTheme={setTheme} />}
+        {theme && (
+          <ModeToggle
+            setTheme={theme.setTheme}
+            currentTheme={theme.currentTheme}
+          />
+        )}
         {auth ? (
           <AuthMenu auth={auth} items={items} />
         ) : (

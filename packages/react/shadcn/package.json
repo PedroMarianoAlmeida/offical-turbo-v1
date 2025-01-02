@@ -15,6 +15,7 @@
     "./fade-card": "./src/composition/fade-card.tsx",
     "./flip-card": "./src/composition/flip-card.tsx",
     "./mode-toggle": "./src/composition/mode-toggle.tsx",
+    "./mode-toggle-lite": "./src/composition/mode-toggle-lite.tsx",
     "./paragraph-skeleton": "./src/composition/paragraph-skeleton.tsx",
     "./progress-bar": "./src/composition/progress-bar.tsx",
     "./loading-button": "./src/expansions/loading-button.tsx",
