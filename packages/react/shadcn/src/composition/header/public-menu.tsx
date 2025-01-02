@@ -5,6 +5,7 @@ import {
   MenubarItem,
   MenubarMenu,
   MenubarTrigger,
+  // Menubar -> See auth-menu
 } from "../../native-shadcn/menubar";
 
 import { HeaderProps } from "./index";
