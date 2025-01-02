@@ -21,7 +21,9 @@ export const PublicMenu = ({ items }: Pick<HeaderProps, "items">) => {
       </MenubarTrigger>
       <MenubarContent>
         {publicItems.map(({ element, id }) => (
-          <MenubarItem key={id}>{element}</MenubarItem>
+          <MenubarItem key={id} asChild>
+            {element}
+          </MenubarItem>
         ))}
       </MenubarContent>
     </MenubarMenu>

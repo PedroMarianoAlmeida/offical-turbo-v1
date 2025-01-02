@@ -55,22 +55,32 @@ const WithItems = ({ auth, items }: { auth: Auth; items: MenuItemsByRole }) => {
       <MenubarContent>
         {session.hasUser ? (
           <>
-            <MenubarItem onClick={signOut}>Sign out</MenubarItem>
+            <MenubarItem onClick={signOut} asChild>
+              <div>Sign out</div>
+            </MenubarItem>
             {authenticatedItems &&
               authenticatedItems.map(({ id, element }) => (
-                <MenubarItem key={id}>{element}</MenubarItem>
+                <MenubarItem key={id} asChild>
+                  {element}
+                </MenubarItem>
               ))}
             {publicItems &&
               publicItems.map(({ id, element }) => (
-                <MenubarItem key={id}>{element}</MenubarItem>
+                <MenubarItem key={id} asChild>
+                  {element}
+                </MenubarItem>
               ))}
           </>
         ) : (
           <>
-            <MenubarItem onClick={signIn}>Sign in</MenubarItem>
+            <MenubarItem onClick={signIn} asChild>
+              <div>Sign in</div>
+            </MenubarItem>
             {publicItems &&
               publicItems.map(({ id, element }) => (
-                <MenubarItem key={id}>{element}</MenubarItem>
+                <MenubarItem key={id} asChild>
+                  {element}
+                </MenubarItem>
               ))}
           </>
         )}
