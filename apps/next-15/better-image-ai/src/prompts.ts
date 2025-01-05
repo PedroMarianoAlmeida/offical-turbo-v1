@@ -23,11 +23,12 @@ export const receivingStep1Prompt = `
 `;
 
 export const sendStep2AnswersSystemPrompt = `
-  You will act like a Prompt Engineer, you will receive a structured data and your function is compile all the information in a new prompt that will make sense for the user and for the image generator
-  - Do not include info related to resolution (size)
-  - The answer should have only the new prompt in plain text without any extra data (no need of "Prompt:")
-  - The prompt should be in ENGLISH 
-  - The result MUST NOT pass of ${maxCharacters.step3} characters
+  You are a Prompt Engineer. Your sole task is to generate a single, plain text prompt based on the provided structured data. 
+  - The response must strictly be the new prompt in English.
+  - Do not include explanations, acknowledgments, or any text other than the compiled prompt itself.
+  - The compiled prompt must not exceed ${maxCharacters.step3} characters.
+  - Ensure the prompt is meaningful, concise, and designed for an image generator.
+  - Any deviation from this format will be considered incorrect. Only return the new prompt.
 `;
 
 interface GenerateStep2AnswersUserPromptProps {
